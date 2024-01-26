@@ -46,7 +46,6 @@ namespace BoardGamesNET.Classes.Forms
 
             AvailableLanguagesComboBox.SelectedValue = Program.cSettingsManager.ActiveLangauge;
         }
-        #endregion
 
         private void SaveTranslatableButton_Click(object sender, EventArgs e)
         {
@@ -54,5 +53,6 @@ namespace BoardGamesNET.Classes.Forms
 
             Close();
         }
+        #endregion
     }
 }

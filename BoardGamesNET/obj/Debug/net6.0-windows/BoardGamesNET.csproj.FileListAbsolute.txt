@@ -35,3 +35,4 @@ C:\Users\User\Documents\Projects\Visual Studio 2022\BoardGamesNET\BoardGamesNET\
 C:\Users\User\Documents\Projects\Visual Studio 2022\BoardGamesNET\BoardGamesNET\obj\Debug\net6.0-windows\BoardGamesNET.Classes.CustomComponents.TranslatableLabel.resources
 C:\Users\User\Documents\Projects\Visual Studio 2022\BoardGamesNET\BoardGamesNET\obj\Debug\net6.0-windows\BoardGamesNET.Classes.Forms.SettingsForm.resources
 C:\Users\User\Documents\Projects\Visual Studio 2022\BoardGamesNET\BoardGamesNET\obj\Debug\net6.0-windows\BoardGamesNET.Classes.CustomComponents.TranslatableButton.resources
+C:\Users\User\Documents\Projects\Visual Studio 2022\BoardGamesNET\BoardGamesNET\obj\Debug\net6.0-windows\BoardGamesNET.sourcelink.json
