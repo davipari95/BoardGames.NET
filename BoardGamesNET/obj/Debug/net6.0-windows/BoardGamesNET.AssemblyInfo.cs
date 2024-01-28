@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("BoardGamesNET")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b01f02b78f9532bc1b7e8d0b520649d6283374f6")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
 [assembly: System.Reflection.AssemblyProductAttribute("BoardGamesNET")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BoardGamesNET")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

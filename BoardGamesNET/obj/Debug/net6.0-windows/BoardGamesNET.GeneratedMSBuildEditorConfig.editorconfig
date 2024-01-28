@@ -14,6 +14,6 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = BoardGamesNET
-build_property.ProjectDir = C:\Users\User\Documents\Projects\Visual Studio 2022\BoardGamesNET\BoardGamesNET\
+build_property.ProjectDir = D:\Documents\Projects\Visual Studio\BoardGamesNET\BoardGamesNET\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 

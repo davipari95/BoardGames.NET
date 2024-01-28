@@ -32,6 +32,12 @@
             MenuTranslatableToolStripMenuItem = new CustomComponents.TranslatableToolStripMenuItem();
             FileQuitTranslatableToolStripMenuItem = new CustomComponents.TranslatableToolStripMenuItem();
             translatableToolStripMenuItem1 = new CustomComponents.TranslatableToolStripMenuItem();
+            GamesCheckersTranslatableToolStripMenuItem = new CustomComponents.TranslatableToolStripMenuItem();
+            GamesCheckersTwoPlayersTranslatableToolStripMenuItem = new CustomComponents.TranslatableToolStripMenuItem();
+            GamesCheckersTwoPlayersLocalTranslatableToolStripMeniItem = new CustomComponents.TranslatableToolStripMenuItem();
+            GamesCheckersTwoPlayersLanTranslatableToolStripMeniItem = new CustomComponents.TranslatableToolStripMenuItem();
+            toolStripSeparator1 = new ToolStripSeparator();
+            GamesCheckersRulesTranslatableToolStripMeniItem = new CustomComponents.TranslatableToolStripMenuItem();
             translatableToolStripMenuItem2 = new CustomComponents.TranslatableToolStripMenuItem();
             OptionsSettingsTranslatableToolStripMenuItem = new CustomComponents.TranslatableToolStripMenuItem();
             MainMenuStrip.SuspendLayout();
@@ -56,6 +62,7 @@
             // 
             // FileQuitTranslatableToolStripMenuItem
             // 
+            FileQuitTranslatableToolStripMenuItem.Image = Resources.App.Quit;
             FileQuitTranslatableToolStripMenuItem.LanguageReference = 4L;
             FileQuitTranslatableToolStripMenuItem.Name = "FileQuitTranslatableToolStripMenuItem";
             FileQuitTranslatableToolStripMenuItem.Size = new Size(97, 22);
@@ -64,10 +71,63 @@
             // 
             // translatableToolStripMenuItem1
             // 
+            translatableToolStripMenuItem1.DropDownItems.AddRange(new ToolStripItem[] { GamesCheckersTranslatableToolStripMenuItem });
             translatableToolStripMenuItem1.LanguageReference = 3L;
             translatableToolStripMenuItem1.Name = "translatableToolStripMenuItem1";
             translatableToolStripMenuItem1.Size = new Size(55, 20);
             translatableToolStripMenuItem1.Text = "&Games";
+            // 
+            // GamesCheckersTranslatableToolStripMenuItem
+            // 
+            GamesCheckersTranslatableToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { GamesCheckersTwoPlayersTranslatableToolStripMenuItem, toolStripSeparator1, GamesCheckersRulesTranslatableToolStripMeniItem });
+            GamesCheckersTranslatableToolStripMenuItem.Image = Resources.Games.Checkers.GameIcon;
+            GamesCheckersTranslatableToolStripMenuItem.LanguageReference = 10L;
+            GamesCheckersTranslatableToolStripMenuItem.Name = "GamesCheckersTranslatableToolStripMenuItem";
+            GamesCheckersTranslatableToolStripMenuItem.Size = new Size(180, 22);
+            GamesCheckersTranslatableToolStripMenuItem.Text = "&Checkers";
+            // 
+            // GamesCheckersTwoPlayersTranslatableToolStripMenuItem
+            // 
+            GamesCheckersTwoPlayersTranslatableToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { GamesCheckersTwoPlayersLocalTranslatableToolStripMeniItem, GamesCheckersTwoPlayersLanTranslatableToolStripMeniItem });
+            GamesCheckersTwoPlayersTranslatableToolStripMenuItem.Image = Resources.PlayerNumberIcons._02;
+            GamesCheckersTwoPlayersTranslatableToolStripMenuItem.LanguageReference = 12L;
+            GamesCheckersTwoPlayersTranslatableToolStripMenuItem.Name = "GamesCheckersTwoPlayersTranslatableToolStripMenuItem";
+            GamesCheckersTwoPlayersTranslatableToolStripMenuItem.Size = new Size(180, 22);
+            GamesCheckersTwoPlayersTranslatableToolStripMenuItem.Text = "&2 players";
+            // 
+            // GamesCheckersTwoPlayersLocalTranslatableToolStripMeniItem
+            // 
+            GamesCheckersTwoPlayersLocalTranslatableToolStripMeniItem.Image = Resources.App.HotSeat;
+            GamesCheckersTwoPlayersLocalTranslatableToolStripMeniItem.LanguageReference = 14L;
+            GamesCheckersTwoPlayersLocalTranslatableToolStripMeniItem.Name = "GamesCheckersTwoPlayersLocalTranslatableToolStripMeniItem";
+            GamesCheckersTwoPlayersLocalTranslatableToolStripMeniItem.Size = new Size(180, 22);
+            GamesCheckersTwoPlayersLocalTranslatableToolStripMeniItem.Text = "&Local";
+            GamesCheckersTwoPlayersLocalTranslatableToolStripMeniItem.Click += GamesCheckersTwoPlayersLocalTranslatableToolStripMeniItem_Click;
+            // 
+            // GamesCheckersTwoPlayersLanTranslatableToolStripMeniItem
+            // 
+            GamesCheckersTwoPlayersLanTranslatableToolStripMeniItem.Enabled = false;
+            GamesCheckersTwoPlayersLanTranslatableToolStripMeniItem.Image = Resources.App.LAN;
+            GamesCheckersTwoPlayersLanTranslatableToolStripMeniItem.LanguageReference = 15L;
+            GamesCheckersTwoPlayersLanTranslatableToolStripMeniItem.Name = "GamesCheckersTwoPlayersLanTranslatableToolStripMeniItem";
+            GamesCheckersTwoPlayersLanTranslatableToolStripMeniItem.Size = new Size(180, 22);
+            GamesCheckersTwoPlayersLanTranslatableToolStripMeniItem.Text = "L&AN";
+            GamesCheckersTwoPlayersLanTranslatableToolStripMeniItem.ToolTipText = "Coming soon...";
+            // 
+            // toolStripSeparator1
+            // 
+            toolStripSeparator1.Name = "toolStripSeparator1";
+            toolStripSeparator1.Size = new Size(177, 6);
+            // 
+            // GamesCheckersRulesTranslatableToolStripMeniItem
+            // 
+            GamesCheckersRulesTranslatableToolStripMeniItem.Enabled = false;
+            GamesCheckersRulesTranslatableToolStripMeniItem.Image = Resources.App.Rules;
+            GamesCheckersRulesTranslatableToolStripMeniItem.LanguageReference = 13L;
+            GamesCheckersRulesTranslatableToolStripMeniItem.Name = "GamesCheckersRulesTranslatableToolStripMeniItem";
+            GamesCheckersRulesTranslatableToolStripMeniItem.Size = new Size(180, 22);
+            GamesCheckersRulesTranslatableToolStripMeniItem.Text = "&Rules";
+            GamesCheckersRulesTranslatableToolStripMeniItem.ToolTipText = "Coming soon...";
             // 
             // translatableToolStripMenuItem2
             // 
@@ -79,9 +139,10 @@
             // 
             // OptionsSettingsTranslatableToolStripMenuItem
             // 
+            OptionsSettingsTranslatableToolStripMenuItem.Image = Resources.App.Settings;
             OptionsSettingsTranslatableToolStripMenuItem.LanguageReference = 5L;
             OptionsSettingsTranslatableToolStripMenuItem.Name = "OptionsSettingsTranslatableToolStripMenuItem";
-            OptionsSettingsTranslatableToolStripMenuItem.Size = new Size(180, 22);
+            OptionsSettingsTranslatableToolStripMenuItem.Size = new Size(116, 22);
             OptionsSettingsTranslatableToolStripMenuItem.Text = "&Settings";
             OptionsSettingsTranslatableToolStripMenuItem.Click += OptionsSettingsTranslatableToolStripMenuItem_Click;
             // 
@@ -111,5 +172,11 @@
         private CustomComponents.TranslatableToolStripMenuItem translatableToolStripMenuItem2;
         private CustomComponents.TranslatableToolStripMenuItem FileQuitTranslatableToolStripMenuItem;
         private CustomComponents.TranslatableToolStripMenuItem OptionsSettingsTranslatableToolStripMenuItem;
+        private CustomComponents.TranslatableToolStripMenuItem GamesCheckersTranslatableToolStripMenuItem;
+        private CustomComponents.TranslatableToolStripMenuItem GamesCheckersTwoPlayersTranslatableToolStripMenuItem;
+        private ToolStripSeparator toolStripSeparator1;
+        private CustomComponents.TranslatableToolStripMenuItem GamesCheckersRulesTranslatableToolStripMeniItem;
+        private CustomComponents.TranslatableToolStripMenuItem GamesCheckersTwoPlayersLocalTranslatableToolStripMeniItem;
+        private CustomComponents.TranslatableToolStripMenuItem GamesCheckersTwoPlayersLanTranslatableToolStripMeniItem;
     }
 }

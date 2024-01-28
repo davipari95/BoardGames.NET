@@ -107,23 +107,29 @@ namespace BoardGamesNET.Classes.Objects
         {
             List<ITranslatable> objects = new List<ITranslatable>(0);
 
-            foreach (ToolStripMenuItem item in menu.Items)
+            foreach (ToolStripItem item in menu.Items)
             {
-                objects.AddRange(GetAllDropDownItemsInMenuItem(item));
+                if (item is ToolStripDropDownItem)
+                {
+                    objects.AddRange(GetAllDropDownItemsInMenuItem((ToolStripDropDownItem)item));
+                }
             }
 
             return objects;
         }
 
-        public static ICollection<ITranslatable> GetAllDropDownItemsInMenuItem(ToolStripMenuItem menuItem)
+        public static ICollection<ITranslatable> GetAllDropDownItemsInMenuItem(ToolStripDropDownItem menuItem)
         {
             List<ITranslatable> objects = new List<ITranslatable>(0);
 
             if (menuItem is ITranslatable) objects.Add((ITranslatable)menuItem);
 
-            foreach (ToolStripMenuItem item in menuItem.DropDownItems)
+            foreach (ToolStripItem item in menuItem.DropDownItems)
             {
-                objects.AddRange(GetAllDropDownItemsInMenuItem(item));
+                if (item is ToolStripDropDownItem)
+                {
+                    objects.AddRange(GetAllDropDownItemsInMenuItem((ToolStripDropDownItem)item)); 
+                }
             }
 
             return objects;
@@ -137,6 +143,14 @@ namespace BoardGamesNET.Classes.Objects
         public string GetTranslatedText(long languageReference, string languageCode)
         {
             return TranslatedText[languageReference][languageCode];
+        }
+
+        public DialogResult ShowTranslatedMessageDialog(long messageLangaugeReference, long titleLangaugeReference, MessageBoxButtons buttons = MessageBoxButtons.OK, MessageBoxIcon icon = MessageBoxIcon.None)
+        {
+            string message = GetTranslatedText(messageLangaugeReference);
+            string title = GetTranslatedText(titleLangaugeReference);
+
+            return MessageBox.Show(message, title, buttons, icon);
         }
 
         private void InitializeAvailableLangauges()

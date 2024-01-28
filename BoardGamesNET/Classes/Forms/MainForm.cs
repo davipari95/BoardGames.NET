@@ -1,3 +1,4 @@
+using BoardGamesNET.Classes.Forms.Games.Checkers;
 using BoardGamesNET.Classes.Objects;
 using BoardGamesNET.Classes.Utils;
 
@@ -41,6 +42,13 @@ namespace BoardGamesNET.Classes.Forms
                 form.MdiParent = this;
                 form.Show();
             }
+        }
+
+        private void GamesCheckersTwoPlayersLocalTranslatableToolStripMeniItem_Click(object sender, EventArgs e)
+        {
+            CheckersHotseatSettingsForm form = new CheckersHotseatSettingsForm();
+            form.MdiParent = this;
+            form.Show();
         }
     }
 }
