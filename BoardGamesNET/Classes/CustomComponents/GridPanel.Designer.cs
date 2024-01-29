@@ -1,6 +1,6 @@
 ﻿namespace BoardGamesNET.Classes.CustomComponents
 {
-    partial class GridLabel
+    partial class GridPanel
     {
         /// <summary>
         /// Variabile di progettazione necessaria.

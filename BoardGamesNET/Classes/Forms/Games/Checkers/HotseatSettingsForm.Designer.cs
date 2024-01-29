@@ -1,6 +1,6 @@
 ﻿namespace BoardGamesNET.Classes.Forms.Games.Checkers
 {
-    partial class CheckersHotseatSettingsForm
+    partial class HotseatSettingsForm
     {
         /// <summary>
         /// Required designer variable.

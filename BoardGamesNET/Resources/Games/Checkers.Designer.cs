@@ -83,9 +83,9 @@ namespace BoardGamesNET.Resources.Games {
         /// <summary>
         ///   Cerca una risorsa localizzata di tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap ChessBoard {
+        internal static System.Drawing.Bitmap CheckersBoard {
             get {
-                object obj = ResourceManager.GetObject("ChessBoard", resourceCulture);
+                object obj = ResourceManager.GetObject("CheckersBoard", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

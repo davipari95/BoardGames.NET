@@ -8,7 +8,7 @@ using ICheckersPawn = BoardGamesNET.Interfaces.Games.Checkers.IChecker;
 
 namespace BoardGamesNET.Classes.Objects.Games.Checkers
 {
-    public class Pawn : ICheckersPawn
+    public class Pawn : ICheckersPawn, IEquatable<Pawn>
     {
         #region ===== VARIABLES =====
 
@@ -56,6 +56,22 @@ namespace BoardGamesNET.Classes.Objects.Games.Checkers
                 return _GridPosition;
             }
         }
+
+        public Image Image
+        {
+            get
+            {
+                switch (Color)
+                {
+                    case PlayerColorWBEnum.White:
+                        return IsKing ? Resources.Games.Checkers.WhiteCheckerKing : Resources.Games.Checkers.WhiteChecker;
+                    case PlayerColorWBEnum.Black:
+                        return IsKing ? Resources.Games.Checkers.BlackCheckerKing : Resources.Games.Checkers.BlackChecker;
+                    default:
+                        throw new ArgumentException("Color doesn't exists.");
+                }
+            }
+        }
         #endregion
 
         #region ===== EVENTS =====
@@ -78,6 +94,15 @@ namespace BoardGamesNET.Classes.Objects.Games.Checkers
         private void GridPosition_PositionChangedEvent(object? sender, GridPosition e)
         {
             PositionChanged?.Invoke(this, e);
+        }
+
+        public bool Equals(Pawn? other)
+        {
+            return
+                other != null &&
+                Color.Equals(other.Color) &&
+                IsKing.Equals(other.IsKing) &&
+                GridPosition.Equals(other.GridPosition);
         }
         #endregion
     }

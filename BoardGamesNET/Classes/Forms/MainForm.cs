@@ -46,7 +46,7 @@ namespace BoardGamesNET.Classes.Forms
 
         private void GamesCheckersTwoPlayersLocalTranslatableToolStripMeniItem_Click(object sender, EventArgs e)
         {
-            CheckersHotseatSettingsForm form = new CheckersHotseatSettingsForm();
+            HotseatSettingsForm form = new HotseatSettingsForm();
             form.MdiParent = this;
             form.Show();
         }

@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Compile Update="Classes\CustomComponents\GridLabel.cs">
+    <Compile Update="Classes\CustomComponents\GridPanel.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Update="Classes\CustomComponents\TranslatableButton.cs">
@@ -13,7 +13,10 @@
     <Compile Update="Classes\CustomComponents\TranslatableToolStripMenuItem.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Update="Classes\Forms\Games\Checkers\CheckersHotseatSettingsForm.cs">
+    <Compile Update="Classes\Forms\Games\Checkers\HotseatGameForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Classes\Forms\Games\Checkers\HotseatSettingsForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Classes\Forms\MainForm.cs">

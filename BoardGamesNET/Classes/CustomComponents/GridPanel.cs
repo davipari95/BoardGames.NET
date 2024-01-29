@@ -11,29 +11,29 @@ using System.Windows.Forms;
 
 namespace BoardGamesNET.Classes.CustomComponents
 {
-    [ToolboxBitmap(typeof(Label))]
-    public partial class GridLabel : Label
+    [ToolboxBitmap(typeof(Panel))]
+    public partial class GridPanel : Panel
     {
         #region ===== VARIABLES =====
         public GridPosition GridPosition { get; set; }
         #endregion
 
         #region ===== CONSTRUCTORS =====
-        public GridLabel()
+        public GridPanel()
         {
             InitializeComponent();
 
             GridPosition = new GridPosition(0, 0);
         }
 
-        public GridLabel(GridPosition gridPosition)
+        public GridPanel(GridPosition gridPosition)
         {
             InitializeComponent();
 
             GridPosition = new GridPosition(gridPosition);
         }
 
-        public GridLabel(int row, int column)
+        public GridPanel(int row, int column)
         {
             InitializeComponent();
 

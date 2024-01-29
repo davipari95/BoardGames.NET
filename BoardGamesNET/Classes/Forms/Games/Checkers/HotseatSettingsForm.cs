@@ -10,10 +10,10 @@ using System.Windows.Forms;
 
 namespace BoardGamesNET.Classes.Forms.Games.Checkers
 {
-    public partial class CheckersHotseatSettingsForm : Form
+    public partial class HotseatSettingsForm : Form
     {
         #region ===== CONSTRUCTORS =====
-        public CheckersHotseatSettingsForm()
+        public HotseatSettingsForm()
         {
             InitializeComponent();
 
@@ -62,6 +62,13 @@ namespace BoardGamesNET.Classes.Forms.Games.Checkers
                 Program.cRegionManager.ShowTranslatedMessageDialog(20, 21, icon: MessageBoxIcon.Warning);
                 return;
             }
+
+            string whitesPlayerName = WhitesPlayerNameTextBox.Text;
+            string blacksPlayerName = BlacksPlayerNameTextBox.Text;
+
+            HotseatGameForm form = new HotseatGameForm(whitesPlayerName, blacksPlayerName);
+            form.MdiParent = Program.MainForm;
+            form.Show();
         }
     }
 }
