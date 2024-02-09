@@ -119,6 +119,11 @@ namespace BoardGamesNET.Classes.Objects
                 other.Row.Equals(Row) &&
                 other.Column.Equals(Column);
         }
+
+        public override string ToString()
+        {
+            return $"[ Row = {Row} ; Column = {Column} ]";
+        }
         #endregion
     }
 }

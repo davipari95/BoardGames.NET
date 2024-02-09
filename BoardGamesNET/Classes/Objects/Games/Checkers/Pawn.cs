@@ -1,6 +1,8 @@
-﻿using BoardGamesNET.Enums;
+﻿using BoardGamesNET.Classes.Utils;
+using BoardGamesNET.Enums;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Core.Common.CommandTrees.ExpressionBuilder;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,6 +18,7 @@ namespace BoardGamesNET.Classes.Objects.Games.Checkers
         private PlayerColorWBEnum _Color;
         private bool _IsKing;
         private GridPosition _GridPosition;
+        private CheckersBoard _CheckersBoardParent;
         #endregion
 
         public PlayerColorWBEnum Color 
@@ -72,6 +75,10 @@ namespace BoardGamesNET.Classes.Objects.Games.Checkers
                 }
             }
         }
+
+        public CheckersBoard CheckersBoardParent => _CheckersBoardParent;
+
+        private bool IsWhite => Color == PlayerColorWBEnum.White;
         #endregion
 
         #region ===== EVENTS =====
@@ -80,8 +87,9 @@ namespace BoardGamesNET.Classes.Objects.Games.Checkers
         #endregion
 
         #region ===== CONSTRUCTORS =====
-        public Pawn(PlayerColorWBEnum color, GridPosition startingPosition)
+        public Pawn(CheckersBoard parent, PlayerColorWBEnum color, GridPosition startingPosition)
         {
+            _CheckersBoardParent = parent;
             _Color = color;
             _GridPosition = startingPosition;
             _IsKing = false;
@@ -103,6 +111,63 @@ namespace BoardGamesNET.Classes.Objects.Games.Checkers
                 Color.Equals(other.Color) &&
                 IsKing.Equals(other.IsKing) &&
                 GridPosition.Equals(other.GridPosition);
+        }
+
+        public override string ToString()
+        {
+            return $"[ Color = {Color} ; IsKing = {IsKing} ; GridPosition = {GridPosition} ]";
+        }
+
+        public IEnumerable<GridPosition> GetAvailableMoves()
+        {
+            foreach (GridPosition p in GetAvailableDiagonalCells())
+            {
+                Pawn? positionPawn = CheckersBoardParent.GetPawnByPosition(p);
+
+                if (positionPawn == null)
+                {
+                    yield return p;
+                }
+                else
+                {
+                    if (!positionPawn.Color.Equals(Color))
+                    {
+                        GridPosition nextPosition = new GridPosition()
+                        {
+                            Row = (2 * p.Row) - GridPosition.Row,
+                            Column = (2 * p.Column) - GridPosition.Column,
+                        };
+
+                        if (CheckersBoard.IsInCheckersBoard(nextPosition) && CheckersBoardParent.GetPawnByPosition(nextPosition) == null)
+                        {
+                            yield return nextPosition;
+                        }
+                    }
+                }
+            }
+        }
+
+        private IEnumerable<GridPosition> GetAvailableDiagonalCells()
+        {
+            List<GridPosition> neightboringCells = new List<GridPosition>(0);
+
+            int movement = IsWhite ? -1 : 1;
+
+            List<int> rows = new List<int>() { GridPosition.Row + movement };
+            if (IsKing) rows.Add(GridPosition.Row - movement);
+
+            List<int> cols = new List<int>() { GridPosition.Column - 1, GridPosition.Column + 1};
+
+            foreach (int row in rows)
+            {
+                foreach (GridPosition p in cols.Select(c => new GridPosition(row, c)))
+                {
+                    if (CheckersBoard.IsInCheckersBoard(p))
+                    {
+                        yield return p;
+                    }
+                } 
+            }
         }
         #endregion
     }

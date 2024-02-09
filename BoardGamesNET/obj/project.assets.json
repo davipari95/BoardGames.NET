@@ -1215,19 +1215,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\User\\.nuget\\packages\\": {}
+    "C:\\Users\\paris\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\User\\Documents\\Projects\\Visual Studio 2022\\BoardGamesNET\\BoardGamesNET\\BoardGamesNET.csproj",
+      "projectUniqueName": "D:\\Documents\\Projects\\Visual Studio\\BoardGamesNET\\BoardGamesNET\\BoardGamesNET.csproj",
       "projectName": "BoardGamesNET",
-      "projectPath": "C:\\Users\\User\\Documents\\Projects\\Visual Studio 2022\\BoardGamesNET\\BoardGamesNET\\BoardGamesNET.csproj",
-      "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\User\\Documents\\Projects\\Visual Studio 2022\\BoardGamesNET\\BoardGamesNET\\obj\\",
+      "projectPath": "D:\\Documents\\Projects\\Visual Studio\\BoardGamesNET\\BoardGamesNET\\BoardGamesNET.csproj",
+      "packagesPath": "C:\\Users\\paris\\.nuget\\packages\\",
+      "outputPath": "D:\\Documents\\Projects\\Visual Studio\\BoardGamesNET\\BoardGamesNET\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\paris\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -1277,7 +1282,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
       }
     }
   }

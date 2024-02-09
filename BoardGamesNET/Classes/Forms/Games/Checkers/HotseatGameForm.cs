@@ -2,16 +2,7 @@
 using BoardGamesNET.Classes.Objects;
 using BoardGamesNET.Classes.Objects.Games.Checkers;
 using BoardGamesNET.Classes.Objects.Games.Checkers.Games;
-using Microsoft.Win32;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+using System.Diagnostics;
 
 namespace BoardGamesNET.Classes.Forms.Games.Checkers
 {
@@ -69,6 +60,7 @@ namespace BoardGamesNET.Classes.Forms.Games.Checkers
             UpdateGraphics();
 
             Program.cSettingsManager.ActiveLanguageChangedValueEvent += CSettingsManager_ActiveLanguageChangedValueEvent;
+            Game.SelectedPawnChangedEvent += Game_SelectedPawnChangedEvent;
         }
         #endregion
 
@@ -114,6 +106,29 @@ namespace BoardGamesNET.Classes.Forms.Games.Checkers
             if (sender != null && sender is GridPanel)
             {
                 GridPanel clickedPanel = (GridPanel)sender;
+                Debug.WriteLine(clickedPanel.GridPosition);
+
+                Pawn? selectedElement = Game.CheckersBoard.GetPawnByPosition(clickedPanel.GridPosition);
+                Debug.WriteLine(selectedElement);
+
+                if (Game.SelectedPawn == null)
+                {
+                    if (selectedElement != null && selectedElement.Color.Equals(Game.ActualTurnColor))
+                    {
+                        Game.SelectPawn(selectedElement);
+                    }
+                }
+                else
+                {
+                    if (selectedElement == null || !selectedElement.Color.Equals(Game.ActualTurnColor))
+                    {
+                        Game.SelectPawn(null, true);
+                    }
+                    else
+                    {
+                        Game.SelectPawn(selectedElement);
+                    }
+                }
             }
         }
 
@@ -138,6 +153,33 @@ namespace BoardGamesNET.Classes.Forms.Games.Checkers
             {
                 CheckersBoardPanels[p.GridPosition.Row, p.GridPosition.Column].BackgroundImage = p.Image;
             }
+        }
+
+        private void Game_SelectedPawnChangedEvent(object? sender, Pawn? e)
+        {
+            ClearSelection();
+
+            if (e != null)
+            {
+                ShowSelectedPawnAndAvailabelMoves(e);
+            }
+        }
+
+        private void ClearSelection()
+        {
+            foreach (GridPanel p in CheckersBoardPanels)
+            {
+                p.BackColor = Color.Transparent;
+            }
+        }
+
+        private void ShowSelectedPawnAndAvailabelMoves(Pawn pawn)
+        {
+            CheckersBoardPanels[pawn.GridPosition.Row, pawn.GridPosition.Column].BackColor = Color.LawnGreen;
+
+            IEnumerable<GridPosition> availableMoves = pawn.GetAvailableMoves();
+
+
         }
 
         #endregion

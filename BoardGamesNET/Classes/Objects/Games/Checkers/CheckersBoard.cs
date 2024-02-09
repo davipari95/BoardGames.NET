@@ -1,5 +1,6 @@
 ﻿using BoardGamesNET.Classes.Utils;
 using BoardGamesNET.Enums;
+using System.Reflection;
 
 namespace BoardGamesNET.Classes.Objects.Games.Checkers
 {
@@ -55,6 +56,28 @@ namespace BoardGamesNET.Classes.Objects.Games.Checkers
         #endregion
 
         #region ===== METHODS =====
+        public Pawn? GetPawnByPosition(GridPosition position)
+        {
+            return Pawns.FirstOrDefault(p => p.GridPosition.Equals(position));
+        }
+
+        public static bool IsInCheckersBoard(GridPosition position)
+        {
+            return
+                UMath.Beetween(position.Row, 0, 7) &&
+                UMath.Beetween(position.Column, 0, 7);
+        }
+
+        public static bool IsInCheckersBoard(int row, int column)
+        {
+            return IsInCheckersBoard(new GridPosition(row, column));
+        }
+
+        public static bool IsInCheckersBoard(int rowOrColumn)
+        {
+            return UMath.Beetween(rowOrColumn, 0, 7);
+        }
+
         private void InitializePawns()
         {
             Pawns = new List<Pawn>(0);
@@ -73,7 +96,7 @@ namespace BoardGamesNET.Classes.Objects.Games.Checkers
             {
                 for (int c = (r + 1) % 2; c < 8; c += 2)
                 {
-                    yield return new Pawn(color, new GridPosition(r, c));
+                    yield return new Pawn(this, color, new GridPosition(r, c));
                 }
             }
         }

@@ -10,6 +10,10 @@ namespace BoardGamesNET.Classes.Forms
         {
             InitializeComponent();
 
+#if DEBUG
+            TestToolStripMenuItem.Visible = true;
+#endif
+
             Program.cSettingsManager.ActiveLanguageChangedValueEvent += CSettingsManager_ActiveLanguageChangedValueEvent;
         }
 
@@ -47,6 +51,13 @@ namespace BoardGamesNET.Classes.Forms
         private void GamesCheckersTwoPlayersLocalTranslatableToolStripMeniItem_Click(object sender, EventArgs e)
         {
             HotseatSettingsForm form = new HotseatSettingsForm();
+            form.MdiParent = this;
+            form.Show();
+        }
+
+        private void TestToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            HotseatGameForm form = new HotseatGameForm("Angelo Bianchi", "Beatrice Neri");
             form.MdiParent = this;
             form.Show();
         }

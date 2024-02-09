@@ -10,6 +10,7 @@ namespace BoardGamesNET.Classes.Objects.Games.Checkers
         private Dictionary<PlayerColorWBEnum, string> _PlayerNames;
         private CheckersBoard _CheckersBoard;
         private PlayerColorWBEnum _ActualTurn;
+        private int _TurnNumber;
         #endregion
 
         public Dictionary<PlayerColorWBEnum, string> PlayerNames
@@ -39,7 +40,7 @@ namespace BoardGamesNET.Classes.Objects.Games.Checkers
             }
         }
 
-        public PlayerColorWBEnum ActualTurn
+        public PlayerColorWBEnum ActualTurnColor
         {
             get
             {
@@ -54,6 +55,8 @@ namespace BoardGamesNET.Classes.Objects.Games.Checkers
                 }
             }
         }
+
+        public int TurnNumber => _TurnNumber;
 
         #endregion
 
@@ -79,7 +82,7 @@ namespace BoardGamesNET.Classes.Objects.Games.Checkers
         #region ===== METHODS =====
         public void ChangeTurn()
         {
-            ActualTurn = ActualTurn == PlayerColorWBEnum.White ? PlayerColorWBEnum.Black : PlayerColorWBEnum.White;
+            ActualTurnColor = ActualTurnColor == PlayerColorWBEnum.White ? PlayerColorWBEnum.Black : PlayerColorWBEnum.White;
         }
         #endregion
 

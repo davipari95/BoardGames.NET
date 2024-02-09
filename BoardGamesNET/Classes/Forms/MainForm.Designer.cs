@@ -40,12 +40,13 @@
             GamesCheckersRulesTranslatableToolStripMeniItem = new CustomComponents.TranslatableToolStripMenuItem();
             translatableToolStripMenuItem2 = new CustomComponents.TranslatableToolStripMenuItem();
             OptionsSettingsTranslatableToolStripMenuItem = new CustomComponents.TranslatableToolStripMenuItem();
+            TestToolStripMenuItem = new ToolStripMenuItem();
             MainMenuStrip.SuspendLayout();
             SuspendLayout();
             // 
             // MainMenuStrip
             // 
-            MainMenuStrip.Items.AddRange(new ToolStripItem[] { MenuTranslatableToolStripMenuItem, translatableToolStripMenuItem1, translatableToolStripMenuItem2 });
+            MainMenuStrip.Items.AddRange(new ToolStripItem[] { MenuTranslatableToolStripMenuItem, translatableToolStripMenuItem1, translatableToolStripMenuItem2, TestToolStripMenuItem });
             MainMenuStrip.Location = new Point(0, 0);
             MainMenuStrip.Name = "MainMenuStrip";
             MainMenuStrip.Size = new Size(800, 24);
@@ -83,7 +84,7 @@
             GamesCheckersTranslatableToolStripMenuItem.Image = Resources.Games.Checkers.GameIcon;
             GamesCheckersTranslatableToolStripMenuItem.LanguageReference = 10L;
             GamesCheckersTranslatableToolStripMenuItem.Name = "GamesCheckersTranslatableToolStripMenuItem";
-            GamesCheckersTranslatableToolStripMenuItem.Size = new Size(180, 22);
+            GamesCheckersTranslatableToolStripMenuItem.Size = new Size(122, 22);
             GamesCheckersTranslatableToolStripMenuItem.Text = "&Checkers";
             // 
             // GamesCheckersTwoPlayersTranslatableToolStripMenuItem
@@ -92,7 +93,7 @@
             GamesCheckersTwoPlayersTranslatableToolStripMenuItem.Image = Resources.PlayerNumberIcons._02;
             GamesCheckersTwoPlayersTranslatableToolStripMenuItem.LanguageReference = 12L;
             GamesCheckersTwoPlayersTranslatableToolStripMenuItem.Name = "GamesCheckersTwoPlayersTranslatableToolStripMenuItem";
-            GamesCheckersTwoPlayersTranslatableToolStripMenuItem.Size = new Size(180, 22);
+            GamesCheckersTwoPlayersTranslatableToolStripMenuItem.Size = new Size(120, 22);
             GamesCheckersTwoPlayersTranslatableToolStripMenuItem.Text = "&2 players";
             // 
             // GamesCheckersTwoPlayersLocalTranslatableToolStripMeniItem
@@ -100,7 +101,7 @@
             GamesCheckersTwoPlayersLocalTranslatableToolStripMeniItem.Image = Resources.App.HotSeat;
             GamesCheckersTwoPlayersLocalTranslatableToolStripMeniItem.LanguageReference = 14L;
             GamesCheckersTwoPlayersLocalTranslatableToolStripMeniItem.Name = "GamesCheckersTwoPlayersLocalTranslatableToolStripMeniItem";
-            GamesCheckersTwoPlayersLocalTranslatableToolStripMeniItem.Size = new Size(180, 22);
+            GamesCheckersTwoPlayersLocalTranslatableToolStripMeniItem.Size = new Size(102, 22);
             GamesCheckersTwoPlayersLocalTranslatableToolStripMeniItem.Text = "&Local";
             GamesCheckersTwoPlayersLocalTranslatableToolStripMeniItem.Click += GamesCheckersTwoPlayersLocalTranslatableToolStripMeniItem_Click;
             // 
@@ -110,14 +111,14 @@
             GamesCheckersTwoPlayersLanTranslatableToolStripMeniItem.Image = Resources.App.LAN;
             GamesCheckersTwoPlayersLanTranslatableToolStripMeniItem.LanguageReference = 15L;
             GamesCheckersTwoPlayersLanTranslatableToolStripMeniItem.Name = "GamesCheckersTwoPlayersLanTranslatableToolStripMeniItem";
-            GamesCheckersTwoPlayersLanTranslatableToolStripMeniItem.Size = new Size(180, 22);
+            GamesCheckersTwoPlayersLanTranslatableToolStripMeniItem.Size = new Size(102, 22);
             GamesCheckersTwoPlayersLanTranslatableToolStripMeniItem.Text = "L&AN";
             GamesCheckersTwoPlayersLanTranslatableToolStripMeniItem.ToolTipText = "Coming soon...";
             // 
             // toolStripSeparator1
             // 
             toolStripSeparator1.Name = "toolStripSeparator1";
-            toolStripSeparator1.Size = new Size(177, 6);
+            toolStripSeparator1.Size = new Size(117, 6);
             // 
             // GamesCheckersRulesTranslatableToolStripMeniItem
             // 
@@ -125,7 +126,7 @@
             GamesCheckersRulesTranslatableToolStripMeniItem.Image = Resources.App.Rules;
             GamesCheckersRulesTranslatableToolStripMeniItem.LanguageReference = 13L;
             GamesCheckersRulesTranslatableToolStripMeniItem.Name = "GamesCheckersRulesTranslatableToolStripMeniItem";
-            GamesCheckersRulesTranslatableToolStripMeniItem.Size = new Size(180, 22);
+            GamesCheckersRulesTranslatableToolStripMeniItem.Size = new Size(120, 22);
             GamesCheckersRulesTranslatableToolStripMeniItem.Text = "&Rules";
             GamesCheckersRulesTranslatableToolStripMeniItem.ToolTipText = "Coming soon...";
             // 
@@ -145,6 +146,15 @@
             OptionsSettingsTranslatableToolStripMenuItem.Size = new Size(116, 22);
             OptionsSettingsTranslatableToolStripMenuItem.Text = "&Settings";
             OptionsSettingsTranslatableToolStripMenuItem.Click += OptionsSettingsTranslatableToolStripMenuItem_Click;
+            // 
+            // TestToolStripMenuItem
+            // 
+            TestToolStripMenuItem.Alignment = ToolStripItemAlignment.Right;
+            TestToolStripMenuItem.Name = "TestToolStripMenuItem";
+            TestToolStripMenuItem.Size = new Size(43, 20);
+            TestToolStripMenuItem.Text = "TEST";
+            TestToolStripMenuItem.Visible = false;
+            TestToolStripMenuItem.Click += TestToolStripMenuItem_Click;
             // 
             // MainForm
             // 
@@ -178,5 +188,6 @@
         private CustomComponents.TranslatableToolStripMenuItem GamesCheckersRulesTranslatableToolStripMeniItem;
         private CustomComponents.TranslatableToolStripMenuItem GamesCheckersTwoPlayersLocalTranslatableToolStripMeniItem;
         private CustomComponents.TranslatableToolStripMenuItem GamesCheckersTwoPlayersLanTranslatableToolStripMeniItem;
+        private ToolStripMenuItem TestToolStripMenuItem;
     }
 }

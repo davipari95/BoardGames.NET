@@ -57,7 +57,6 @@ D:\Documents\Projects\Visual Studio\BoardGamesNET\BoardGamesNET\bin\Debug\net6.0
 D:\Documents\Projects\Visual Studio\BoardGamesNET\BoardGamesNET\bin\Debug\net6.0-windows\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
 D:\Documents\Projects\Visual Studio\BoardGamesNET\BoardGamesNET\bin\Debug\net6.0-windows\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
 D:\Documents\Projects\Visual Studio\BoardGamesNET\BoardGamesNET\obj\Debug\net6.0-windows\BoardGamesNET.csproj.AssemblyReference.cache
-D:\Documents\Projects\Visual Studio\BoardGamesNET\BoardGamesNET\obj\Debug\net6.0-windows\BoardGamesNET.Classes.CustomComponents.GridLabel.resources
 D:\Documents\Projects\Visual Studio\BoardGamesNET\BoardGamesNET\obj\Debug\net6.0-windows\BoardGamesNET.Classes.CustomComponents.TranslatableButton.resources
 D:\Documents\Projects\Visual Studio\BoardGamesNET\BoardGamesNET\obj\Debug\net6.0-windows\BoardGamesNET.Classes.CustomComponents.TranslatableLabel.resources
 D:\Documents\Projects\Visual Studio\BoardGamesNET\BoardGamesNET\obj\Debug\net6.0-windows\BoardGamesNET.Classes.CustomComponents.TranslatableToolStripMenuItem.resources
@@ -78,10 +77,12 @@ D:\Documents\Projects\Visual Studio\BoardGamesNET\BoardGamesNET\obj\Debug\net6.0
 D:\Documents\Projects\Visual Studio\BoardGamesNET\BoardGamesNET\obj\Debug\net6.0-windows\BoardGamesNET.Resources.PlayerNumberIcons.resources
 D:\Documents\Projects\Visual Studio\BoardGamesNET\BoardGamesNET\obj\Debug\net6.0-windows\BoardGamesNET.Resources.App.resources
 D:\Documents\Projects\Visual Studio\BoardGamesNET\BoardGamesNET\obj\Debug\net6.0-windows\BoardGamesNET.Resources.Games.Checkers.resources
-D:\Documents\Projects\Visual Studio\BoardGamesNET\BoardGamesNET\obj\Debug\net6.0-windows\BoardGamesNET.Classes.Forms.Games.Checkers.CheckersHotseatSettingsForm.resources
 C:\Users\User\Documents\Projects\Visual Studio 2022\BoardGamesNET\BoardGamesNET\obj\Debug\net6.0-windows\BoardGamesNET.Resources.App.resources
 C:\Users\User\Documents\Projects\Visual Studio 2022\BoardGamesNET\BoardGamesNET\obj\Debug\net6.0-windows\BoardGamesNET.Resources.Games.Checkers.resources
 C:\Users\User\Documents\Projects\Visual Studio 2022\BoardGamesNET\BoardGamesNET\obj\Debug\net6.0-windows\BoardGamesNET.Resources.PlayerNumberIcons.resources
 C:\Users\User\Documents\Projects\Visual Studio 2022\BoardGamesNET\BoardGamesNET\obj\Debug\net6.0-windows\BoardGamesNET.Classes.CustomComponents.GridPanel.resources
 C:\Users\User\Documents\Projects\Visual Studio 2022\BoardGamesNET\BoardGamesNET\obj\Debug\net6.0-windows\BoardGamesNET.Classes.Forms.Games.Checkers.HotseatGameForm.resources
 C:\Users\User\Documents\Projects\Visual Studio 2022\BoardGamesNET\BoardGamesNET\obj\Debug\net6.0-windows\BoardGamesNET.Classes.Forms.Games.Checkers.HotseatSettingsForm.resources
+D:\Documents\Projects\Visual Studio\BoardGamesNET\BoardGamesNET\obj\Debug\net6.0-windows\BoardGamesNET.Classes.CustomComponents.GridPanel.resources
+D:\Documents\Projects\Visual Studio\BoardGamesNET\BoardGamesNET\obj\Debug\net6.0-windows\BoardGamesNET.Classes.Forms.Games.Checkers.HotseatGameForm.resources
+D:\Documents\Projects\Visual Studio\BoardGamesNET\BoardGamesNET\obj\Debug\net6.0-windows\BoardGamesNET.Classes.Forms.Games.Checkers.HotseatSettingsForm.resources
