@@ -21,5 +21,9 @@ namespace BoardGamesNET.Interfaces.Games.Checkers
         public event EventHandler<GridPosition> PositionChanged;
         #endregion
 
+        #region ===== METHODS =====
+        public void Move(GridPosition gridPosition);
+        #endregion
+
     }
 }

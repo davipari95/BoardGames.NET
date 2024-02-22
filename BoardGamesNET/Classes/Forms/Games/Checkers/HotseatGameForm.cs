@@ -53,7 +53,7 @@ namespace BoardGamesNET.Classes.Forms.Games.Checkers
             Game = new LocalGame(whitesPlayerName, blacksPlayerName);
 
             InitializeComponent();
-            InitializeGridPanels();
+            InitializeGridPanels(cellSize: 100, margin: 5);
 
             Translate();
 
@@ -75,11 +75,8 @@ namespace BoardGamesNET.Classes.Forms.Games.Checkers
             Text = $"[💻] [{Program.cRegionManager.GetTranslatedText(18)}] {Program.cRegionManager.GetTranslatedText(22)}";
         }
 
-        private void InitializeGridPanels()
+        private void InitializeGridPanels(int cellSize, int margin)
         {
-            int MARGIN = 5;
-            int SIZE = 100;
-
             CheckersBoardPanels = new GridPanel[8, 8];
 
             for (int r = 0; r < CheckersBoardPanels.GetLength(0); r++)
@@ -88,8 +85,8 @@ namespace BoardGamesNET.Classes.Forms.Games.Checkers
                 {
                     CheckersBoardPanels[r, c] = new GridPanel(r, c)
                     {
-                        Location = new Point((c * SIZE) + MARGIN, (r * SIZE) + MARGIN),
-                        Size = new Size(SIZE - (MARGIN * 2), SIZE - (MARGIN * 2)),
+                        Location = new Point((c * cellSize) + margin, (r * cellSize) + margin),
+                        Size = new Size(cellSize - (margin * 2), cellSize - (margin * 2)),
                         BackColor = Color.Transparent,
                         BackgroundImageLayout = ImageLayout.Zoom,
                     };
@@ -120,9 +117,20 @@ namespace BoardGamesNET.Classes.Forms.Games.Checkers
                 }
                 else
                 {
-                    if (selectedElement == null || !selectedElement.Color.Equals(Game.ActualTurnColor))
+                    if (selectedElement == null)
                     {
-                        Game.SelectPawn(null, true);
+                        if (Game.SelectedPawn.IsAvailableMoves(clickedPanel.GridPosition))
+                        {
+                            Game.SelectedPawn.Move(clickedPanel.GridPosition);
+                        }
+                        else
+                        {
+                            Game.UnselectPawn();
+                        }
+                    }
+                    else if (!selectedElement.Color.Equals(Game.ActualTurnColor))
+                    {
+                        Game.UnselectPawn();
                     }
                     else
                     {
@@ -175,11 +183,14 @@ namespace BoardGamesNET.Classes.Forms.Games.Checkers
 
         private void ShowSelectedPawnAndAvailabelMoves(Pawn pawn)
         {
-            CheckersBoardPanels[pawn.GridPosition.Row, pawn.GridPosition.Column].BackColor = Color.LawnGreen;
+            CheckersBoardPanels[pawn.GridPosition.Row, pawn.GridPosition.Column].BackColor = Color.Yellow;
 
             IEnumerable<GridPosition> availableMoves = pawn.GetAvailableMoves();
 
-
+            foreach (GridPosition move in availableMoves)
+            {
+                CheckersBoardPanels[move.Row, move.Column].BackColor = Color.LawnGreen;
+            }
         }
 
         #endregion

@@ -82,6 +82,11 @@ namespace BoardGamesNET.Classes.Objects.Games.Checkers.Games
             return SelectPawnResultEnum.Ok;
         }
 
+        public SelectPawnResultEnum UnselectPawn()
+        {
+            return SelectPawn(null, true);
+        }
+
         #endregion
     }
 }

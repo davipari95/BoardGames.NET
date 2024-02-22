@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity.Core.Common.CommandTrees.ExpressionBuilder;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using ICheckersPawn = BoardGamesNET.Interfaces.Games.Checkers.IChecker;
@@ -57,6 +58,14 @@ namespace BoardGamesNET.Classes.Objects.Games.Checkers
             get
             {
                 return _GridPosition;
+            }
+            set
+            {
+                if (!value.Equals(_GridPosition))
+                {
+                    _GridPosition = value;
+                    PositionChanged?.Invoke(this, value);
+                }
             }
         }
 
@@ -145,6 +154,28 @@ namespace BoardGamesNET.Classes.Objects.Games.Checkers
                     }
                 }
             }
+        }
+
+        public bool IsAvailableMoves(GridPosition position)
+        {
+            IEnumerable<GridPosition> availableMoves = GetAvailableMoves();
+
+            return availableMoves.Where(gp => gp.Equals(position)).Count() > 0;
+        }
+
+        public bool IsAvailableMoves(int row, int column)
+        {
+            return IsAvailableMoves(new GridPosition(row, column));
+        }
+
+        public void Move(GridPosition gridPosition)
+        {
+            GridPosition = gridPosition;
+        }
+
+        public void Move(int row, int column)
+        {
+            Move(new GridPosition(row, column));
         }
 
         private IEnumerable<GridPosition> GetAvailableDiagonalCells()
