@@ -61,6 +61,7 @@ namespace BoardGamesNET.Classes.Forms.Games.Checkers
 
             Program.cSettingsManager.ActiveLanguageChangedValueEvent += CSettingsManager_ActiveLanguageChangedValueEvent;
             Game.SelectedPawnChangedEvent += Game_SelectedPawnChangedEvent;
+            Game.PawnMovedEvent += Game_PawnMovedEvent;
         }
         #endregion
 
@@ -193,6 +194,10 @@ namespace BoardGamesNET.Classes.Forms.Games.Checkers
             }
         }
 
+        private void Game_PawnMovedEvent(object? sender, Game.PawnMovedEventArgs e)
+        {
+            UpdateGraphics();
+        }
         #endregion
     }
 }

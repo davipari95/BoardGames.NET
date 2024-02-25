@@ -1,5 +1,6 @@
 ﻿using BoardGamesNET.Classes.Utils;
 using BoardGamesNET.Enums;
+using System.CodeDom;
 using System.Reflection;
 
 namespace BoardGamesNET.Classes.Objects.Games.Checkers
@@ -46,6 +47,10 @@ namespace BoardGamesNET.Classes.Objects.Games.Checkers
 
         #endregion
 
+        #region ===== EVENTS =====
+        public event EventHandler<PawnMovedEventArgs> PawnMovedEvent;
+        #endregion
+
         #region ===== CONSTRUCTORS =====
         public CheckersBoard(Game parentGame)
         {
@@ -84,6 +89,11 @@ namespace BoardGamesNET.Classes.Objects.Games.Checkers
 
             Pawns.AddRange(GetStartingPawns(PlayerColorWBEnum.White));
             Pawns.AddRange(GetStartingPawns(PlayerColorWBEnum.Black));
+
+            foreach (Pawn p in Pawns)
+            {
+                p.PositionChanged += OnPawnPositionChangedEvent;
+            }
         }
 
         private IEnumerable<Pawn> GetStartingPawns(PlayerColorWBEnum color)
@@ -100,7 +110,42 @@ namespace BoardGamesNET.Classes.Objects.Games.Checkers
                 }
             }
         }
+
+        private void OnPawnPositionChangedEvent(object? sender, GridPosition e)
+        {
+            if (sender != null && sender is Pawn)
+            {
+                PawnMovedEvent?.Invoke(this, new PawnMovedEventArgs((Pawn)sender, e)); 
+            }
+            else
+            {
+                throw new ArgumentNullException("Sender is null.");
+            }
+        }
         #endregion
 
+        #region ===== NESTED CLASSES =====
+        public class PawnMovedEventArgs
+        {
+            #region ===== VARIABLES =====
+
+            #region ===== FIELDS FOR VARIABLES
+            private Pawn _Pawn;
+            private GridPosition _GridPosition;
+            #endregion
+
+            public Pawn Pawn => _Pawn;
+            public GridPosition GridPosition => _GridPosition;
+            #endregion
+
+            #region ===== CONSTRUCTORS =====
+            public PawnMovedEventArgs(Pawn pawn, GridPosition gridPosition)
+            {
+                _Pawn = pawn;
+                _GridPosition = gridPosition;
+            }
+            #endregion
+        }
+        #endregion
     }
 }
