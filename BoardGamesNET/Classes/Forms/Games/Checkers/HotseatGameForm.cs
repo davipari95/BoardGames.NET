@@ -2,6 +2,7 @@
 using BoardGamesNET.Classes.Objects;
 using BoardGamesNET.Classes.Objects.Games.Checkers;
 using BoardGamesNET.Classes.Objects.Games.Checkers.Games;
+using System.Data.Entity;
 using System.Diagnostics;
 
 namespace BoardGamesNET.Classes.Forms.Games.Checkers
@@ -109,33 +110,33 @@ namespace BoardGamesNET.Classes.Forms.Games.Checkers
                 Pawn? selectedElement = Game.CheckersBoard.GetPawnByPosition(clickedPanel.GridPosition);
                 Debug.WriteLine(selectedElement);
 
-                if (Game.SelectedPawn == null)
+                if (Game.SelectedPawn == null)  //If no pawn is selected
                 {
-                    if (selectedElement != null && selectedElement.Color.Equals(Game.ActualTurnColor))
+                    if (selectedElement != null && selectedElement.Color.Equals(Game.ActualTurnColor))  //If I clicked on a pawn and the pawn is the same color of the actual turn...
                     {
-                        Game.SelectPawn(selectedElement);
+                        Game.SelectPawn(selectedElement);   //Select the pawn.
                     }
                 }
-                else
+                else   //If pawn is selected
                 {
-                    if (selectedElement == null)
+                    if (selectedElement == null)    //If i click on an empty cell
                     {
-                        if (Game.SelectedPawn.IsAvailableMoves(clickedPanel.GridPosition))
+                        if (Game.SelectedPawn.IsAvailableMoves(clickedPanel.GridPosition))  //If this is an available move, then...
                         {
-                            Game.SelectedPawn.Move(clickedPanel.GridPosition);
+                            Game.SelectedPawn.Move(clickedPanel.GridPosition);  //Move in this position.
                         }
-                        else
+                        else //if is not an available move...
                         {
-                            Game.UnselectPawn();
+                            Game.UnselectPawn();    //Unselect
                         }
                     }
-                    else if (!selectedElement.Color.Equals(Game.ActualTurnColor))
+                    else if (!selectedElement.Color.Equals(Game.ActualTurnColor))   //Else if I click on a cell with the pawn of a different color of the actual turn...
                     {
-                        Game.UnselectPawn();
+                        Game.UnselectPawn();    //Unselect
                     }
-                    else
+                    else //else if I click on a pawn of the same color of the actual turn...
                     {
-                        Game.SelectPawn(selectedElement);
+                        Game.SelectPawn(selectedElement);   //Select the pawn!
                     }
                 }
             }
@@ -186,11 +187,19 @@ namespace BoardGamesNET.Classes.Forms.Games.Checkers
         {
             CheckersBoardPanels[pawn.GridPosition.Row, pawn.GridPosition.Column].BackColor = Color.Yellow;
 
-            IEnumerable<GridPosition> availableMoves = pawn.GetAvailableMoves();
+            IEnumerable<Pawn.AvailableMovesStruct> availableMoves = pawn.GetAvailableMoves();
 
-            foreach (GridPosition move in availableMoves)
+            foreach (Pawn.AvailableMovesStruct move in availableMoves)
             {
-                CheckersBoardPanels[move.Row, move.Column].BackColor = Color.LawnGreen;
+                CheckersBoardPanels[move.Move.Row, move.Move.Column].BackColor = Color.LawnGreen;
+
+                if (move.EatablePiece != null)
+                {
+                    int r = move.EatablePiece.GridPosition.Row;
+                    int c = move.EatablePiece.GridPosition.Column;
+
+                    CheckersBoardPanels[r, c].BackColor = Color.Red;
+                }
             }
         }
 

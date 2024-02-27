@@ -66,6 +66,14 @@ namespace BoardGamesNET.Classes.Objects.Games.Checkers
             return Pawns.FirstOrDefault(p => p.GridPosition.Equals(position));
         }
 
+        public void EatPawn(Pawn piece)
+        {
+            if (!Pawns.Remove(piece))
+            {
+                throw new ArgumentException("Pawn is not in checkersboard.");
+            }
+        }
+
         public static bool IsInCheckersBoard(GridPosition position)
         {
             return

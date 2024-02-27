@@ -13,6 +13,14 @@ namespace BoardGamesNET.Classes.Objects.Games.Checkers
 {
     public class Pawn : ICheckersPawn, IEquatable<Pawn>
     {
+        #region ===== STRUCTS =====
+        public struct AvailableMovesStruct
+        {
+            public GridPosition Move;
+            public Pawn? EatablePiece;
+        }
+        #endregion
+
         #region ===== VARIABLES =====
 
         #region ===== FIELDS FOR VARIABLES =====
@@ -108,11 +116,6 @@ namespace BoardGamesNET.Classes.Objects.Games.Checkers
         #endregion
 
         #region ===== METHODS =====
-        private void GridPosition_PositionChangedEvent(object? sender, GridPosition e)
-        {
-            PositionChanged?.Invoke(this, e);
-        }
-
         public bool Equals(Pawn? other)
         {
             return
@@ -127,7 +130,7 @@ namespace BoardGamesNET.Classes.Objects.Games.Checkers
             return $"[ Color = {Color} ; IsKing = {IsKing} ; GridPosition = {GridPosition} ]";
         }
 
-        public IEnumerable<GridPosition> GetAvailableMoves()
+        public IEnumerable<AvailableMovesStruct> GetAvailableMoves()
         {
             foreach (GridPosition p in GetAvailableDiagonalCells())
             {
@@ -135,7 +138,11 @@ namespace BoardGamesNET.Classes.Objects.Games.Checkers
 
                 if (positionPawn == null)
                 {
-                    yield return p;
+                    yield return new AvailableMovesStruct()
+                    {
+                        EatablePiece = null,
+                        Move = p,
+                    };
                 }
                 else
                 {
@@ -149,7 +156,11 @@ namespace BoardGamesNET.Classes.Objects.Games.Checkers
 
                         if (CheckersBoard.IsInCheckersBoard(nextPosition) && CheckersBoardParent.GetPawnByPosition(nextPosition) == null)
                         {
-                            yield return nextPosition;
+                            yield return new AvailableMovesStruct()
+                            {
+                                EatablePiece = positionPawn,
+                                Move = nextPosition,
+                            };
                         }
                     }
                 }
@@ -158,9 +169,9 @@ namespace BoardGamesNET.Classes.Objects.Games.Checkers
 
         public bool IsAvailableMoves(GridPosition position)
         {
-            IEnumerable<GridPosition> availableMoves = GetAvailableMoves();
+            IEnumerable<AvailableMovesStruct> availableMoves = GetAvailableMoves();
 
-            return availableMoves.Where(gp => gp.Equals(position)).Count() > 0;
+            return availableMoves.Where(gp => gp.Move.Equals(position)).Count() > 0;
         }
 
         public bool IsAvailableMoves(int row, int column)
@@ -176,6 +187,11 @@ namespace BoardGamesNET.Classes.Objects.Games.Checkers
         public void Move(int row, int column)
         {
             Move(new GridPosition(row, column));
+        }
+
+        public void Eat()
+        {
+            CheckersBoardParent.EatPawn(this);
         }
 
         private IEnumerable<GridPosition> GetAvailableDiagonalCells()
@@ -199,6 +215,11 @@ namespace BoardGamesNET.Classes.Objects.Games.Checkers
                     }
                 } 
             }
+        }
+
+        private void GridPosition_PositionChangedEvent(object? sender, GridPosition e)
+        {
+            PositionChanged?.Invoke(this, e);
         }
         #endregion
     }

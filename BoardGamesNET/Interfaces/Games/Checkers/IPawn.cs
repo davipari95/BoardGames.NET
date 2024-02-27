@@ -23,6 +23,7 @@ namespace BoardGamesNET.Interfaces.Games.Checkers
 
         #region ===== METHODS =====
         public void Move(GridPosition gridPosition);
+        public void Eat();
         #endregion
 
     }
