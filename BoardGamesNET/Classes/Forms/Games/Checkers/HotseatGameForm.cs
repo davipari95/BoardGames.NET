@@ -94,10 +94,14 @@ namespace BoardGamesNET.Classes.Forms.Games.Checkers
             Translate();
         }
 
+        /// <summary>
+        /// Translate everything into the form.
+        /// </summary>
         private void Translate()
         {
             Text = $"[💻] [{Program.cRegionManager.GetTranslatedText(18)}] {Program.cRegionManager.GetTranslatedText(22)}";
         }
+
 
         private void InitializeGridPanels(int cellSize, int margin)
         {
