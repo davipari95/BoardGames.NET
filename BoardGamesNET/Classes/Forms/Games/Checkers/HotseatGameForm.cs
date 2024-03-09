@@ -7,6 +7,9 @@ using System.Diagnostics;
 
 namespace BoardGamesNET.Classes.Forms.Games.Checkers
 {
+    /// <summary>
+    /// Form that is used for playing the game of the checkers in hot-seat mode.
+    /// </summary>
     public partial class HotseatGameForm : Form
     {
         #region ===== VARIABLES =====
@@ -16,6 +19,10 @@ namespace BoardGamesNET.Classes.Forms.Games.Checkers
         private LocalGame _Game;
         #endregion
 
+        /// <summary>
+        /// Panels disposed on a checkersboard.<br/>
+        /// Each panel is a cell.
+        /// </summary>
         private GridPanel[,] CheckersBoardPanels
         {
             get
@@ -31,6 +38,9 @@ namespace BoardGamesNET.Classes.Forms.Games.Checkers
             }
         }
 
+        /// <summary>
+        /// Class containing the local game of the checkersboard.
+        /// </summary>
         private LocalGame Game
         {
             get
@@ -49,6 +59,12 @@ namespace BoardGamesNET.Classes.Forms.Games.Checkers
         #endregion
 
         #region ===== CONSTRUCTOR =====
+
+        /// <summary>
+        /// Initialize the form.
+        /// </summary>
+        /// <param name="whitesPlayerName">Username of the player that use white checkers.</param>
+        /// <param name="blacksPlayerName">Username of the player that use black checkers.</param>
         public HotseatGameForm(string whitesPlayerName, string blacksPlayerName)
         {
             Game = new LocalGame(whitesPlayerName, blacksPlayerName);
@@ -67,6 +83,12 @@ namespace BoardGamesNET.Classes.Forms.Games.Checkers
         #endregion
 
         #region ===== METHODS =====
+        /// <summary>
+        /// Listener of the event <see cref="SettingsManager.ActiveLanguageChangedValueEvent"/>.<br/>
+        /// This is triggered when someone is changing the language.
+        /// </summary>
+        /// <param name="sender">Sender that trigger the event.<br/>The sender is <see cref="SettingsManager"/>.</param>
+        /// <param name="e">New language code</param>
         private void CSettingsManager_ActiveLanguageChangedValueEvent(object? sender, string e)
         {
             Translate();
@@ -121,7 +143,7 @@ namespace BoardGamesNET.Classes.Forms.Games.Checkers
                 {
                     if (selectedElement == null)    //If i click on an empty cell
                     {
-                        if (Game.SelectedPawn.IsAvailableMoves(clickedPanel.GridPosition))  //If this is an available move, then...
+                        if (Game.SelectedPawn.IsAvailableMoves(clickedPanel.GridPosition, out _))  //If this is an available move, then...
                         {
                             Game.SelectedPawn.Move(clickedPanel.GridPosition);  //Move in this position.
                         }

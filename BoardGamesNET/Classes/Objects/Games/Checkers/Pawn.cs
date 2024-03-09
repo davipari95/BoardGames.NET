@@ -3,6 +3,7 @@ using BoardGamesNET.Enums;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.Core.Common.CommandTrees.ExpressionBuilder;
+using System.Diagnostics.Eventing.Reader;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
@@ -97,7 +98,7 @@ namespace BoardGamesNET.Classes.Objects.Games.Checkers
 
         private bool IsWhite => Color == PlayerColorWBEnum.White;
         #endregion
-
+        
         #region ===== EVENTS =====
         public event EventHandler<bool> IsKingValueChangedEvent;
         public event EventHandler<GridPosition> PositionChanged;
@@ -167,21 +168,41 @@ namespace BoardGamesNET.Classes.Objects.Games.Checkers
             }
         }
 
-        public bool IsAvailableMoves(GridPosition position)
+        public bool IsAvailableMoves(GridPosition position, out Pawn? eatablePawn)
         {
+            eatablePawn = null;
+
             IEnumerable<AvailableMovesStruct> availableMoves = GetAvailableMoves();
 
-            return availableMoves.Where(gp => gp.Move.Equals(position)).Count() > 0;
+            IEnumerable<AvailableMovesStruct> move = availableMoves.Where(gp => gp.Move.Equals(position));
+
+            if (move.Count() == 1)
+            {
+                eatablePawn = move.ToArray()[0].EatablePiece;
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
-        public bool IsAvailableMoves(int row, int column)
+        public bool IsAvailableMoves(int row, int column, out Pawn? eatablePawn)
         {
-            return IsAvailableMoves(new GridPosition(row, column));
+            return IsAvailableMoves(new GridPosition(row, column), out eatablePawn);
         }
 
         public void Move(GridPosition gridPosition)
         {
-            GridPosition = gridPosition;
+            if (IsAvailableMoves(gridPosition, out Pawn? eatablePawn))
+            {
+                if (eatablePawn != null)
+                {
+                    eatablePawn.Eat();
+                }
+
+                GridPosition = gridPosition;
+            }
         }
 
         public void Move(int row, int column)
