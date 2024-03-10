@@ -11,14 +11,18 @@ using System.Windows.Forms;
 
 namespace BoardGamesNET.Classes.CustomComponents
 {
+    /// <summary>
+    /// A ToolStripMenuItem containing the informations for translating the text.
+    /// </summary>
     [ToolboxBitmap(typeof(ToolStripMenuItem))]
     public partial class TranslatableToolStripMenuItem : ToolStripMenuItem, ITranslatable
     {
+        #region ===== VARIABLES =====
+
         #region ===== FIELDS FOR VARIABLES =====
         private long _LanguageReference = 0;
         #endregion
 
-        #region ===== VARIABLES =====
         public long LanguageReference
         {
             get
@@ -41,6 +45,9 @@ namespace BoardGamesNET.Classes.CustomComponents
         #endregion
 
         #region ===== CONTRUCTORS =====
+        /// <summary>
+        /// Initialize the control.
+        /// </summary>
         public TranslatableToolStripMenuItem()
         {
             InitializeComponent();

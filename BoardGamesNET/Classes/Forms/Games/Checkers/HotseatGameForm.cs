@@ -102,7 +102,11 @@ namespace BoardGamesNET.Classes.Forms.Games.Checkers
             Text = $"[💻] [{Program.cRegionManager.GetTranslatedText(18)}] {Program.cRegionManager.GetTranslatedText(22)}";
         }
 
-
+        /// <summary>
+        /// Dispose the cells (<see cref="CheckersBoardPanels"/>) into the form.
+        /// </summary>
+        /// <param name="cellSize">Width and height of the cells</param>
+        /// <param name="margin">Margin of the cell.</param>
         private void InitializeGridPanels(int cellSize, int margin)
         {
             CheckersBoardPanels = new GridPanel[8, 8];
@@ -126,6 +130,12 @@ namespace BoardGamesNET.Classes.Forms.Games.Checkers
             }
         }
 
+        /// <summary>
+        /// Listener that manage the event <see cref="Control.MouseUp"/>.<br/>
+        /// This is triggered when you click on a cell of the checkersboard.
+        /// </summary>
+        /// <param name="sender">Cells that triggered this event.<br/>The sender is always a <see cref="GridPanel"/>.</param>
+        /// <param name="e">Event args.<br/>This is always empty.</param>
         private void OnCheckersBoardPanelMouseReleased(object? sender, EventArgs e)
         {
             if (sender != null && sender is GridPanel)
@@ -168,6 +178,9 @@ namespace BoardGamesNET.Classes.Forms.Games.Checkers
             }
         }
 
+        /// <summary>
+        /// Clear the grid and re-insert graphically the pawns on the checkersboard.
+        /// </summary>
         private void UpdateGraphics()
         {
             ClearGrid();
@@ -175,6 +188,9 @@ namespace BoardGamesNET.Classes.Forms.Games.Checkers
             InsertPawns();
         }
 
+        /// <summary>
+        /// Remove graphically all pawns on the checkersboard.
+        /// </summary>
         private void ClearGrid()
         {
             foreach (GridPanel p in CheckersBoardPanels)
@@ -183,6 +199,10 @@ namespace BoardGamesNET.Classes.Forms.Games.Checkers
             }
         }
 
+        /// <summary>
+        /// Insert graphically all pawns into the checkersboard.<br/>
+        /// Pawns are retrieved on <see cref="CheckersBoard.Pawns"/>.
+        /// </summary>
         private void InsertPawns()
         {
             foreach (Pawn p in Game.CheckersBoard.Pawns)
@@ -191,16 +211,25 @@ namespace BoardGamesNET.Classes.Forms.Games.Checkers
             }
         }
 
+        /// <summary>
+        /// Listener that manage the event <see cref="Game.SelectedPawnChangedEvent"/>.<br/>
+        /// Triggered everytime the selected pawn (value on <see cref="Game.SelectedPawn"/>) is changed.
+        /// </summary>
+        /// <param name="sender">Object that trigs the event.<br/>It's always a <see cref="Objects.Games.Checkers.Game"/>.</param>
+        /// <param name="e">Pawn that is actually selected.<br/> If it's <see langword="null"/> it meanst that the pawn is unselected.</param>
         private void Game_SelectedPawnChangedEvent(object? sender, Pawn? e)
         {
             ClearSelection();
 
             if (e != null)
             {
-                ShowSelectedPawnAndAvailabelMoves(e);
+                ShowSelectedPawnAndAvailabelMoves(e, Color.Yellow, Color.LawnGreen, Color.Red);
             }
         }
 
+        /// <summary>
+        /// Clear the backgrounds of the cells on checkersboard.
+        /// </summary>
         private void ClearSelection()
         {
             foreach (GridPanel p in CheckersBoardPanels)
@@ -209,26 +238,39 @@ namespace BoardGamesNET.Classes.Forms.Games.Checkers
             }
         }
 
-        private void ShowSelectedPawnAndAvailabelMoves(Pawn pawn)
+        /// <summary>
+        /// Change the background color of the cells on the checkersboard of the passed pawn.
+        /// </summary>
+        /// <param name="pawn">Pawn for highlitning movements.</param>
+        /// <param name="selectedPawnColor">Background color of the selected pawn.</param>
+        /// <param name="availableMovesColor">Background color of the availabel moves of the selected pawn.</param>
+        /// <param name="eatablePieceColor">Background color of the piece that will be eated.</param>
+        private void ShowSelectedPawnAndAvailabelMoves(Pawn pawn, Color selectedPawnColor, Color availableMovesColor, Color eatablePieceColor)
         {
-            CheckersBoardPanels[pawn.GridPosition.Row, pawn.GridPosition.Column].BackColor = Color.Yellow;
+            CheckersBoardPanels[pawn.GridPosition.Row, pawn.GridPosition.Column].BackColor = selectedPawnColor;
 
             IEnumerable<Pawn.AvailableMovesStruct> availableMoves = pawn.GetAvailableMoves();
 
             foreach (Pawn.AvailableMovesStruct move in availableMoves)
             {
-                CheckersBoardPanels[move.Move.Row, move.Move.Column].BackColor = Color.LawnGreen;
+                CheckersBoardPanels[move.Move.Row, move.Move.Column].BackColor = availableMovesColor;
 
                 if (move.EatablePiece != null)
                 {
                     int r = move.EatablePiece.GridPosition.Row;
                     int c = move.EatablePiece.GridPosition.Column;
 
-                    CheckersBoardPanels[r, c].BackColor = Color.Red;
+                    CheckersBoardPanels[r, c].BackColor = eatablePieceColor;
                 }
             }
         }
 
+        /// <summary>
+        /// Listener that manage the event <see cref="Game.PawnMovedEvent"/>.<br/>
+        /// This is triggered everytime a pawn is moved.
+        /// </summary>
+        /// <param name="sender">Sender that triggers the event.<br/>The sender is a <see cref="Classes.Objects.Games.Checkers.Game"/> type.</param>
+        /// <param name="e">Event args of the event. <br/>See <see cref="Classes.Objects.Games.Checkers.Game.PawnMovedEventArgs"/> for more informations.</param>
         private void Game_PawnMovedEvent(object? sender, Game.PawnMovedEventArgs e)
         {
             UpdateGraphics();

@@ -4,8 +4,15 @@ using BoardGamesNET.Classes.Utils;
 
 namespace BoardGamesNET.Classes.Forms
 {
+    /// <summary>
+    /// Starting form.<br/>
+    /// Everything starts from here.
+    /// </summary>
     public partial class MainForm : Form
     {
+        /// <summary>
+        /// Initialize the form.
+        /// </summary>
         public MainForm()
         {
             InitializeComponent();
@@ -17,26 +24,52 @@ namespace BoardGamesNET.Classes.Forms
             Program.cSettingsManager.ActiveLanguageChangedValueEvent += CSettingsManager_ActiveLanguageChangedValueEvent;
         }
 
+        /// <summary>
+        /// Listener that manage the event <see cref="SettingsManager.ActiveLanguageChangedValueEvent"/>.<br/>
+        /// This is triggered everytime language is changed.
+        /// </summary>
+        /// <param name="sender">Element that triggers the event.<br/>The sender is a <see cref="SettingsManager"/> type.</param>
+        /// <param name="e">The new setted language.</param>
         private void CSettingsManager_ActiveLanguageChangedValueEvent(object? sender, string e)
         {
             Translate();
         }
 
+        /// <summary>
+        /// Listener that manage the event <see cref="Form.Load"/>.
+        /// </summary>
+        /// <param name="sender">This form.</param>
+        /// <param name="e">Event args with <b>empty</b> informations.</param>
         private void MainForm_Load(object sender, EventArgs e)
         {
             Translate();
         }
 
+        /// <summary>
+        /// Translate all elements in this form.
+        /// </summary>
         private void Translate()
         {
             Program.cRegionManager.TranslateAllElementsInControl(this);
         }
 
+        /// <summary>
+        /// Listener that manage the click of <see cref="FileQuitTranslatableToolStripMenuItem"/>.<br/>
+        /// This ToolStrimMenuItem will close the form (then the program).
+        /// </summary>
+        /// <param name="sender">The control <see cref="FileQuitTranslatableToolStripMenuItem"/>.</param>
+        /// <param name="e">This is empty.</param>
         private void FileQuitTranslatableToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Close();
         }
 
+        /// <summary>
+        /// Listener that manage the click of <see cref="OptionsSettingsTranslatableToolStripMenuItem"/>.<br/>
+        /// This will open the form containing the settings.
+        /// </summary>
+        /// <param name="sender"><see cref="OptionsSettingsTranslatableToolStripMenuItem"/>.</param>
+        /// <param name="e">This is empty</param>
         private void OptionsSettingsTranslatableToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SettingsForm form = new SettingsForm();
@@ -48,6 +81,12 @@ namespace BoardGamesNET.Classes.Forms
             }
         }
 
+        /// <summary>
+        /// Listener that manage the click of <see cref="GamesCheckersTwoPlayersLocalTranslatableToolStripMeniItem"/>.<br/>
+        /// This will open the form for set the game of the checkers in local mode.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void GamesCheckersTwoPlayersLocalTranslatableToolStripMeniItem_Click(object sender, EventArgs e)
         {
             HotseatSettingsForm form = new HotseatSettingsForm();
@@ -55,6 +94,12 @@ namespace BoardGamesNET.Classes.Forms
             form.Show();
         }
 
+        /// <summary>
+        /// Listener that manage the click of <see cref="TestToolStripMenuItem"/>.<br/>
+        /// This ToolStripMenuItem is visible only if you compyle with <c>#DEBUG</c> directive.
+        /// </summary>
+        /// <param name="sender"><see cref="TestToolStripMenuItem"/>.</param>
+        /// <param name="e">This is empty.</param>
         private void TestToolStripMenuItem_Click(object sender, EventArgs e)
         {
             HotseatGameForm form = new HotseatGameForm("Angelo Bianchi", "Beatrice Neri");

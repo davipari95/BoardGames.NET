@@ -11,14 +11,18 @@ using System.Windows.Forms;
 
 namespace BoardGamesNET.Classes.CustomComponents
 {
+    /// <summary>
+    /// A label containing the informations for translating the text.
+    /// </summary>
     [ToolboxBitmap(typeof(Label))]
     public partial class TranslatableLabel : Label, ITranslatable
     {
+        #region ===== VARIABLES =====
+
         #region ===== VARIABLES FOR FIELDS =====
         private long _LangaugeReference = 0;
         #endregion
 
-        #region ===== VARIABLES =====
         public long LanguageReference
         {
             get
@@ -41,6 +45,9 @@ namespace BoardGamesNET.Classes.CustomComponents
         #endregion
 
         #region ===== CONSTRUCTORS =====
+        /// <summary>
+        /// Initialize the control.
+        /// </summary>
         public TranslatableLabel()
         {
             InitializeComponent();
