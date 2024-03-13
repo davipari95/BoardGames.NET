@@ -16,15 +16,15 @@ namespace BoardGamesNET.Classes.Objects.Games.Checkers
         #region ===== VARIABLES =====
 
         #region ==== FIELDS FOR VARIABLES =====
-        private List<Pawn> _Pawns;
+        private List<Checker> _Pawns;
         private Game _ParentGame;
-        private IEnumerable<Pawn>? _ForcedEater = default;
+        private IEnumerable<Checker>? _ForcedEater = default;
         #endregion
 
         /// <summary>
-        /// List of pawns (<see cref="Pawn"/>) contained in this checkersboard.
+        /// List of pawns (<see cref="Checker"/>) contained in this checkersboard.
         /// </summary>
-        public List<Pawn> Pawns
+        public List<Checker> Pawns
         {
             get
             {
@@ -60,7 +60,7 @@ namespace BoardGamesNET.Classes.Objects.Games.Checkers
         /// <summary>
         /// Pawns that must eat another pawn.
         /// </summary>
-        public IEnumerable<Pawn>? ForcedEater
+        public IEnumerable<Checker>? ForcedEater
         {
             get
             {
@@ -105,21 +105,21 @@ namespace BoardGamesNET.Classes.Objects.Games.Checkers
 
         #region ===== METHODS =====
         /// <summary>
-        /// Retrieve a pawn (<see cref="Pawn"/>) by the position.
+        /// Retrieve a pawn (<see cref="Checker"/>) by the position.
         /// </summary>
         /// <param name="position">Position where you think that there is a pawn.</param>
-        /// <returns><see cref="Pawn"/> if there is a pawn in that position, otherwise <see langword="null"/>.</returns>
-        public Pawn? GetPawnByPosition(GridPosition position)
+        /// <returns><see cref="Checker"/> if there is a pawn in that position, otherwise <see langword="null"/>.</returns>
+        public Checker? GetPawnByPosition(GridPosition position)
         {
             return Pawns.FirstOrDefault(p => p.GridPosition.Equals(position));
         }
 
         /// <summary>
-        /// Delete a <see cref="Pawn"> into a checkersboard.
+        /// Delete a <see cref="Checker"> into a checkersboard.
         /// </summary>
         /// <param name="piece">Pawn to remove (eat).</param>
         /// <exception cref="PawnNotInCheckersBoardException">Pawn is not in checkersboard.</exception>
-        public void EatPawn(Pawn piece)
+        public void EatPawn(Checker piece)
         {
             if (!Pawns.Remove(piece))
             {
@@ -165,7 +165,7 @@ namespace BoardGamesNET.Classes.Objects.Games.Checkers
         /// </summary>
         /// <param name="color">Pawn color of the pawns that you want retrieve.</param>
         /// <returns><see cref="IEnumerable{Pawn}"/> containing the list of the pawns into this checkersboard with the choosen color.</returns>
-        public IEnumerable<Pawn> GetColoredPawns(PlayerColorWBEnum color)
+        public IEnumerable<Checker> GetColoredPawns(PlayerColorWBEnum color)
         {
             return Pawns.Where(p => p.Color.Equals(color));
         }
@@ -175,11 +175,11 @@ namespace BoardGamesNET.Classes.Objects.Games.Checkers
         /// </summary>
         /// <param name="eaterColor">Color of the eaters.</param>
         /// <returns></returns>
-        public IEnumerable<Pawn> GetPawnsThatCanEat(PlayerColorWBEnum eaterColor)
+        public IEnumerable<Checker> GetPawnsThatCanEat(PlayerColorWBEnum eaterColor)
         {
-            IEnumerable<Pawn> pawns = GetColoredPawns(eaterColor);
+            IEnumerable<Checker> pawns = GetColoredPawns(eaterColor);
 
-            foreach (Pawn pawn in pawns)
+            foreach (Checker pawn in pawns)
             {
                 if (pawn.GetAvailableMoves().Where(m => m.EatablePiece != null).Count() > 0)
                 {
@@ -193,12 +193,12 @@ namespace BoardGamesNET.Classes.Objects.Games.Checkers
         /// </summary>
         private void InitializePawns()
         {
-            Pawns = new List<Pawn>(0);
+            Pawns = new List<Checker>(0);
 
             Pawns.AddRange(GetStartingPawns(PlayerColorWBEnum.White));
             Pawns.AddRange(GetStartingPawns(PlayerColorWBEnum.Black));
 
-            foreach (Pawn p in Pawns)
+            foreach (Checker p in Pawns)
             {
                 p.PositionChanged += OnPawnPositionChangedEvent;
             }
@@ -209,7 +209,7 @@ namespace BoardGamesNET.Classes.Objects.Games.Checkers
         /// </summary>
         /// <param name="color">Color of the starting pawns.</param>
         /// <returns><see cref="IEnumerable{Pawn}"/> pawns positioned into their starting cell.</returns>
-        private IEnumerable<Pawn> GetStartingPawns(PlayerColorWBEnum color)
+        private IEnumerable<Checker> GetStartingPawns(PlayerColorWBEnum color)
         {
             int startingRow = color == PlayerColorWBEnum.White ? 7 : 0;
             int endingRow = color == PlayerColorWBEnum.White ? 5 : 2;
@@ -219,23 +219,23 @@ namespace BoardGamesNET.Classes.Objects.Games.Checkers
             {
                 for (int c = (r + 1) % 2; c < 8; c += 2)
                 {
-                    yield return new Pawn(this, color, new GridPosition(r, c));
+                    yield return new Checker(this, color, new GridPosition(r, c));
                 }
             }
         }
 
         /// <summary>
-        /// Listener that manage the event <see cref="Pawn.PositionChanged"/>.<br/>
+        /// Listener that manage the event <see cref="Checker.PositionChanged"/>.<br/>
         /// This is triggered when a pawn is moved.
         /// </summary>
-        /// <param name="sender">Sender that trigger the event.<br/> It should be a <see cref="Pawn"/>.</param>
-        /// <param name="e">New position of the <see cref="Pawn"/>.</param>
+        /// <param name="sender">Sender that trigger the event.<br/> It should be a <see cref="Checker"/>.</param>
+        /// <param name="e">New position of the <see cref="Checker"/>.</param>
         /// <exception cref="ArgumentNullException">Sender is <see langword="null"/>.</exception>
         private void OnPawnPositionChangedEvent(object? sender, GridPosition e)
         {
-            if (sender != null && sender is Pawn)
+            if (sender != null && sender is Checker)
             {
-                PawnMovedEvent?.Invoke(this, new PawnMovedEventArgs((Pawn)sender, e)); 
+                PawnMovedEvent?.Invoke(this, new PawnMovedEventArgs((Checker)sender, e)); 
             }
             else
             {
@@ -264,14 +264,14 @@ namespace BoardGamesNET.Classes.Objects.Games.Checkers
             #region ===== VARIABLES =====
 
             #region ===== FIELDS FOR VARIABLES
-            private Pawn _Pawn;
+            private Checker _Pawn;
             private GridPosition _GridPosition;
             #endregion
 
             /// <summary>
             /// Pawn that triggered the event.
             /// </summary>
-            public Pawn Pawn => _Pawn;
+            public Checker Pawn => _Pawn;
 
             /// <summary>
             /// New position of the pawn (<see cref="Pawn"/>).
@@ -285,7 +285,7 @@ namespace BoardGamesNET.Classes.Objects.Games.Checkers
             /// </summary>
             /// <param name="pawn">Pawn that triggered the event.</param>
             /// <param name="gridPosition">New grid position of the pawn.</param>
-            public PawnMovedEventArgs(Pawn pawn, GridPosition gridPosition)
+            public PawnMovedEventArgs(Checker pawn, GridPosition gridPosition)
             {
                 _Pawn = pawn;
                 _GridPosition = gridPosition;

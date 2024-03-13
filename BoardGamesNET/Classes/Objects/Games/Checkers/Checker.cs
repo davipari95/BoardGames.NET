@@ -1,5 +1,6 @@
 ﻿using BoardGamesNET.Classes.Utils;
 using BoardGamesNET.Enums;
+using BoardGamesNET.Interfaces.Games.Checkers;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.Core.Common.CommandTrees.ExpressionBuilder;
@@ -8,17 +9,30 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
-using ICheckersPawn = BoardGamesNET.Interfaces.Games.Checkers.IChecker;
 
 namespace BoardGamesNET.Classes.Objects.Games.Checkers
 {
-    public class Pawn : ICheckersPawn, IEquatable<Pawn>
+    /// <summary>
+    /// Class that rappresents and manage the pawn of the checkers game.
+    /// </summary>
+    public class Checker : IChecker, IEquatable<Checker>
     {
         #region ===== STRUCTS =====
-        public struct AvailableMovesStruct
+        /// <summary>
+        /// Struct that contains informations about the available move.
+        /// </summary>
+        public struct AvailableMoveStruct
         {
+            /// <summary>
+            /// <see cref="Objects.GridPosition"/> containing the available move.
+            /// </summary>
             public GridPosition Move;
-            public Pawn? EatablePiece;
+
+            /// <summary>
+            /// Pawn that is eatable if you perform the movement in <see cref="Move"/>.<br/>
+            /// If it's <see langword="null"/> it means that there's no piece to eat.
+            /// </summary>
+            public Checker? EatablePiece;
         }
         #endregion
 
@@ -78,6 +92,9 @@ namespace BoardGamesNET.Classes.Objects.Games.Checkers
             }
         }
 
+        /// <summary>
+        /// Graphical image that rapresents this pawn.
+        /// </summary>
         public Image Image
         {
             get
@@ -94,18 +111,32 @@ namespace BoardGamesNET.Classes.Objects.Games.Checkers
             }
         }
 
+        /// <summary>
+        /// Checkersboard where this pawn is positioned.
+        /// </summary>
         public CheckersBoard CheckersBoardParent => _CheckersBoardParent;
 
+        /// <summary>
+        /// Says if this pawn is white.<br/>
+        /// <see langword="true"/> if this pawn is white, <see langword="false"/> if this pawn is black.
+        /// </summary>
         private bool IsWhite => Color == PlayerColorWBEnum.White;
         #endregion
         
         #region ===== EVENTS =====
         public event EventHandler<bool> IsKingValueChangedEvent;
+
         public event EventHandler<GridPosition> PositionChanged;
         #endregion
 
         #region ===== CONSTRUCTORS =====
-        public Pawn(CheckersBoard parent, PlayerColorWBEnum color, GridPosition startingPosition)
+        /// <summary>
+        /// Initialize this class.
+        /// </summary>
+        /// <param name="parent">Checkersboard where the pawn will be positioned.</param>
+        /// <param name="color">Color of the pawn (white or black).</param>
+        /// <param name="startingPosition">Cell where the pawn will be positioned.</param>
+        public Checker(CheckersBoard parent, PlayerColorWBEnum color, GridPosition startingPosition)
         {
             _CheckersBoardParent = parent;
             _Color = color;
@@ -117,7 +148,7 @@ namespace BoardGamesNET.Classes.Objects.Games.Checkers
         #endregion
 
         #region ===== METHODS =====
-        public bool Equals(Pawn? other)
+        public bool Equals(Checker? other)
         {
             return
                 other != null &&
@@ -131,15 +162,19 @@ namespace BoardGamesNET.Classes.Objects.Games.Checkers
             return $"[ Color = {Color} ; IsKing = {IsKing} ; GridPosition = {GridPosition} ]";
         }
 
-        public IEnumerable<AvailableMovesStruct> GetAvailableMoves()
+        /// <summary>
+        /// Retrieve all available move of the pawn.
+        /// </summary>
+        /// <returns>An <see cref="IEnumerable{AvailableMoveStruct}"/> of available moves, containing the positions and, in case, the pawns that can be eaten.</returns>
+        public IEnumerable<AvailableMoveStruct> GetAvailableMoves()
         {
             foreach (GridPosition p in GetAvailableDiagonalCells())
             {
-                Pawn? positionPawn = CheckersBoardParent.GetPawnByPosition(p);
+                Checker? positionPawn = CheckersBoardParent.GetPawnByPosition(p);
 
                 if (positionPawn == null)
                 {
-                    yield return new AvailableMovesStruct()
+                    yield return new AvailableMoveStruct()
                     {
                         EatablePiece = null,
                         Move = p,
@@ -157,7 +192,7 @@ namespace BoardGamesNET.Classes.Objects.Games.Checkers
 
                         if (CheckersBoard.IsInCheckersBoard(nextPosition) && CheckersBoardParent.GetPawnByPosition(nextPosition) == null)
                         {
-                            yield return new AvailableMovesStruct()
+                            yield return new AvailableMoveStruct()
                             {
                                 EatablePiece = positionPawn,
                                 Move = nextPosition,
@@ -168,13 +203,19 @@ namespace BoardGamesNET.Classes.Objects.Games.Checkers
             }
         }
 
-        public bool IsAvailableMoves(GridPosition position, out Pawn? eatablePawn)
+        /// <summary>
+        /// Check if the position is an available move.
+        /// </summary>
+        /// <param name="position">Position to check.</param>
+        /// <param name="eatablePawn">(<see langword="out"/>) The piece that can be eaten with the movement, if it is a legal move.</param>
+        /// <returns><see langword="true"/> if the position is an available moves, else return <see langword="false"/>.</returns>
+        public bool IsAvailableMoves(GridPosition position, out Checker? eatablePawn)
         {
             eatablePawn = null;
 
-            IEnumerable<AvailableMovesStruct> availableMoves = GetAvailableMoves();
+            IEnumerable<AvailableMoveStruct> availableMoves = GetAvailableMoves();
 
-            IEnumerable<AvailableMovesStruct> move = availableMoves.Where(gp => gp.Move.Equals(position));
+            IEnumerable<AvailableMoveStruct> move = availableMoves.Where(gp => gp.Move.Equals(position));
 
             if (move.Count() == 1)
             {
@@ -187,14 +228,21 @@ namespace BoardGamesNET.Classes.Objects.Games.Checkers
             }
         }
 
-        public bool IsAvailableMoves(int row, int column, out Pawn? eatablePawn)
+        /// <summary>
+        /// Check if the position is an available move.
+        /// </summary>
+        /// <param name="row">Position row to check.</param>
+        /// <param name="column">Position column to check.</param>
+        /// <param name="eatablePawn">(<see langword="out"/>) The piece that can be eaten with the movement, if it is a legal move.</param>
+        /// <returns><see langword="true"/> if the position is an available moves, else return <see langword="false"/>.</returns>
+        public bool IsAvailableMoves(int row, int column, out Checker? eatablePawn)
         {
             return IsAvailableMoves(new GridPosition(row, column), out eatablePawn);
         }
 
         public void Move(GridPosition gridPosition)
         {
-            if (IsAvailableMoves(gridPosition, out Pawn? eatablePawn))
+            if (IsAvailableMoves(gridPosition, out Checker? eatablePawn))
             {
                 if (eatablePawn != null)
                 {
@@ -205,6 +253,11 @@ namespace BoardGamesNET.Classes.Objects.Games.Checkers
             }
         }
 
+        /// <summary>
+        /// Move pawn into a specific position.
+        /// </summary>
+        /// <param name="row">Position row where you want to move the pawn.</param>
+        /// <param name="column">Position column where you want to move the pawn.</param>
         public void Move(int row, int column)
         {
             Move(new GridPosition(row, column));
@@ -215,6 +268,10 @@ namespace BoardGamesNET.Classes.Objects.Games.Checkers
             CheckersBoardParent.EatPawn(this);
         }
 
+        /// <summary>
+        /// Get all nearest diagonal cells.
+        /// </summary>
+        /// <returns>An <see cref="IEnumerable{GridPosition}"/> containing the nearest diagonal cells.</returns>
         private IEnumerable<GridPosition> GetAvailableDiagonalCells()
         {
             List<GridPosition> neightboringCells = new List<GridPosition>(0);
@@ -238,6 +295,12 @@ namespace BoardGamesNET.Classes.Objects.Games.Checkers
             }
         }
 
+        /// <summary>
+        /// Listener that manage the event <see cref="GridPosition.PositionChangedEvent"/>.<br/>
+        /// This will be triggered everytime the value of <see cref="GridPosition"/> is changed.
+        /// </summary>
+        /// <param name="sender">Sender that trigs the event.<br/>The sender is a <see cref="Objects.GridPosition"/>.</param>
+        /// <param name="e">Actual position of the variable.</param>
         private void GridPosition_PositionChangedEvent(object? sender, GridPosition e)
         {
             PositionChanged?.Invoke(this, e);

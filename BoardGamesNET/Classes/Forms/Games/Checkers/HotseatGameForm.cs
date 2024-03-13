@@ -143,7 +143,7 @@ namespace BoardGamesNET.Classes.Forms.Games.Checkers
                 GridPanel clickedPanel = (GridPanel)sender;
                 Debug.WriteLine(clickedPanel.GridPosition);
 
-                Pawn? selectedElement = Game.CheckersBoard.GetPawnByPosition(clickedPanel.GridPosition);
+                Checker? selectedElement = Game.CheckersBoard.GetPawnByPosition(clickedPanel.GridPosition);
                 Debug.WriteLine(selectedElement);
 
                 if (Game.SelectedPawn == null)  //If no pawn is selected
@@ -205,7 +205,7 @@ namespace BoardGamesNET.Classes.Forms.Games.Checkers
         /// </summary>
         private void InsertPawns()
         {
-            foreach (Pawn p in Game.CheckersBoard.Pawns)
+            foreach (Checker p in Game.CheckersBoard.Pawns)
             {
                 CheckersBoardPanels[p.GridPosition.Row, p.GridPosition.Column].BackgroundImage = p.Image;
             }
@@ -217,7 +217,7 @@ namespace BoardGamesNET.Classes.Forms.Games.Checkers
         /// </summary>
         /// <param name="sender">Object that trigs the event.<br/>It's always a <see cref="Objects.Games.Checkers.Game"/>.</param>
         /// <param name="e">Pawn that is actually selected.<br/> If it's <see langword="null"/> it meanst that the pawn is unselected.</param>
-        private void Game_SelectedPawnChangedEvent(object? sender, Pawn? e)
+        private void Game_SelectedPawnChangedEvent(object? sender, Checker? e)
         {
             ClearSelection();
 
@@ -245,13 +245,13 @@ namespace BoardGamesNET.Classes.Forms.Games.Checkers
         /// <param name="selectedPawnColor">Background color of the selected pawn.</param>
         /// <param name="availableMovesColor">Background color of the availabel moves of the selected pawn.</param>
         /// <param name="eatablePieceColor">Background color of the piece that will be eated.</param>
-        private void ShowSelectedPawnAndAvailabelMoves(Pawn pawn, Color selectedPawnColor, Color availableMovesColor, Color eatablePieceColor)
+        private void ShowSelectedPawnAndAvailabelMoves(Checker pawn, Color selectedPawnColor, Color availableMovesColor, Color eatablePieceColor)
         {
             CheckersBoardPanels[pawn.GridPosition.Row, pawn.GridPosition.Column].BackColor = selectedPawnColor;
 
-            IEnumerable<Pawn.AvailableMovesStruct> availableMoves = pawn.GetAvailableMoves();
+            IEnumerable<Checker.AvailableMoveStruct> availableMoves = pawn.GetAvailableMoves();
 
-            foreach (Pawn.AvailableMovesStruct move in availableMoves)
+            foreach (Checker.AvailableMoveStruct move in availableMoves)
             {
                 CheckersBoardPanels[move.Move.Row, move.Move.Column].BackColor = availableMovesColor;
 
