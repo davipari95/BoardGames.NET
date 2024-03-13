@@ -80,6 +80,7 @@ namespace BoardGamesNET.Classes.Forms.Games.Checkers
             Game.SelectedPawnChangedEvent += Game_SelectedPawnChangedEvent;
             Game.PawnMovedEvent += Game_PawnMovedEvent;
         }
+
         #endregion
 
         #region ===== METHODS =====
@@ -223,7 +224,10 @@ namespace BoardGamesNET.Classes.Forms.Games.Checkers
 
             if (e != null)
             {
-                ShowSelectedPawnAndAvailabelMoves(e, Color.Yellow, Color.LawnGreen, Color.Red);
+                ShowSelectedPawnAndAvailabelMoves(e, 
+                    Resources.Games.Checkers.Checkers.Default.SelectedPieceColor, 
+                    Resources.Games.Checkers.Checkers.Default.AvailableMoveColor, 
+                    Resources.Games.Checkers.Checkers.Default.EatableCheckerColor);
             }
         }
 

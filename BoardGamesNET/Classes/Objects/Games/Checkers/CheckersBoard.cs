@@ -76,6 +76,8 @@ namespace BoardGamesNET.Classes.Objects.Games.Checkers
                 {
                     _ForcedEater = value;
                 }
+
+                ForcedEaterValueChangedEvent?.Invoke(this, _ForcedEater);
             }
         }
 
@@ -86,6 +88,11 @@ namespace BoardGamesNET.Classes.Objects.Games.Checkers
         /// Event that is triggered everytime a pawn on this chessboard is moved.
         /// </summary>
         public event EventHandler<PawnMovedEventArgs> PawnMovedEvent;
+
+        /// <summary>
+        /// Event that is triggered everytime the list of checkers that are forced to eat changed.
+        /// </summary>
+        public event EventHandler<IEnumerable<Checker>?> ForcedEaterValueChangedEvent;
         #endregion
 
         #region ===== CONSTRUCTORS =====
