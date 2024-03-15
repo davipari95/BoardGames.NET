@@ -2,6 +2,7 @@
 using BoardGamesNET.Classes.Objects;
 using BoardGamesNET.Classes.Objects.Games.Checkers;
 using BoardGamesNET.Classes.Objects.Games.Checkers.Games;
+using BoardGamesNET.Exceptions.Games.Checkers;
 using System.Data.Entity;
 using System.Diagnostics;
 
@@ -79,6 +80,7 @@ namespace BoardGamesNET.Classes.Forms.Games.Checkers
             Program.cSettingsManager.ActiveLanguageChangedValueEvent += CSettingsManager_ActiveLanguageChangedValueEvent;
             Game.SelectedPawnChangedEvent += Game_SelectedPawnChangedEvent;
             Game.PawnMovedEvent += Game_PawnMovedEvent;
+            Game.ActualTurnChangedEvent += Game_ActualTurnChangedEvent;
         }
 
         #endregion
@@ -220,15 +222,7 @@ namespace BoardGamesNET.Classes.Forms.Games.Checkers
         /// <param name="e">Pawn that is actually selected.<br/> If it's <see langword="null"/> it meanst that the pawn is unselected.</param>
         private void Game_SelectedPawnChangedEvent(object? sender, Checker? e)
         {
-            ClearSelection();
-
-            if (e != null)
-            {
-                ShowSelectedPawnAndAvailabelMoves(e, 
-                    Resources.Games.Checkers.Checkers.Default.SelectedPieceColor, 
-                    Resources.Games.Checkers.Checkers.Default.AvailableMoveColor, 
-                    Resources.Games.Checkers.Checkers.Default.EatableCheckerColor);
-            }
+            UpdateBackgrounds();
         }
 
         /// <summary>
@@ -240,6 +234,49 @@ namespace BoardGamesNET.Classes.Forms.Games.Checkers
             {
                 p.BackColor = Color.Transparent;
             }
+        }
+
+        /// <summary>
+        /// Show forced eater on checkersboard.<br/>
+        /// It take eaters from <see cref="CheckersBoard.ForcedEater"/>.
+        /// </summary>
+        /// <param name="backColor">Background color of forced eater.</param>
+        private void ShowForcedEaterSelection(Color backColor)
+        {
+            if (Game.CheckersBoard.ForcedEater != null)
+            {
+                foreach (Checker c in Game.CheckersBoard.ForcedEater)
+                {
+                    CheckersBoardPanels[c.GridPosition.Row, c.GridPosition.Column].BackColor = backColor;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Update the cells background showing moves of a pawn passed as <paramref name="pawnForShowingMoves"/>.
+        /// </summary>
+        /// <param name="pawnForShowingMoves">Pawn to show available moves.</param>
+        private void UpdateBackgrounds(Checker? pawnForShowingMoves)
+        {
+            ClearSelection();
+
+            ShowForcedEaterSelection(Resources.Games.Checkers.CheckersSettings.Default.ForcedEaterColor);
+
+            if (pawnForShowingMoves != null)
+            {
+                ShowSelectedPawnAndAvailabelMoves(pawnForShowingMoves,
+                    Resources.Games.Checkers.CheckersSettings.Default.SelectedPieceColor,
+                    Resources.Games.Checkers.CheckersSettings.Default.AvailableMoveColor,
+                    Resources.Games.Checkers.CheckersSettings.Default.EatableCheckerColor);
+            }
+        }
+
+        /// <summary>
+        /// Update the cells background showing moves of the selected pawn.
+        /// </summary>
+        private void UpdateBackgrounds()
+        {
+            UpdateBackgrounds(Game.SelectedPawn);
         }
 
         /// <summary>
@@ -278,6 +315,17 @@ namespace BoardGamesNET.Classes.Forms.Games.Checkers
         private void Game_PawnMovedEvent(object? sender, Game.PawnMovedEventArgs e)
         {
             UpdateGraphics();
+        }
+
+        /// <summary>
+        /// Listener that manage the event <see cref="Game.ActualTurnChangedEvent"/><br/>
+        /// This is triggered everytime the turn is passed.
+        /// </summary>
+        /// <param name="sender">Sender that trigs the event.<br/>The sender is a <see cref="Objects.Games.Checkers.Game"/> type.</param>
+        /// <param name="e">Actually turn color.</param>
+        private void Game_ActualTurnChangedEvent(object? sender, Enums.PlayerColorWBEnum e)
+        {
+            UpdateBackgrounds();
         }
         #endregion
     }

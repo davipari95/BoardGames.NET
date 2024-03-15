@@ -102,9 +102,9 @@ namespace BoardGamesNET.Classes.Objects.Games.Checkers
                 switch (Color)
                 {
                     case PlayerColorWBEnum.White:
-                        return IsKing ? Resources.Games.Checkers.WhiteCheckerKing : Resources.Games.Checkers.WhiteChecker;
+                        return IsKing ? Resources.Games.Checkers.CheckersResources.WhiteCheckerKing : Resources.Games.Checkers.CheckersResources.WhiteChecker;
                     case PlayerColorWBEnum.Black:
-                        return IsKing ? Resources.Games.Checkers.BlackCheckerKing : Resources.Games.Checkers.BlackChecker;
+                        return IsKing ? Resources.Games.Checkers.CheckersResources.BlackCheckerKing : Resources.Games.Checkers.CheckersResources.BlackChecker;
                     default:
                         throw new ArgumentException("Color doesn't exists.");
                 }
@@ -304,6 +304,22 @@ namespace BoardGamesNET.Classes.Objects.Games.Checkers
         private void GridPosition_PositionChangedEvent(object? sender, GridPosition e)
         {
             PositionChanged?.Invoke(this, e);
+        }
+
+        public void Promote()
+        {
+            IsKing = true;
+        }
+
+        /// <summary>
+        /// Get if the this pawn is available for be promoted as a king.
+        /// </summary>
+        /// <returns><see langword="true"/> if it can be promoted as a king, <see langword="false"/> otherwise.</returns>
+        public bool AvailableForPromotion()
+        {
+            int kingPosition = IsWhite ? 0 : 7;
+
+            return !IsKing && GridPosition.Row == kingPosition;
         }
         #endregion
     }

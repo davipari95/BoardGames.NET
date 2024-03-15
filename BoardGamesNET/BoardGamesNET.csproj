@@ -23,11 +23,16 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>ExitErrorCodes.settings</DependentUpon>
     </Compile>
-    <Compile Update="Resources\Games\Checkers\Checkers.Designer.cs">
+    <Compile Update="Resources\Games\Checkers\CheckersResources.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
-      <DependentUpon>Checkers.settings</DependentUpon>
+      <DependentUpon>CheckersResources.resx</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Update="Resources\Games\Checkers\CheckersSettings.Designer.cs">
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>CheckersSettings.settings</DependentUpon>
     </Compile>
     <Compile Update="Resources\PlayerNumberIcons.Designer.cs">
       <DesignTime>True</DesignTime>
@@ -41,9 +46,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>App.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Update="Resources\Games\Checkers\Checkers.resx">
+    <EmbeddedResource Update="Resources\Games\Checkers\CheckersResources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Checkers.Designer.cs</LastGenOutput>
+      <LastGenOutput>CheckersResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Update="Resources\PlayerNumberIcons.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -56,9 +61,9 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>ExitErrorCodes.Designer.cs</LastGenOutput>
     </None>
-    <None Update="Resources\Games\Checkers\Checkers.settings">
+    <None Update="Resources\Games\Checkers\CheckersSettings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Checkers.Designer.cs</LastGenOutput>
+      <LastGenOutput>CheckersSettings.Designer.cs</LastGenOutput>
     </None>
   </ItemGroup>
 

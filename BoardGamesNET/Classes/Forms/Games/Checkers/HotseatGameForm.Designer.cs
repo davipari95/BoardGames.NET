@@ -87,7 +87,7 @@
             // 
             // CheckersBoardPanel
             // 
-            CheckersBoardPanel.BackgroundImage = Resources.Games.Checkers.CheckersBoard;
+            CheckersBoardPanel.BackgroundImage = Resources.Games.Checkers.CheckersResources.CheckersBoard;
             CheckersBoardPanel.Location = new Point(30, 30);
             CheckersBoardPanel.Name = "CheckersBoardPanel";
             CheckersBoardPanel.Size = new Size(800, 800);

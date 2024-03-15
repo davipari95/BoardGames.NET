@@ -81,7 +81,7 @@
             // GamesCheckersTranslatableToolStripMenuItem
             // 
             GamesCheckersTranslatableToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { GamesCheckersTwoPlayersTranslatableToolStripMenuItem, toolStripSeparator1, GamesCheckersRulesTranslatableToolStripMeniItem });
-            GamesCheckersTranslatableToolStripMenuItem.Image = Resources.Games.Checkers.GameIcon;
+            GamesCheckersTranslatableToolStripMenuItem.Image = Resources.Games.Checkers.CheckersResources.GameIcon;
             GamesCheckersTranslatableToolStripMenuItem.LanguageReference = 10L;
             GamesCheckersTranslatableToolStripMenuItem.Name = "GamesCheckersTranslatableToolStripMenuItem";
             GamesCheckersTranslatableToolStripMenuItem.Size = new Size(122, 22);

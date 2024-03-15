@@ -13,11 +13,11 @@ namespace BoardGamesNET.Resources.Games.Checkers {
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "17.9.0.0")]
-    internal sealed partial class Checkers : global::System.Configuration.ApplicationSettingsBase {
+    internal sealed partial class CheckersSettings : global::System.Configuration.ApplicationSettingsBase {
         
-        private static Checkers defaultInstance = ((Checkers)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Checkers())));
+        private static CheckersSettings defaultInstance = ((CheckersSettings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new CheckersSettings())));
         
-        public static Checkers Default {
+        public static CheckersSettings Default {
             get {
                 return defaultInstance;
             }

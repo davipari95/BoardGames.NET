@@ -1,4 +1,5 @@
 ﻿using BoardGamesNET.Enums;
+using System.Data.Entity.Infrastructure;
 using static BoardGamesNET.Classes.Objects.Games.Checkers.Games.LocalGame;
 
 namespace BoardGamesNET.Classes.Objects.Games.Checkers
@@ -18,14 +19,21 @@ namespace BoardGamesNET.Classes.Objects.Games.Checkers
             /// Pawn is correctly selected.
             /// </summary>
             Ok,
+
             /// <summary>
             /// No pawn is selected.
             /// </summary>
             NoPawnSelected,
+
             /// <summary>
             /// A pawn with the opposite color of the actual turn is selected.
             /// </summary>
             SelectingOppositeColor,
+
+            /// <summary>
+            /// A not forced eater pawn is selecting.
+            /// </summary>
+            SelectingANotForcedEaterPawn,
         }
         #endregion
 
@@ -175,7 +183,21 @@ namespace BoardGamesNET.Classes.Objects.Games.Checkers
             {
                 if (selectedPawn.Color.Equals(ActualTurnColor))
                 {
-                    _SelectedPawn = selectedPawn;
+                    if (CheckersBoard.ForcedEater == null)
+                    {
+                        _SelectedPawn = selectedPawn; 
+                    }
+                    else
+                    {
+                        if (CheckersBoard.ForcedEater.Contains(selectedPawn))
+                        {
+                            _SelectedPawn = selectedPawn;
+                        }
+                        else
+                        {
+                            return SelectPawnResultEnum.SelectingANotForcedEaterPawn;
+                        }
+                    }
                 }
                 else
                 {
@@ -227,6 +249,11 @@ namespace BoardGamesNET.Classes.Objects.Games.Checkers
         /// <param name="e">Argumensts of the event containing information of the checkersboard where the pawn is moved, the pawn that is moved and the actual position of the pawn that is moved.</param>
         private void CheckersBoard_PawnMovedEvent(object? sender, CheckersBoard.PawnMovedEventArgs e)
         {
+            if (e.Pawn.AvailableForPromotion())
+            {
+                e.Pawn.Promote();
+            }
+
             UnselectPawn();
             ChangeTurn();
 

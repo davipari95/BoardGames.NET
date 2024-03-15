@@ -77,7 +77,6 @@ D:\Documents\Projects\Visual Studio\BoardGamesNET\BoardGamesNET\obj\Debug\net6.0
 D:\Documents\Projects\Visual Studio\BoardGamesNET\BoardGamesNET\obj\Debug\net6.0-windows\BoardGamesNET.Resources.App.resources
 D:\Documents\Projects\Visual Studio\BoardGamesNET\BoardGamesNET\obj\Debug\net6.0-windows\BoardGamesNET.Resources.Games.Checkers.resources
 C:\Users\User\Documents\Projects\Visual Studio 2022\BoardGamesNET\BoardGamesNET\obj\Debug\net6.0-windows\BoardGamesNET.Resources.App.resources
-C:\Users\User\Documents\Projects\Visual Studio 2022\BoardGamesNET\BoardGamesNET\obj\Debug\net6.0-windows\BoardGamesNET.Resources.Games.Checkers.resources
 C:\Users\User\Documents\Projects\Visual Studio 2022\BoardGamesNET\BoardGamesNET\obj\Debug\net6.0-windows\BoardGamesNET.Resources.PlayerNumberIcons.resources
 C:\Users\User\Documents\Projects\Visual Studio 2022\BoardGamesNET\BoardGamesNET\obj\Debug\net6.0-windows\BoardGamesNET.Classes.CustomComponents.GridPanel.resources
 C:\Users\User\Documents\Projects\Visual Studio 2022\BoardGamesNET\BoardGamesNET\obj\Debug\net6.0-windows\BoardGamesNET.Classes.Forms.Games.Checkers.HotseatGameForm.resources
@@ -130,3 +129,4 @@ D:\Documenti\Projects\Visual Studio\BoardGames.NET\BoardGamesNET\obj\Debug\net6.
 D:\Documenti\Projects\Visual Studio\BoardGames.NET\BoardGamesNET\obj\Debug\net6.0-windows\BoardGamesNET.pdb
 D:\Documenti\Projects\Visual Studio\BoardGames.NET\BoardGamesNET\obj\Debug\net6.0-windows\BoardGamesNET.genruntimeconfig.cache
 D:\Documenti\Projects\Visual Studio\BoardGames.NET\BoardGamesNET\obj\Debug\net6.0-windows\ref\BoardGamesNET.dll
+C:\Users\User\Documents\Projects\Visual Studio 2022\BoardGamesNET\BoardGamesNET\obj\Debug\net6.0-windows\BoardGamesNET.Resources.Games.Checkers.CheckersResources.resources

@@ -53,6 +53,12 @@ namespace BoardGamesNET.Interfaces.Games.Checkers
         /// Eat this pawn.
         /// </summary>
         public void Eat();
+
+        /// <summary>
+        /// Promote this pawn.<br/>
+        /// It means that this pawn will be a king.
+        /// </summary>
+        public void Promote();
         #endregion
 
     }
