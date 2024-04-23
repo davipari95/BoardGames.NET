@@ -13,6 +13,24 @@ namespace BoardGamesNET.Interfaces.Games.Checkers
     /// </summary>
     public interface IChecker
     {
+        #region ===== STRUCTS =====
+        /// <summary>
+        /// Event args containing the arguments of the event <see cref="PieceMovedEvent"/>.
+        /// </summary>
+        public struct PieceMovedEventArgs
+        {
+            /// <summary>
+            /// Actual position of the checker after it was moved.
+            /// </summary>
+            public GridPosition Position;
+
+            /// <summary>
+            /// Flag that means that a checker was eat after the movement is done.
+            /// </summary>
+            public bool PieceAte;
+        }
+        #endregion
+
         #region ===== VARIABLES =====
         /// <summary>
         /// Color of the pawn (white or black).
@@ -40,6 +58,11 @@ namespace BoardGamesNET.Interfaces.Games.Checkers
         /// Event triggered everytime this pawn is moved.
         /// </summary>
         public event EventHandler<GridPosition> PositionChanged;
+
+        /// <summary>
+        /// Event that is throwed after that the checker was moved. 
+        /// </summary>
+        public event EventHandler<PieceMovedEventArgs> PieceMovedEvent;
         #endregion
 
         #region ===== METHODS =====
@@ -60,6 +83,5 @@ namespace BoardGamesNET.Interfaces.Games.Checkers
         /// </summary>
         public void Promote();
         #endregion
-
     }
 }

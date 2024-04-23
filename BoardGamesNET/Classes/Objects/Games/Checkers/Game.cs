@@ -34,6 +34,11 @@ namespace BoardGamesNET.Classes.Objects.Games.Checkers
             /// A not forced eater pawn is selecting.
             /// </summary>
             SelectingANotForcedEaterPawn,
+
+            /// <summary>
+            /// A forced selected pawn is actually selected.
+            /// </summary>
+            SelectionForced,
         }
 
         /// <summary>
@@ -56,6 +61,7 @@ namespace BoardGamesNET.Classes.Objects.Games.Checkers
         private PlayerColorWBEnum _ActualTurn;
         private int _TurnNumber;
         private Checker? _SelectedPawn;
+        private bool _SelectionForced;
         #endregion
 
         /// <summary>
@@ -135,6 +141,24 @@ namespace BoardGamesNET.Classes.Objects.Games.Checkers
         /// </summary>
         public int TurnNumber => _TurnNumber;
 
+        /// <summary>
+        /// Information about if a selection is forced.<br/>
+        /// This is used, for example, if a checker must eat more than one opposite checker.
+        /// </summary>
+        public bool SelectionForced
+        {
+            get
+            {
+                return _SelectionForced;
+            }
+            set
+            {
+                if (value != _SelectionForced)
+                {
+                    _SelectionForced = value;
+                }
+            }
+        }
         #endregion
 
         #region ===== EVENTS =====
@@ -183,26 +207,36 @@ namespace BoardGamesNET.Classes.Objects.Games.Checkers
         /// <param name="selectedPawn">Pawn that you want to select.</param>
         /// <param name="unselectIfNull">If you set this variable at <see langword="true"/>, if you pass a null value at <paramref name="selectedPawn"/>, you unselect the pawn.<br/>
         /// Default value is <see langword="false"/>.</param>
+        /// <param name="forceSelection">If you set this variable at <see langword="true"/>, you select the pawn passed on <paramref name="selectedPawn"/> without the possibility to change it.<br/>
+        /// Default value is <see langword="false"/>.</param>
         /// <returns>
         /// - <c>[<see cref="SelectPawnResultEnum.Ok"/>]</c> if pawn is correctly selected (or unselected).<br/>
         /// - <c>[<see cref="SelectPawnResultEnum.NoPawnSelected"/>]</c> if value in <paramref name="selectedPawn"/> is <see langword="null"/> and <paramref name="unselectIfNull"/> is <see langword="false"/>.<br/>
-        /// - <c>[<see cref="SelectPawnResultEnum.SelectingOppositeColor"/>]</c> if is selecting a pawn of the color that is different from the actual color.
+        /// - <c>[<see cref="SelectPawnResultEnum.SelectingOppositeColor"/>]</c> if is selecting a pawn of the color that is different from the actual color.<br/>
+        /// - <c>[<see cref="SelectPawnResultEnum.SelectionForced"/>]</c> at the moment there is a forced selection enabled.
         /// </returns>
-        public SelectPawnResultEnum SelectPawn(Checker? selectedPawn, bool unselectIfNull = false)
+        public SelectPawnResultEnum SelectPawn(Checker? selectedPawn, bool unselectIfNull = false, bool forceSelection = false)
         {
+            if (SelectionForced)
+            {
+                return SelectPawnResultEnum.SelectionForced;
+            }
+
             if (selectedPawn != null)
             {
                 if (selectedPawn.Color.Equals(ActualTurnColor))
                 {
                     if (CheckersBoard.ForcedEater == null)
                     {
-                        _SelectedPawn = selectedPawn; 
+                        _SelectedPawn = selectedPawn;
+                        SelectionForced = forceSelection;
                     }
                     else
                     {
                         if (CheckersBoard.ForcedEater.Contains(selectedPawn))
                         {
                             _SelectedPawn = selectedPawn;
+                            SelectionForced = forceSelection;
                         }
                         else
                         {
@@ -220,6 +254,7 @@ namespace BoardGamesNET.Classes.Objects.Games.Checkers
                 if (unselectIfNull)
                 {
                     _SelectedPawn = null;
+                    SelectionForced = false;
                 }
                 else
                 {
@@ -281,9 +316,20 @@ namespace BoardGamesNET.Classes.Objects.Games.Checkers
             {
                 e.Pawn.Promote();
             }
+            else if (!e.Pawn.IsKing)
+            {
+                IEnumerable<Checker.AvailableMoveStruct> availableMoves = e.Pawn.GetAvailableMoves();
 
-            UnselectPawn();
-            ChangeTurn();
+                if (availableMoves.Where(m => m.EatablePiece != null).Count() > 0)
+                {
+                    SelectPawn(e.Pawn, forceSelection: true);
+                }
+                else
+                {
+                    UnselectPawn();
+                    ChangeTurn();
+                }
+            } 
 
             if (sender != null && sender is CheckersBoard)
             {
