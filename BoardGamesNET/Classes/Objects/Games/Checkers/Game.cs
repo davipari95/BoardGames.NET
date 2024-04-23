@@ -195,7 +195,7 @@ namespace BoardGamesNET.Classes.Objects.Games.Checkers
 
             CheckersBoard = new CheckersBoard(this);
 
-            CheckersBoard.PawnMovedEvent += CheckersBoard_PawnMovedEvent;
+            CheckersBoard.PawnPositionChangedEvent += CheckersBoard_PawnMovedEvent;
         }
 
         #endregion
@@ -305,12 +305,12 @@ namespace BoardGamesNET.Classes.Objects.Games.Checkers
         }
 
         /// <summary>
-        /// Listener that manage the event <see cref="CheckersBoard.PawnMovedEvent"/>.<br/>
+        /// Listener that manage the event <see cref="CheckersBoard.PawnPositionChangedEvent"/>.<br/>
         /// This event is triggered everytime a pawn is moved.
         /// </summary>
         /// <param name="sender">Object that triggers the event.<br/> The sender is a <c>[<see cref="Checkers.CheckersBoard"/>]</c>.</param>
         /// <param name="e">Argumensts of the event containing information of the checkersboard where the pawn is moved, the pawn that is moved and the actual position of the pawn that is moved.</param>
-        private void CheckersBoard_PawnMovedEvent(object? sender, CheckersBoard.PawnMovedEventArgs e)
+        private void CheckersBoard_PawnMovedEvent(object? sender, CheckersBoard.PawnPositionChangedEventArgs e)
         {
             if (e.Pawn.AvailableForPromotion())
             {
@@ -342,7 +342,7 @@ namespace BoardGamesNET.Classes.Objects.Games.Checkers
         /// <summary>
         /// Event args used for event <see cref="PawnMovedEvent"/>.
         /// </summary>
-        public class PawnMovedEventArgs : CheckersBoard.PawnMovedEventArgs
+        public class PawnMovedEventArgs : CheckersBoard.PawnPositionChangedEventArgs
         {
             #region ===== VARIABLES =====
             #region ===== FIELDS FOR VARIABLES =====

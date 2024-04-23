@@ -15,7 +15,7 @@ namespace BoardGamesNET.Interfaces.Games.Checkers
     {
         #region ===== STRUCTS =====
         /// <summary>
-        /// Event args containing the arguments of the event <see cref="PieceMovedEvent"/>.
+        /// Event args containing the arguments of the event <see cref="MovedEvent"/>.
         /// </summary>
         public struct PieceMovedEventArgs
         {
@@ -62,12 +62,13 @@ namespace BoardGamesNET.Interfaces.Games.Checkers
         /// <summary>
         /// Event that is throwed after that the checker was moved. 
         /// </summary>
-        public event EventHandler<PieceMovedEventArgs> PieceMovedEvent;
+        public event EventHandler<PieceMovedEventArgs> MovedEvent;
         #endregion
 
         #region ===== METHODS =====
         /// <summary>
-        /// Move pawn into a specific position.
+        /// Move pawn into a specific position.<br/>
+        /// The event <see cref="MovedEvent"/> must be implemented here.
         /// </summary>
         /// <param name="gridPosition">Position where you want to move the pawn.</param>
         public void Move(GridPosition gridPosition);

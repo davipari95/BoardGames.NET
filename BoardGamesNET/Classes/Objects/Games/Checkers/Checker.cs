@@ -17,27 +17,6 @@ namespace BoardGamesNET.Classes.Objects.Games.Checkers
     /// </summary>
     public class Checker : IChecker, IEquatable<Checker>
     {
-        #region ===== STRUCTS =====
-        /// <summary>
-        /// Struct that contains informations about the available move.
-        /// </summary>
-        public struct AvailableMoveStruct
-        {
-            /// <summary>
-            /// <see cref="Objects.GridPosition"/> containing the available move.
-            /// </summary>
-            public GridPosition Move;
-
-            /// <summary>
-            /// Pawn that is eatable if you perform the movement in <see cref="Move"/>.<br/>
-            /// If it's <see langword="null"/> it means that there's no piece to eat.
-            /// </summary>
-            public Checker? EatablePiece;
-        }
-
-        
-        #endregion
-
         #region ===== VARIABLES =====
 
         #region ===== FIELDS FOR VARIABLES =====
@@ -130,7 +109,7 @@ namespace BoardGamesNET.Classes.Objects.Games.Checkers
 
         public event EventHandler<GridPosition> PositionChanged;
 
-        public event EventHandler<IChecker.PieceMovedEventArgs> PieceMovedEvent;
+        public event EventHandler<IChecker.PieceMovedEventArgs> MovedEvent;
         #endregion
 
         #region ===== CONSTRUCTORS =====
@@ -270,7 +249,12 @@ namespace BoardGamesNET.Classes.Objects.Games.Checkers
             return IsAvailableMoves(new GridPosition(row, column), out eatablePawn);
         }
 
-
+        /// <summary>
+        /// Move pawn into a specific position.<br/>
+        /// This function will invoke the event <see cref="MovedEvent"/>.
+        /// </summary>
+        /// <param name="row">Position row where you want to move the pawn.</param>
+        /// <param name="column">Position column where you want to move the pawn.</param>
         public void Move(GridPosition gridPosition)
         {
             if (IsAvailableMoves(gridPosition, out Checker? eatablePawn))
@@ -285,7 +269,7 @@ namespace BoardGamesNET.Classes.Objects.Games.Checkers
 
                 GridPosition = gridPosition;
 
-                PieceMovedEvent?.Invoke(this, new PieceMovedEventArgs()
+                MovedEvent?.Invoke(this, new IChecker.PieceMovedEventArgs()
                 {
                     PieceAte = pieceAte,
                     Position = GridPosition
@@ -294,7 +278,8 @@ namespace BoardGamesNET.Classes.Objects.Games.Checkers
         }
 
         /// <summary>
-        /// Move pawn into a specific position.
+        /// Move pawn into a specific position.<br/>
+        /// This function will invoke the event <see cref="MovedEvent"/>.
         /// </summary>
         /// <param name="row">Position row where you want to move the pawn.</param>
         /// <param name="column">Position column where you want to move the pawn.</param>
@@ -361,6 +346,27 @@ namespace BoardGamesNET.Classes.Objects.Games.Checkers
 
             return !IsKing && GridPosition.Row == kingPosition;
         }
+        #endregion
+
+        #region ===== NESTED CLASSES =====
+        /// <summary>
+        /// Struct that contains informations about the available move.
+        /// </summary>
+        public class AvailableMoveStruct
+        {
+            /// <summary>
+            /// <see cref="Objects.GridPosition"/> containing the available move.
+            /// </summary>
+            public GridPosition Move;
+
+            /// <summary>
+            /// Pawn that is eatable if you perform the movement in <see cref="Move"/>.<br/>
+            /// If it's <see langword="null"/> it means that there's no piece to eat.
+            /// </summary>
+            public Checker? EatablePiece;
+        }
+
+
         #endregion
     }
 }

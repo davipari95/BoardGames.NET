@@ -87,7 +87,7 @@ namespace BoardGamesNET.Classes.Objects.Games.Checkers
         /// <summary>
         /// Event that is triggered everytime a pawn on this chessboard is moved.
         /// </summary>
-        public event EventHandler<PawnMovedEventArgs> PawnMovedEvent;
+        public event EventHandler<PawnPositionChangedEventArgs> PawnPositionChangedEvent;
 
         /// <summary>
         /// Event that is triggered everytime the list of checkers that are forced to eat changed.
@@ -208,7 +208,13 @@ namespace BoardGamesNET.Classes.Objects.Games.Checkers
             foreach (Checker p in Pawns)
             {
                 p.PositionChanged += OnPawnPositionChangedEvent;
+                p.MovedEvent += OnPawnMovedEvent;
             }
+        }
+
+        private void OnPawnMovedEvent(object? sender, Interfaces.Games.Checkers.IChecker.PieceMovedEventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
         /// <summary>
@@ -242,7 +248,7 @@ namespace BoardGamesNET.Classes.Objects.Games.Checkers
         {
             if (sender != null && sender is Checker)
             {
-                PawnMovedEvent?.Invoke(this, new PawnMovedEventArgs((Checker)sender, e)); 
+                PawnPositionChangedEvent?.Invoke(this, new PawnPositionChangedEventArgs((Checker)sender, e)); 
             }
             else
             {
@@ -264,9 +270,9 @@ namespace BoardGamesNET.Classes.Objects.Games.Checkers
 
         #region ===== NESTED CLASSES =====
         /// <summary>
-        /// Event args used for event <see cref="PawnMovedEvent"/>.
+        /// Event args used for event <see cref="PawnPositionChangedEvent"/>.
         /// </summary>
-        public class PawnMovedEventArgs
+        public class PawnPositionChangedEventArgs
         {
             #region ===== VARIABLES =====
 
@@ -292,10 +298,34 @@ namespace BoardGamesNET.Classes.Objects.Games.Checkers
             /// </summary>
             /// <param name="pawn">Pawn that triggered the event.</param>
             /// <param name="gridPosition">New grid position of the pawn.</param>
-            public PawnMovedEventArgs(Checker pawn, GridPosition gridPosition)
+            public PawnPositionChangedEventArgs(Checker pawn, GridPosition gridPosition)
             {
                 _Pawn = pawn;
                 _GridPosition = gridPosition;
+            }
+            #endregion
+        }
+
+        public class PawnMovedEventArgs
+        {
+            #region ===== FIELDS =====
+            private Checker _Pawn;
+            private GridPosition _GridPosition;
+            private bool _PawnAte;
+            #endregion
+
+            #region ===== VARIABLES =====
+            public Checker Pawn => _Pawn;
+            public GridPosition GridPosition => _GridPosition;
+            public bool PawnAte => _PawnAte;
+            #endregion
+
+            #region ===== CONSTRUCTORS =====
+            public PawnMovedEventArgs(Checker pawn, GridPosition gridPosition, bool pawnAte)
+            {
+                _Pawn = pawn;
+                _GridPosition = gridPosition;
+                _PawnAte = pawnAte;
             }
             #endregion
         }
