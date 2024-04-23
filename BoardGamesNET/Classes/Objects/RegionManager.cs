@@ -199,6 +199,19 @@ namespace BoardGamesNET.Classes.Objects
         }
 
         /// <summary>
+        /// Retrieve a translated text with parameters.
+        /// </summary>
+        /// <param name="languageReference">Langauge ID of the translation.</param>
+        /// <param name="languageCode">Three letter ISO language code (<c>eng</c>; <c>ita</c>; ...)<br/>
+        /// Set this value to <see langword="null"/> to use the actual ative language.</param>
+        /// <param name="args">Arguments used to substitute <tt>{0}</tt>, <tt>{1}</tt>, ...</param>
+        /// <returns>A translated text of the language passed on <paramref name="languageCode"/> with <paramref name="args"/> values.</returns>
+        public string GetTranslatedText(long languageReference, string? languageCode, params object[] args)
+        {
+            return string.Format(GetTranslatedText(languageReference, languageCode), args);
+        }
+
+        /// <summary>
         /// Show a message dialog with a translated text.
         /// </summary>
         /// <param name="messageLangaugeReference">Text ID of the message.</param>

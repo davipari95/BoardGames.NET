@@ -35,6 +35,17 @@ namespace BoardGamesNET.Classes.Objects.Games.Checkers
             /// </summary>
             SelectingANotForcedEaterPawn,
         }
+
+        /// <summary>
+        /// What you want to retrieve with the function <see cref="GetTranslatetInfoText(InfoText)"/>.
+        /// </summary>
+        public enum InfoText
+        {
+            /// <summary>
+            /// Information about whose turn it is right now.
+            /// </summary>
+            ActualTurnName,
+        }
         #endregion
 
         #region ===== VARIABLES =====
@@ -239,6 +250,23 @@ namespace BoardGamesNET.Classes.Objects.Games.Checkers
         public SelectPawnResultEnum UnselectPawn()
         {
             return SelectPawn(null, true);
+        }
+
+        /// <summary>
+        /// Retrieve a string to write on info label game form.
+        /// </summary>
+        /// <param name="toRetrieve">What you want to retrieve.</param>
+        /// <returns>A required translated string.</returns>
+        /// <exception cref="ArgumentException">Value on <paramref name="toRetrieve"/> is not valid.</exception>
+        public string GetTranslatetInfoText(InfoText toRetrieve)
+        {
+            switch (toRetrieve)
+            {
+                case InfoText.ActualTurnName:
+                    return Program.cRegionManager.GetTranslatedText(23, null, PlayerNames[ActualTurnColor]);
+                default:
+                    throw new ArgumentException("Translated info text parameter is not valid.");
+            }
         }
 
         /// <summary>

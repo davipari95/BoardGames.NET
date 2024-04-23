@@ -103,6 +103,8 @@ namespace BoardGamesNET.Classes.Forms.Games.Checkers
         private void Translate()
         {
             Text = $"[💻] [{Program.cRegionManager.GetTranslatedText(18)}] {Program.cRegionManager.GetTranslatedText(22)}";
+
+            UpdateInfo(Objects.Games.Checkers.Game.InfoText.ActualTurnName);
         }
 
         /// <summary>
@@ -326,6 +328,16 @@ namespace BoardGamesNET.Classes.Forms.Games.Checkers
         private void Game_ActualTurnChangedEvent(object? sender, Enums.PlayerColorWBEnum e)
         {
             UpdateBackgrounds();
+
+            UpdateInfo(Objects.Games.Checkers.Game.InfoText.ActualTurnName);
+        }
+
+        /// <summary>
+        /// Update the value of <see cref="InfoLabel"/>.
+        /// </summary>
+        private void UpdateInfo(Game.InfoText toRetrieve)
+        {
+            InfoLabel.Text = Game.GetTranslatetInfoText(toRetrieve);
         }
         #endregion
     }
