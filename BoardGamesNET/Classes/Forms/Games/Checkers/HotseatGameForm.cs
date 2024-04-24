@@ -79,10 +79,9 @@ namespace BoardGamesNET.Classes.Forms.Games.Checkers
 
             Program.cSettingsManager.ActiveLanguageChangedValueEvent += CSettingsManager_ActiveLanguageChangedValueEvent;
             Game.SelectedPawnChangedEvent += Game_SelectedPawnChangedEvent;
-            Game.PawnMovedEvent += Game_PawnMovedEvent;
             Game.ActualTurnChangedEvent += Game_ActualTurnChangedEvent;
+            Game.PawnMovedEvent += Game_PawnMovedEvent;
         }
-
         #endregion
 
         #region ===== METHODS =====
@@ -309,17 +308,6 @@ namespace BoardGamesNET.Classes.Forms.Games.Checkers
         }
 
         /// <summary>
-        /// Listener that manage the event <see cref="Game.PawnMovedEvent"/>.<br/>
-        /// This is triggered everytime a pawn is moved.
-        /// </summary>
-        /// <param name="sender">Sender that triggers the event.<br/>The sender is a <see cref="Classes.Objects.Games.Checkers.Game"/> type.</param>
-        /// <param name="e">Event args of the event. <br/>See <see cref="Classes.Objects.Games.Checkers.Game.PawnMovedEventArgs"/> for more informations.</param>
-        private void Game_PawnMovedEvent(object? sender, Game.PawnMovedEventArgs e)
-        {
-            UpdateGraphics();
-        }
-
-        /// <summary>
         /// Listener that manage the event <see cref="Game.ActualTurnChangedEvent"/><br/>
         /// This is triggered everytime the turn is passed.
         /// </summary>
@@ -339,6 +327,25 @@ namespace BoardGamesNET.Classes.Forms.Games.Checkers
         {
             InfoLabel.Text = Game.GetTranslatetInfoText(toRetrieve);
         }
+
+        /// <summary>
+        /// Listener that manage the event <see cref="Game.PawnMovedEvent"/>.<br/>
+        /// This is triggered everytime a pawn is moved.
+        /// </summary>
+        /// <param name="sender">Sender that trigs the event.<br/>This sender is a <see cref="Objects.Games.Checkers.Game"/> type.</param>
+        /// <param name="e">Event args containing all informations about the move.</param>
+        private void Game_PawnMovedEvent(object? sender, Game.PawnMovedEventArgs e)
+        {
+            UpdateGraphics();
+        }
         #endregion
+
+        private void HotseatGameForm_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                MainContextMenuStrip.Show(e.X, e.Y);
+            }
+        }
     }
 }

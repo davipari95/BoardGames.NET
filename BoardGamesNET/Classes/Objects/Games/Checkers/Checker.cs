@@ -259,21 +259,17 @@ namespace BoardGamesNET.Classes.Objects.Games.Checkers
         {
             if (IsAvailableMoves(gridPosition, out Checker? eatablePawn))
             {
-                bool pieceAte = false;
+                Checker? eatedPiece = null;
 
                 if (eatablePawn != null)
                 {
                     eatablePawn.Eat();
-                    pieceAte = true;
+                    eatedPiece = eatablePawn;
                 }
 
                 GridPosition = gridPosition;
 
-                MovedEvent?.Invoke(this, new IChecker.PieceMovedEventArgs()
-                {
-                    PieceAte = pieceAte,
-                    Position = GridPosition
-                });
+                MovedEvent?.Invoke(this, new IChecker.PieceMovedEventArgs(GridPosition, eatedPiece));
             }
         }
 
@@ -365,8 +361,6 @@ namespace BoardGamesNET.Classes.Objects.Games.Checkers
             /// </summary>
             public Checker? EatablePiece;
         }
-
-
         #endregion
     }
 }

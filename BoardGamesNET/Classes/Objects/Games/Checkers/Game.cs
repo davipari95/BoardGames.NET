@@ -175,6 +175,11 @@ namespace BoardGamesNET.Classes.Objects.Games.Checkers
         /// <summary>
         /// Event that is triggered everytime a pawn is moved.
         /// </summary>
+        public event EventHandler<PawnPositionChangedEventArgs> PawnPositionChangedEvent;
+
+        /// <summary>
+        /// Event that is triggered everytime a pawn is moved.
+        /// </summary>
         public event EventHandler<PawnMovedEventArgs> PawnMovedEvent;
         #endregion
 
@@ -195,7 +200,8 @@ namespace BoardGamesNET.Classes.Objects.Games.Checkers
 
             CheckersBoard = new CheckersBoard(this);
 
-            CheckersBoard.PawnPositionChangedEvent += CheckersBoard_PawnMovedEvent;
+            CheckersBoard.PawnPositionChangedEvent += OnCheckersBoardPawnPositionChangedEvent;
+            CheckersBoard.PawnMovedEvent += OnCheckersBoardPawnMovedEvent;
         }
 
         #endregion
@@ -310,39 +316,60 @@ namespace BoardGamesNET.Classes.Objects.Games.Checkers
         /// </summary>
         /// <param name="sender">Object that triggers the event.<br/> The sender is a <c>[<see cref="Checkers.CheckersBoard"/>]</c>.</param>
         /// <param name="e">Argumensts of the event containing information of the checkersboard where the pawn is moved, the pawn that is moved and the actual position of the pawn that is moved.</param>
-        private void CheckersBoard_PawnMovedEvent(object? sender, CheckersBoard.PawnPositionChangedEventArgs e)
+        private void OnCheckersBoardPawnPositionChangedEvent(object? sender, CheckersBoard.PawnPositionChangedEventArgs e)
         {
+            if (sender != null && sender is CheckersBoard)
+            {
+                PawnPositionChangedEvent?.Invoke(this, new PawnPositionChangedEventArgs((CheckersBoard)sender, e.Pawn, e.GridPosition)); 
+            }
+        }
+
+        /// <summary>
+        /// Listener that manage the event <see cref="CheckersBoard.PawnMovedEvent"/>.<br/>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// <exception cref="ArgumentNullException"></exception>
+        private void OnCheckersBoardPawnMovedEvent(object? sender, CheckersBoard.PawnMovedEventArgs e)
+        {
+            bool pass = true;
+
             if (e.Pawn.AvailableForPromotion())
             {
                 e.Pawn.Promote();
             }
-            else if (!e.Pawn.IsKing)
+            else if (!e.Pawn.IsKing && e.EatedPiece != null)
             {
                 IEnumerable<Checker.AvailableMoveStruct> availableMoves = e.Pawn.GetAvailableMoves();
 
                 if (availableMoves.Where(m => m.EatablePiece != null).Count() > 0)
                 {
                     SelectPawn(e.Pawn, forceSelection: true);
+                    pass = false;
                 }
-                else
-                {
-                    UnselectPawn();
-                    ChangeTurn();
-                }
-            } 
+            }
+
+            if (pass)
+            {
+                UnselectPawn();
+                ChangeTurn(); 
+            }
 
             if (sender != null && sender is CheckersBoard)
             {
-                PawnMovedEvent?.Invoke(this, new PawnMovedEventArgs((CheckersBoard)sender, e.Pawn, e.GridPosition)); 
+                CheckersBoard board = (CheckersBoard)sender;
+
+                PawnMovedEvent?.Invoke(this, new PawnMovedEventArgs(board, e.Pawn, e.Position, (Checker?)e.EatedPiece));
             }
         }
         #endregion
 
         #region ===== NESTED CLASSES =====
         /// <summary>
-        /// Event args used for event <see cref="PawnMovedEvent"/>.
+        /// Event args used for event <see cref="PawnPositionChangedEvent"/>.
         /// </summary>
-        public class PawnMovedEventArgs : CheckersBoard.PawnPositionChangedEventArgs
+        public class PawnPositionChangedEventArgs : CheckersBoard.PawnPositionChangedEventArgs
         {
             #region ===== VARIABLES =====
             #region ===== FIELDS FOR VARIABLES =====
@@ -362,11 +389,44 @@ namespace BoardGamesNET.Classes.Objects.Games.Checkers
             /// <param name="cBoard">Checkersboard where the pawn was moved.</param>
             /// <param name="pawn">Pawn that is moved.</param>
             /// <param name="gridPosition">Actual position of the moved pawn.</param>
-            public PawnMovedEventArgs(CheckersBoard cBoard, Checker pawn, GridPosition gridPosition) : base(pawn, gridPosition)
+            public PawnPositionChangedEventArgs(CheckersBoard cBoard, Checker pawn, GridPosition gridPosition) : base(pawn, gridPosition)
             {
                 _CheckersBoard = cBoard;
             }
             #endregion
+        }
+
+        /// <summary>
+        /// Event args used for event <see cref="PawnMovedEvent"/>
+        /// </summary>
+        public class PawnMovedEventArgs : CheckersBoard.PawnMovedEventArgs
+        {
+
+            #region ===== FIELDS =====
+            private CheckersBoard _CheckersBoard;
+            #endregion
+
+            #region ===== VARIABLES =====
+            /// <summary>
+            /// Checkersboard where the pawn was moved.
+            /// </summary>
+            public CheckersBoard CheckersBoard => _CheckersBoard;
+            #endregion
+
+            #region ===== CONSTRUCTORS =====
+            /// <summary>
+            /// Constructor for the event args.
+            /// </summary>
+            /// <param name="cBoard">Chessboard where pawn was moved.</param>
+            /// <param name="movedPawn">Pawn that was moved.</param>
+            /// <param name="gridPosition">New position of the moved pawn.</param>
+            /// <param name="eatedPiece">Piece that has been eated.<br/>Set it <see langword="null"/> if no piece has been eated.</param>
+            public PawnMovedEventArgs(CheckersBoard cBoard, Checker movedPawn, GridPosition gridPosition, Checker? eatedPiece) : base(movedPawn, gridPosition, eatedPiece)
+            {
+                _CheckersBoard = cBoard;
+            }
+            #endregion
+
         }
         #endregion
 

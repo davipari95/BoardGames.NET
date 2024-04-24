@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             panel1 = new Panel();
             panel6 = new Panel();
             label25 = new Label();
@@ -67,11 +68,15 @@
             label4 = new Label();
             CheckersBoardPanel = new Panel();
             InfoLabel = new Label();
+            MainContextMenuStrip = new ContextMenuStrip(components);
+            SurrendTranslatableToolStripMenuItem = new CustomComponents.TranslatableToolStripMenuItem();
+            DeclareDrawTranslatableToolStripMenuItem = new CustomComponents.TranslatableToolStripMenuItem();
             panel1.SuspendLayout();
             panel6.SuspendLayout();
             panel5.SuspendLayout();
             panel4.SuspendLayout();
             panel3.SuspendLayout();
+            MainContextMenuStrip.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
@@ -515,6 +520,26 @@
             InfoLabel.Text = "Info";
             InfoLabel.TextAlign = ContentAlignment.MiddleLeft;
             // 
+            // MainContextMenuStrip
+            // 
+            MainContextMenuStrip.Items.AddRange(new ToolStripItem[] { SurrendTranslatableToolStripMenuItem, DeclareDrawTranslatableToolStripMenuItem });
+            MainContextMenuStrip.Name = "MainContextMenuStrip";
+            MainContextMenuStrip.Size = new Size(152, 48);
+            // 
+            // SurrendTranslatableToolStripMenuItem
+            // 
+            SurrendTranslatableToolStripMenuItem.LanguageReference = 24L;
+            SurrendTranslatableToolStripMenuItem.Name = "SurrendTranslatableToolStripMenuItem";
+            SurrendTranslatableToolStripMenuItem.Size = new Size(151, 22);
+            SurrendTranslatableToolStripMenuItem.Text = "Surrend";
+            // 
+            // DeclareDrawTranslatableToolStripMenuItem
+            // 
+            DeclareDrawTranslatableToolStripMenuItem.LanguageReference = 25L;
+            DeclareDrawTranslatableToolStripMenuItem.Name = "DeclareDrawTranslatableToolStripMenuItem";
+            DeclareDrawTranslatableToolStripMenuItem.Size = new Size(151, 22);
+            DeclareDrawTranslatableToolStripMenuItem.Text = "Declare a draw";
+            // 
             // HotseatGameForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -526,11 +551,13 @@
             Name = "HotseatGameForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "[💻] [Checkers] Game";
+            MouseUp += HotseatGameForm_MouseUp;
             panel1.ResumeLayout(false);
             panel6.ResumeLayout(false);
             panel5.ResumeLayout(false);
             panel4.ResumeLayout(false);
             panel3.ResumeLayout(false);
+            MainContextMenuStrip.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -575,5 +602,8 @@
         private Label label31;
         private Label label32;
         private Label InfoLabel;
+        private ContextMenuStrip MainContextMenuStrip;
+        private CustomComponents.TranslatableToolStripMenuItem SurrendTranslatableToolStripMenuItem;
+        private CustomComponents.TranslatableToolStripMenuItem DeclareDrawTranslatableToolStripMenuItem;
     }
 }

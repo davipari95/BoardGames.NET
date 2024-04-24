@@ -1,6 +1,7 @@
 ﻿using BoardGamesNET.Classes.Utils;
 using BoardGamesNET.Enums;
 using BoardGamesNET.Exceptions.Games.Checkers;
+using BoardGamesNET.Interfaces.Games.Checkers;
 using System.CodeDom;
 using System.Data.Entity.Core.Mapping;
 using System.Reflection;
@@ -85,7 +86,7 @@ namespace BoardGamesNET.Classes.Objects.Games.Checkers
 
         #region ===== EVENTS =====
         /// <summary>
-        /// Event that is triggered everytime a pawn on this chessboard is moved.
+        /// Event that is triggered everytime a pawn on this chessboard change position.
         /// </summary>
         public event EventHandler<PawnPositionChangedEventArgs> PawnPositionChangedEvent;
 
@@ -93,6 +94,11 @@ namespace BoardGamesNET.Classes.Objects.Games.Checkers
         /// Event that is triggered everytime the list of checkers that are forced to eat changed.
         /// </summary>
         public event EventHandler<IEnumerable<Checker>?> ForcedEaterValueChangedEvent;
+
+        /// <summary>
+        /// Event that is triggered everytime a pawn on this chessboard is moved.+
+        /// </summary>
+        public event EventHandler<PawnMovedEventArgs> PawnMovedEvent;
         #endregion
 
         #region ===== CONSTRUCTORS =====
@@ -212,9 +218,23 @@ namespace BoardGamesNET.Classes.Objects.Games.Checkers
             }
         }
 
+        /// <summary>
+        /// Listener that manage the event <see cref="Checker.MovedEvent"/>.<br/>
+        /// This is triggered when a pawn is moved.
+        /// </summary>
+        /// <param name="sender">Sender that triggers the event.<br/>It should be a <see cref="Checker"/>.</param>
+        /// <param name="e">Arguments of the throwed event.</param>.
+        /// <exception cref="ArgumentException">Sender is <see langword="null"/>.</exception>
         private void OnPawnMovedEvent(object? sender, Interfaces.Games.Checkers.IChecker.PieceMovedEventArgs e)
         {
-            throw new NotImplementedException();
+            if (sender != null && sender is Checker)
+            {
+                PawnMovedEvent?.Invoke(this, new PawnMovedEventArgs((Checker)sender, e.Position, (Checker?)e.EatedPiece));
+            }
+            else
+            {
+                throw new ArgumentException("Sender is null.");
+            }
         }
 
         /// <summary>
@@ -239,7 +259,7 @@ namespace BoardGamesNET.Classes.Objects.Games.Checkers
 
         /// <summary>
         /// Listener that manage the event <see cref="Checker.PositionChanged"/>.<br/>
-        /// This is triggered when a pawn is moved.
+        /// This is triggered when a pawn is change position.
         /// </summary>
         /// <param name="sender">Sender that trigger the event.<br/> It should be a <see cref="Checker"/>.</param>
         /// <param name="e">New position of the <see cref="Checker"/>.</param>
@@ -306,26 +326,32 @@ namespace BoardGamesNET.Classes.Objects.Games.Checkers
             #endregion
         }
 
-        public class PawnMovedEventArgs
+        /// <summary>
+        /// Event args used for the event <see cref="PawnMovedEvent"/>.
+        /// </summary>
+        public class PawnMovedEventArgs : IChecker.PieceMovedEventArgs
         {
             #region ===== FIELDS =====
             private Checker _Pawn;
-            private GridPosition _GridPosition;
-            private bool _PawnAte;
             #endregion
 
             #region ===== VARIABLES =====
+            /// <summary>
+            /// Pawn that is moved.
+            /// </summary> 
             public Checker Pawn => _Pawn;
-            public GridPosition GridPosition => _GridPosition;
-            public bool PawnAte => _PawnAte;
             #endregion
 
             #region ===== CONSTRUCTORS =====
-            public PawnMovedEventArgs(Checker pawn, GridPosition gridPosition, bool pawnAte)
+            /// <summary>
+            /// Constructor of the event args.
+            /// </summary>
+            /// <param name="pawn">Pawn that was moved.</param>
+            /// <param name="gridPosition">New position of the pawn.</param>
+            /// <param name="eatedPawn">Piece that has been eated.<br/>Set it <see langword="null"/> if no piece was eated.</param>
+            public PawnMovedEventArgs(Checker pawn, GridPosition gridPosition, Checker? eatedPawn) : base(gridPosition, eatedPawn)
             {
                 _Pawn = pawn;
-                _GridPosition = gridPosition;
-                _PawnAte = pawnAte;
             }
             #endregion
         }

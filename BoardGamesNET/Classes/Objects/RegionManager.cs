@@ -122,9 +122,9 @@ namespace BoardGamesNET.Classes.Objects
                 objects.Add((ITranslatable)c);
             }
 
-            if (c is MenuStrip)
+            if (c is ToolStrip)
             {
-                objects.AddRange(GetMenuStripTranslatableElements((MenuStrip)c));
+                objects.AddRange(GetMenuStripTranslatableElements((ToolStrip)c));
             }
             else
             {
@@ -142,7 +142,7 @@ namespace BoardGamesNET.Classes.Objects
         /// </summary>
         /// <param name="menu">Menu where you want to retrieve all <see cref="ITranslatable"/> elements.</param>
         /// <returns></returns>
-        public static ICollection<ITranslatable> GetMenuStripTranslatableElements(MenuStrip menu)
+        public static ICollection<ITranslatable> GetMenuStripTranslatableElements(ToolStrip menu)
         {
             List<ITranslatable> objects = new List<ITranslatable>(0);
 

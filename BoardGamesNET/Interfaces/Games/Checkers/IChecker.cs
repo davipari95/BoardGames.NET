@@ -1,4 +1,5 @@
 ﻿using BoardGamesNET.Classes.Objects;
+using BoardGamesNET.Classes.Objects.Games.Checkers;
 using BoardGamesNET.Enums;
 using System;
 using System.Collections.Generic;
@@ -13,24 +14,6 @@ namespace BoardGamesNET.Interfaces.Games.Checkers
     /// </summary>
     public interface IChecker
     {
-        #region ===== STRUCTS =====
-        /// <summary>
-        /// Event args containing the arguments of the event <see cref="MovedEvent"/>.
-        /// </summary>
-        public struct PieceMovedEventArgs
-        {
-            /// <summary>
-            /// Actual position of the checker after it was moved.
-            /// </summary>
-            public GridPosition Position;
-
-            /// <summary>
-            /// Flag that means that a checker was eat after the movement is done.
-            /// </summary>
-            public bool PieceAte;
-        }
-        #endregion
-
         #region ===== VARIABLES =====
         /// <summary>
         /// Color of the pawn (white or black).
@@ -83,6 +66,36 @@ namespace BoardGamesNET.Interfaces.Games.Checkers
         /// It means that this pawn will be a king.
         /// </summary>
         public void Promote();
+        #endregion
+
+        #region ===== NESTED CLASSES =====
+        /// <summary>
+        /// Event args containing the arguments of the event <see cref="MovedEvent"/>.
+        /// </summary>
+        public class PieceMovedEventArgs
+        {
+            #region ===== FIELDS =====
+            private GridPosition _Position;
+            private IChecker? _EatedPiece;
+            #endregion
+
+            /// <summary>
+            /// Actual position of the checker after it was moved.
+            /// </summary>
+            public GridPosition Position => _Position;
+
+            /// <summary>
+            /// Piece that has been eated after the pawn was moved.<br/>
+            /// It's <see langword="null"/> if no piece was eated.
+            /// </summary>
+            public IChecker? EatedPiece => _EatedPiece;
+
+            public PieceMovedEventArgs(GridPosition position, IChecker? eatedPiece)
+            {
+                _Position = position;
+                _EatedPiece = eatedPiece;
+            }
+        }
         #endregion
     }
 }
