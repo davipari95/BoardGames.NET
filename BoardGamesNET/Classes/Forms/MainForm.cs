@@ -1,3 +1,4 @@
+using BoardGamesNET.Classes.Forms.Dialogs;
 using BoardGamesNET.Classes.Forms.Games.Checkers;
 using BoardGamesNET.Classes.Objects;
 using BoardGamesNET.Classes.Utils;
@@ -105,6 +106,18 @@ namespace BoardGamesNET.Classes.Forms
             HotseatGameForm form = new HotseatGameForm("Angelo Bianchi", "Beatrice Neri");
             form.MdiParent = this;
             form.Show();
+        }
+
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            //DialogResult exitResult = Program.cRegionManager.ShowTranslatedMessageDialog(28, 27, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            //DialogResult exitResult = new GamesNetMessageBox(28, 27, MessageBoxButtons.YesNo, MessageBoxIcon.Question).ShowDialog();
+            DialogResult exitResult = new GamesNetMessageBoxTimerized(28, 27, MessageBoxButtons.YesNo, MessageBoxIcon.Question, DialogResult.Yes, 5).ShowDialog();
+
+            if (exitResult == DialogResult.No)
+            {
+                e.Cancel = true;
+            }
         }
     }
 }

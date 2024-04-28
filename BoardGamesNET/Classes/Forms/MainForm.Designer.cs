@@ -167,6 +167,7 @@
             StartPosition = FormStartPosition.CenterScreen;
             Text = "BoardGames.NET";
             WindowState = FormWindowState.Maximized;
+            FormClosing += MainForm_FormClosing;
             Load += MainForm_Load;
             MainMenuStrip.ResumeLayout(false);
             MainMenuStrip.PerformLayout();

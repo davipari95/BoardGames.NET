@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
             panel1 = new Panel();
             panel6 = new Panel();
             label25 = new Label();
@@ -68,15 +67,16 @@
             label4 = new Label();
             CheckersBoardPanel = new Panel();
             InfoLabel = new Label();
-            MainContextMenuStrip = new ContextMenuStrip(components);
-            SurrendTranslatableToolStripMenuItem = new CustomComponents.TranslatableToolStripMenuItem();
+            MainMenuStrip = new MenuStrip();
+            GameTranslatableToolStripMenuItem = new CustomComponents.TranslatableToolStripMenuItem();
             DeclareDrawTranslatableToolStripMenuItem = new CustomComponents.TranslatableToolStripMenuItem();
+            SurrentTranslatableToolStripMenuItem = new CustomComponents.TranslatableToolStripMenuItem();
             panel1.SuspendLayout();
             panel6.SuspendLayout();
             panel5.SuspendLayout();
             panel4.SuspendLayout();
             panel3.SuspendLayout();
-            MainContextMenuStrip.SuspendLayout();
+            MainMenuStrip.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
@@ -86,7 +86,7 @@
             panel1.Controls.Add(panel4);
             panel1.Controls.Add(panel3);
             panel1.Controls.Add(CheckersBoardPanel);
-            panel1.Location = new Point(0, 0);
+            panel1.Location = new Point(0, 24);
             panel1.Name = "panel1";
             panel1.Size = new Size(860, 860);
             panel1.TabIndex = 0;
@@ -513,52 +513,66 @@
             // 
             // InfoLabel
             // 
-            InfoLabel.Location = new Point(0, 860);
+            InfoLabel.Location = new Point(0, 884);
             InfoLabel.Name = "InfoLabel";
             InfoLabel.Size = new Size(860, 30);
             InfoLabel.TabIndex = 1;
             InfoLabel.Text = "Info";
             InfoLabel.TextAlign = ContentAlignment.MiddleLeft;
             // 
-            // MainContextMenuStrip
+            // MainMenuStrip
             // 
-            MainContextMenuStrip.Items.AddRange(new ToolStripItem[] { SurrendTranslatableToolStripMenuItem, DeclareDrawTranslatableToolStripMenuItem });
-            MainContextMenuStrip.Name = "MainContextMenuStrip";
-            MainContextMenuStrip.Size = new Size(152, 48);
+            MainMenuStrip.Items.AddRange(new ToolStripItem[] { GameTranslatableToolStripMenuItem });
+            MainMenuStrip.Location = new Point(0, 0);
+            MainMenuStrip.Name = "MainMenuStrip";
+            MainMenuStrip.Size = new Size(860, 24);
+            MainMenuStrip.TabIndex = 2;
+            MainMenuStrip.Text = "MainMenuStrip";
             // 
-            // SurrendTranslatableToolStripMenuItem
+            // GameTranslatableToolStripMenuItem
             // 
-            SurrendTranslatableToolStripMenuItem.LanguageReference = 24L;
-            SurrendTranslatableToolStripMenuItem.Name = "SurrendTranslatableToolStripMenuItem";
-            SurrendTranslatableToolStripMenuItem.Size = new Size(151, 22);
-            SurrendTranslatableToolStripMenuItem.Text = "Surrend";
+            GameTranslatableToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { DeclareDrawTranslatableToolStripMenuItem, SurrentTranslatableToolStripMenuItem });
+            GameTranslatableToolStripMenuItem.LanguageReference = 26L;
+            GameTranslatableToolStripMenuItem.Name = "GameTranslatableToolStripMenuItem";
+            GameTranslatableToolStripMenuItem.Size = new Size(50, 20);
+            GameTranslatableToolStripMenuItem.Text = "&Game";
             // 
             // DeclareDrawTranslatableToolStripMenuItem
             // 
-            DeclareDrawTranslatableToolStripMenuItem.LanguageReference = 25L;
+            DeclareDrawTranslatableToolStripMenuItem.LanguageReference = 24L;
             DeclareDrawTranslatableToolStripMenuItem.Name = "DeclareDrawTranslatableToolStripMenuItem";
-            DeclareDrawTranslatableToolStripMenuItem.Size = new Size(151, 22);
-            DeclareDrawTranslatableToolStripMenuItem.Text = "Declare a draw";
+            DeclareDrawTranslatableToolStripMenuItem.Size = new Size(180, 22);
+            DeclareDrawTranslatableToolStripMenuItem.Text = "Declare &draw";
+            // 
+            // SurrentTranslatableToolStripMenuItem
+            // 
+            SurrentTranslatableToolStripMenuItem.LanguageReference = 25L;
+            SurrentTranslatableToolStripMenuItem.Name = "SurrentTranslatableToolStripMenuItem";
+            SurrentTranslatableToolStripMenuItem.Size = new Size(180, 22);
+            SurrentTranslatableToolStripMenuItem.Text = "&Surrend";
             // 
             // HotseatGameForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(860, 890);
+            ClientSize = new Size(860, 914);
             Controls.Add(panel1);
             Controls.Add(InfoLabel);
+            Controls.Add(MainMenuStrip);
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            MainMenuStrip = MainMenuStrip;
             Name = "HotseatGameForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "[💻] [Checkers] Game";
-            MouseUp += HotseatGameForm_MouseUp;
             panel1.ResumeLayout(false);
             panel6.ResumeLayout(false);
             panel5.ResumeLayout(false);
             panel4.ResumeLayout(false);
             panel3.ResumeLayout(false);
-            MainContextMenuStrip.ResumeLayout(false);
+            MainMenuStrip.ResumeLayout(false);
+            MainMenuStrip.PerformLayout();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -602,8 +616,9 @@
         private Label label31;
         private Label label32;
         private Label InfoLabel;
-        private ContextMenuStrip MainContextMenuStrip;
-        private CustomComponents.TranslatableToolStripMenuItem SurrendTranslatableToolStripMenuItem;
+        private MenuStrip MainMenuStrip;
+        private CustomComponents.TranslatableToolStripMenuItem GameTranslatableToolStripMenuItem;
         private CustomComponents.TranslatableToolStripMenuItem DeclareDrawTranslatableToolStripMenuItem;
+        private CustomComponents.TranslatableToolStripMenuItem SurrentTranslatableToolStripMenuItem;
     }
 }

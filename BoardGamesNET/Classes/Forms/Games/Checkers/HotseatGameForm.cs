@@ -104,6 +104,8 @@ namespace BoardGamesNET.Classes.Forms.Games.Checkers
             Text = $"[💻] [{Program.cRegionManager.GetTranslatedText(18)}] {Program.cRegionManager.GetTranslatedText(22)}";
 
             UpdateInfo(Objects.Games.Checkers.Game.InfoText.ActualTurnName);
+
+            Program.cRegionManager.TranslateAllElementsInControl(this);
         }
 
         /// <summary>
@@ -339,13 +341,5 @@ namespace BoardGamesNET.Classes.Forms.Games.Checkers
             UpdateGraphics();
         }
         #endregion
-
-        private void HotseatGameForm_MouseUp(object sender, MouseEventArgs e)
-        {
-            if (e.Button == MouseButtons.Right)
-            {
-                MainContextMenuStrip.Show(e.X, e.Y);
-            }
-        }
     }
 }
