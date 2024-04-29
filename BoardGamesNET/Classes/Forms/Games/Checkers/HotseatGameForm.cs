@@ -1,4 +1,5 @@
 ﻿using BoardGamesNET.Classes.CustomComponents;
+using BoardGamesNET.Classes.Forms.Dialogs;
 using BoardGamesNET.Classes.Objects;
 using BoardGamesNET.Classes.Objects.Games.Checkers;
 using BoardGamesNET.Classes.Objects.Games.Checkers.Games;
@@ -81,6 +82,7 @@ namespace BoardGamesNET.Classes.Forms.Games.Checkers
             Game.SelectedPawnChangedEvent += Game_SelectedPawnChangedEvent;
             Game.ActualTurnChangedEvent += Game_ActualTurnChangedEvent;
             Game.PawnMovedEvent += Game_PawnMovedEvent;
+            Game.GameIsOverEvent += Game_GameIsOverEvent;
         }
         #endregion
 
@@ -144,6 +146,11 @@ namespace BoardGamesNET.Classes.Forms.Games.Checkers
         /// <param name="e">Event args.<br/>This is always empty.</param>
         private void OnCheckersBoardPanelMouseReleased(object? sender, EventArgs e)
         {
+            if (Game.IsGameOver)
+            {
+                return;
+            }
+
             if (sender != null && sender is GridPanel)
             {
                 GridPanel clickedPanel = (GridPanel)sender;
@@ -339,6 +346,29 @@ namespace BoardGamesNET.Classes.Forms.Games.Checkers
         private void Game_PawnMovedEvent(object? sender, Game.PawnMovedEventArgs e)
         {
             UpdateGraphics();
+        }
+
+        private void SurrentTranslatableToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string message = String.Format(Program.cRegionManager.GetTranslatedText(36), Game.ActualTurnPlayerName);
+            string title = Program.cRegionManager.GetTranslatedText(37);
+
+            DialogResult surrendResult = GamesNetMessageBoxTimerized.Show(message, title, MessageBoxButtons.YesNo, MessageBoxIcon.Question, DialogResult.Yes, 5);
+
+            if (surrendResult == DialogResult.Yes)
+            {
+                Game.GameOver();
+
+                message = string.Format(Program.cRegionManager.GetTranslatedText(39), Game.OppositeTurnPlayerName);
+                title = Program.cRegionManager.GetTranslatedText(38);
+
+                GamesNetMessageBox.Show(message, title, MessageBoxButtons.OK, MessageBoxIcon.None);
+            }
+        }
+
+        private void Game_GameIsOverEvent(object? sender, EventArgs e)
+        {
+            InfoLabel.Text = Program.cRegionManager.GetTranslatedText(40);
         }
         #endregion
     }

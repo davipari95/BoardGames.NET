@@ -13,10 +13,12 @@ namespace BoardGamesNET.Classes.Forms.Dialogs
 {
     public class GamesNetMessageBoxTimerized : GamesNetMessageBox
     {
+        #region ===== FIELDS =====
         private int _CountdownValue = -1;
+        #endregion
 
-        private int TimerLengthSecs { get; init; }
-        private DialogResult TimerizedButtonDiagRes { get; init; }
+        #region ===== VARIABLES =====
+        private DialogResult TimerizedButtonDiagRes { get; set; }
         private Button TimerizedButton { get; set; }
         private System.Timers.Timer CountdownTimer { get; set; }
         private int CountdownValue
@@ -31,17 +33,32 @@ namespace BoardGamesNET.Classes.Forms.Dialogs
                 CountdownValueChangedEvent?.Invoke(null, value);
             }
         }
+        #endregion
 
+        #region ===== EVENTS =====
         private event EventHandler<int> CountdownValueChangedEvent;
+        #endregion
 
+        #region ===== CONSTRUCTORS =====
         public GamesNetMessageBoxTimerized(long messageLanguageReference, long titleLangaugeReference, MessageBoxButtons buttons, MessageBoxIcon icon, DialogResult timerizedButton, int timerLengthSecs) : base(messageLanguageReference, titleLangaugeReference, buttons, icon)
+        {
+            Init(timerizedButton, buttons, timerLengthSecs);
+        }
+
+        public GamesNetMessageBoxTimerized(string message, string title, MessageBoxButtons buttons, MessageBoxIcon icon, DialogResult timerizedButton, int timerLengthSecs) : base(message, title, buttons, icon)
+        {
+            Init(timerizedButton, buttons, timerLengthSecs);
+        }
+        #endregion
+
+        #region ===== METHODS =====
+        private void Init(DialogResult timerizedButton, MessageBoxButtons buttons, int timerLengthSecs)
         {
             if (!IsButtonAvailable(timerizedButton, buttons))
             {
                 throw new ArgumentException("Selected timerized button is not present in this message box");
             }
 
-            TimerLengthSecs = timerLengthSecs;
             TimerizedButtonDiagRes = timerizedButton;
 
             TimerizedButton = GetButton(TimerizedButtonDiagRes);
@@ -138,5 +155,16 @@ namespace BoardGamesNET.Classes.Forms.Dialogs
 
             throw new ArgumentException("Selected button doesn't exists.");
         }
+
+        public static DialogResult Show(long messageLanguageReference, long titleLangaugeReference, MessageBoxButtons buttons, MessageBoxIcon icon, DialogResult timerizedButton, int timerLengthSecs)
+        {
+            return new GamesNetMessageBoxTimerized(messageLanguageReference, titleLangaugeReference, buttons, icon, timerizedButton, timerLengthSecs).ShowDialog();
+        }
+
+        public static DialogResult Show(string message, string title, MessageBoxButtons buttons, MessageBoxIcon icon, DialogResult timerizedButton, int timerLengthSecs)
+        {
+            return new GamesNetMessageBoxTimerized(message, title, buttons, icon, timerizedButton, timerLengthSecs).ShowDialog();
+        }
+        #endregion
     }
 }

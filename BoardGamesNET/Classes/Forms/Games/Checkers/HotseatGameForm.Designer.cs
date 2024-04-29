@@ -539,17 +539,18 @@
             // 
             // DeclareDrawTranslatableToolStripMenuItem
             // 
-            DeclareDrawTranslatableToolStripMenuItem.LanguageReference = 24L;
+            DeclareDrawTranslatableToolStripMenuItem.LanguageReference = 25L;
             DeclareDrawTranslatableToolStripMenuItem.Name = "DeclareDrawTranslatableToolStripMenuItem";
             DeclareDrawTranslatableToolStripMenuItem.Size = new Size(180, 22);
             DeclareDrawTranslatableToolStripMenuItem.Text = "Declare &draw";
             // 
             // SurrentTranslatableToolStripMenuItem
             // 
-            SurrentTranslatableToolStripMenuItem.LanguageReference = 25L;
+            SurrentTranslatableToolStripMenuItem.LanguageReference = 24L;
             SurrentTranslatableToolStripMenuItem.Name = "SurrentTranslatableToolStripMenuItem";
             SurrentTranslatableToolStripMenuItem.Size = new Size(180, 22);
             SurrentTranslatableToolStripMenuItem.Text = "&Surrend";
+            SurrentTranslatableToolStripMenuItem.Click += SurrentTranslatableToolStripMenuItem_Click;
             // 
             // HotseatGameForm
             // 
@@ -560,7 +561,6 @@
             Controls.Add(InfoLabel);
             Controls.Add(MainMenuStrip);
             FormBorderStyle = FormBorderStyle.FixedSingle;
-            MainMenuStrip = MainMenuStrip;
             Name = "HotseatGameForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "[💻] [Checkers] Game";

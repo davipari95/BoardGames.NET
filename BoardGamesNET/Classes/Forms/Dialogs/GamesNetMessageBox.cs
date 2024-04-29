@@ -155,5 +155,15 @@ namespace BoardGamesNET.Classes.Forms.Dialogs
 
             Close();
         }
+
+        public static DialogResult Show(long messageLanguageReference, long titleLangaugeReference, MessageBoxButtons buttons, MessageBoxIcon icon)
+        {
+            return new GamesNetMessageBox(messageLanguageReference, titleLangaugeReference, buttons, icon).ShowDialog();
+        }
+
+        public static DialogResult Show(string message, string title, MessageBoxButtons buttons, MessageBoxIcon icon)
+        {
+            return new GamesNetMessageBox(message, title, buttons, icon).ShowDialog();
+        }
     }
 }

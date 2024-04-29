@@ -132,3 +132,5 @@ C:\Users\User\Documents\Projects\Visual Studio 2022\BoardGamesNET\BoardGamesNET\
 D:\Documenti\Projects\Visual Studio\BoardGames.NET\BoardGamesNET\obj\Debug\net6.0-windows\BoardGamesNET.Resources.Games.Checkers.CheckersResources.resources
 D:\Documenti\Projects\Visual Studio\BoardGames.NET\BoardGamesNET\obj\Debug\net6.0-windows\BoardGamesNET.Classes.Forms.Dialogs.GamesNetMessageBox.resources
 D:\Documenti\Projects\Visual Studio\BoardGames.NET\BoardGamesNET\obj\Debug\net6.0-windows\BoardGamesNET.Classes.Forms.Dialogs.GamesNetMessageBoxTimerized.resources
+C:\Users\User\Documents\Projects\Visual Studio 2022\BoardGamesNET\BoardGamesNET\obj\Debug\net6.0-windows\BoardGamesNET.Classes.Forms.Dialogs.GamesNetMessageBox.resources
+C:\Users\User\Documents\Projects\Visual Studio 2022\BoardGamesNET\BoardGamesNET\obj\Debug\net6.0-windows\BoardGamesNET.Classes.Forms.Dialogs.GamesNetMessageBoxTimerized.resources

@@ -1,4 +1,5 @@
 ﻿using BoardGamesNET.Enums;
+using BoardGamesNET.Interfaces.Games.Checkers;
 using System.Data.Entity.Infrastructure;
 using static BoardGamesNET.Classes.Objects.Games.Checkers.Games.LocalGame;
 
@@ -53,17 +54,17 @@ namespace BoardGamesNET.Classes.Objects.Games.Checkers
         }
         #endregion
 
-        #region ===== VARIABLES =====
-
-        #region ===== FIELDS FOR VARIABLES =====
+        #region ===== FIELDS =====
         private Dictionary<PlayerColorWBEnum, string> _PlayerNames;
         private CheckersBoard _CheckersBoard;
         private PlayerColorWBEnum _ActualTurn;
         private int _TurnNumber;
         private Checker? _SelectedPawn;
         private bool _SelectionForced;
+        private bool _IsGameOver = false;
         #endregion
 
+        #region ===== VARIABLES =====
         /// <summary>
         /// White and black player names.
         /// </summary>
@@ -159,6 +160,26 @@ namespace BoardGamesNET.Classes.Objects.Games.Checkers
                 }
             }
         }
+
+        /// <summary>
+        /// Username of the player taking the turn.
+        /// </summary>
+        public string ActualTurnPlayerName => PlayerNames[ActualTurnColor];
+
+        /// <summary>
+        /// Color of the opposite turn.
+        /// </summary>
+        public PlayerColorWBEnum OppositeTurnColor => ActualTurnColor == PlayerColorWBEnum.White ? PlayerColorWBEnum.Black : PlayerColorWBEnum.White;
+
+        /// <summary>
+        /// Username of the player that is not taking the turn.
+        /// </summary>
+        public string OppositeTurnPlayerName => PlayerNames[OppositeTurnColor];
+
+        /// <summary>
+        /// Check if game is over.
+        /// </summary>
+        public bool IsGameOver => _IsGameOver;
         #endregion
 
         #region ===== EVENTS =====
@@ -181,6 +202,11 @@ namespace BoardGamesNET.Classes.Objects.Games.Checkers
         /// Event that is triggered everytime a pawn is moved.
         /// </summary>
         public event EventHandler<PawnMovedEventArgs> PawnMovedEvent;
+
+        /// <summary>
+        /// Event that is triggered when the game is over.
+        /// </summary>
+        public event EventHandler GameIsOverEvent;
         #endregion
 
         #region ===== CONSTRUCTORS =====
@@ -308,6 +334,16 @@ namespace BoardGamesNET.Classes.Objects.Games.Checkers
                 default:
                     throw new ArgumentException("Translated info text parameter is not valid.");
             }
+        }
+
+        /// <summary>
+        /// Set game over on this game.<br/>
+        /// This method trigs the event <see cref="GameIsOverEvent"/>.
+        /// </summary>
+        public void GameOver()
+        {
+            _IsGameOver = true;
+            GameIsOverEvent?.Invoke(this, EventArgs.Empty);
         }
 
         /// <summary>

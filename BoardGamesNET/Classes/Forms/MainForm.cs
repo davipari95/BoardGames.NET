@@ -11,6 +11,7 @@ namespace BoardGamesNET.Classes.Forms
     /// </summary>
     public partial class MainForm : Form
     {
+        #region ===== CONSTRUCTORS =====
         /// <summary>
         /// Initialize the form.
         /// </summary>
@@ -24,7 +25,9 @@ namespace BoardGamesNET.Classes.Forms
 
             Program.cSettingsManager.ActiveLanguageChangedValueEvent += CSettingsManager_ActiveLanguageChangedValueEvent;
         }
+        #endregion
 
+        #region ===== METHODS =====
         /// <summary>
         /// Listener that manage the event <see cref="SettingsManager.ActiveLanguageChangedValueEvent"/>.<br/>
         /// This is triggered everytime language is changed.
@@ -108,16 +111,20 @@ namespace BoardGamesNET.Classes.Forms
             form.Show();
         }
 
+        /// <summary>
+        /// Listener that manages the event <see cref="Form.FormClosing"/>.<br/>
+        /// </summary>
+        /// <param name="sender">Sender that throw the event.<br/>This is a <see cref="Form"/> type.</param>
+        /// <param name="e">Data provided with the event <see cref="Form.FormClosing"/>.</param>
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            //DialogResult exitResult = Program.cRegionManager.ShowTranslatedMessageDialog(28, 27, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            //DialogResult exitResult = new GamesNetMessageBox(28, 27, MessageBoxButtons.YesNo, MessageBoxIcon.Question).ShowDialog();
-            DialogResult exitResult = new GamesNetMessageBoxTimerized(28, 27, MessageBoxButtons.YesNo, MessageBoxIcon.Question, DialogResult.Yes, 5).ShowDialog();
+            DialogResult exitResult = GamesNetMessageBox.Show(28, 27, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
             if (exitResult == DialogResult.No)
             {
                 e.Cancel = true;
             }
         }
+        #endregion
     }
 }
