@@ -202,6 +202,16 @@ namespace BoardGamesNET.Classes.Objects.Games.Checkers
         }
 
         /// <summary>
+        /// Retrieve the number of the pawns of selected color passed on <paramref name="color"/>.
+        /// </summary>
+        /// <param name="color">Color of the pawns to count.</param>
+        /// <returns>Number of the pawns of passed color.</returns>
+        public int CountColoredPawns(PlayerColorWBEnum color)
+        {
+            return GetColoredPawns(color).Count();
+        }
+
+        /// <summary>
         /// Initialize the pawns into the checkersboard.
         /// </summary>
         private void InitializePawns()

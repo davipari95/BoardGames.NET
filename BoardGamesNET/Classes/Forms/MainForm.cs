@@ -125,6 +125,11 @@ namespace BoardGamesNET.Classes.Forms
                 e.Cancel = true;
             }
         }
+
+        private void AboutTranslatableToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AboutThisAppDialog.Show();
+        }
         #endregion
     }
 }

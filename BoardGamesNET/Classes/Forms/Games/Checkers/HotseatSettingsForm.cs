@@ -99,6 +99,8 @@ namespace BoardGamesNET.Classes.Forms.Games.Checkers
             HotseatGameForm form = new HotseatGameForm(whitesPlayerName, blacksPlayerName);
             form.MdiParent = Program.MainForm;
             form.Show();
+
+            Close();
         }
         #endregion
     }

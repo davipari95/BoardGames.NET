@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HotseatSettingsForm));
             tableLayoutPanel1 = new TableLayoutPanel();
             BlacksPlayerNameTextBox = new TextBox();
             translatableLabel2 = new CustomComponents.TranslatableLabel();
@@ -139,7 +140,7 @@
             CancelTranslatableButton.UseVisualStyleBackColor = true;
             CancelTranslatableButton.Click += CancelTranslatableButton_Click;
             // 
-            // CheckersHotseatSettingsForm
+            // HotseatSettingsForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -147,8 +148,9 @@
             Controls.Add(tableLayoutPanel2);
             Controls.Add(tableLayoutPanel1);
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
-            Name = "CheckersHotseatSettingsForm";
+            Name = "HotseatSettingsForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "[💻] [Checkers] Settings";
             tableLayoutPanel1.ResumeLayout(false);

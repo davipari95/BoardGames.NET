@@ -1,4 +1,5 @@
-﻿using BoardGamesNET.Enums;
+﻿using BoardGamesNET.Classes.Forms.Dialogs;
+using BoardGamesNET.Enums;
 using BoardGamesNET.Interfaces.Games.Checkers;
 using System.Data.Entity.Infrastructure;
 using static BoardGamesNET.Classes.Objects.Games.Checkers.Games.LocalGame;
@@ -370,6 +371,18 @@ namespace BoardGamesNET.Classes.Objects.Games.Checkers
         private void OnCheckersBoardPawnMovedEvent(object? sender, CheckersBoard.PawnMovedEventArgs e)
         {
             bool pass = true;
+
+            if (CheckersBoard.CountColoredPawns(OppositeTurnColor) <= 1)
+            {
+                GameOver();
+
+                string message = string.Format(Program.cRegionManager.GetTranslatedText(46), ActualTurnPlayerName);
+                string title = Program.cRegionManager.GetTranslatedText(40);
+
+                GamesNetMessageBox.Show(message, title, MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                return;
+            }
 
             if (e.Pawn.AvailableForPromotion())
             {

@@ -348,6 +348,11 @@ namespace BoardGamesNET.Classes.Forms.Games.Checkers
             UpdateGraphics();
         }
 
+        /// <summary>
+        /// Listener that manage the event <see cref="ToolStripItem.Click"/> invoked by <see cref="SurrendTranslatableToolStripMenuItem"/>.<br/>
+        /// </summary>
+        /// <param name="sender">Object that invoke the method.<br/>This is <see cref="SurrendTranslatableToolStripMenuItem"/>.</param>
+        /// <param name="e">Event args of the listener.</param>
         private void SurrentTranslatableToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string message = String.Format(Program.cRegionManager.GetTranslatedText(36), Game.ActualTurnPlayerName);
@@ -366,9 +371,42 @@ namespace BoardGamesNET.Classes.Forms.Games.Checkers
             }
         }
 
+        /// <summary>
+        /// Listener that manage the event <see cref="Game.GameIsOverEvent"/>.<br/>
+        /// This event is invoked with method <see cref="Game.GameOver"/> and it means that the game is over.
+        /// </summary>
+        /// <param name="sender">Element that invoke the event.<br/>This is a <see cref="Objects.Games.Checkers.Game"/> type.</param>
+        /// <param name="e">Event args of the listener.<br/>The event args are empty.</param>
         private void Game_GameIsOverEvent(object? sender, EventArgs e)
         {
             InfoLabel.Text = Program.cRegionManager.GetTranslatedText(40);
+        }
+
+        /// <summary>
+        /// Listener that manage the event <see cref="ToolStripItem.Click"/> invoked by <see cref="DeclareDrawTranslatableToolStripMenuItem"/>.
+        /// </summary>
+        /// <param name="sender">Object that invoke the method.<br/>This is <see cref="DeclareDrawTranslatableToolStripMenuItem"/>.</param>
+        /// <param name="e">Event args of the listener.</param>
+        private void DeclareDrawTranslatableToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string message = string.Format(Program.cRegionManager.GetTranslatedText(41), Game.ActualTurnPlayerName);
+            string title = Program.cRegionManager.GetTranslatedText(42);
+
+            DialogResult drawResult = GamesNetMessageBoxTimerized.Show(message, title, MessageBoxButtons.YesNo, MessageBoxIcon.Question, DialogResult.Yes, 5);
+
+            if (drawResult == DialogResult.Yes)
+            {
+                message = string.Format(Program.cRegionManager.GetTranslatedText(43), Game.OppositeTurnPlayerName);
+
+                DialogResult confirmResult = GamesNetMessageBoxTimerized.Show(message, title, MessageBoxButtons.YesNo, MessageBoxIcon.Question, DialogResult.Yes, 5);
+
+                if (confirmResult == DialogResult.Yes)
+                {
+                    Game.GameOver();
+
+                    GamesNetMessageBox.Show(44, 45, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
         }
         #endregion
     }

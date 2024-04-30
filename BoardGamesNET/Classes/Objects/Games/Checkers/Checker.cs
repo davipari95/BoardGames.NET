@@ -195,7 +195,7 @@ namespace BoardGamesNET.Classes.Objects.Games.Checkers
                             Column = (2 * p.Column) - GridPosition.Column,
                         };
 
-                        if (CheckersBoard.IsInCheckersBoard(nextPosition) && CheckersBoardParent.GetPawnByPosition(nextPosition) == null)
+                        if (CheckersBoard.IsInCheckersBoard(nextPosition) && CheckersBoardParent.GetPawnByPosition(nextPosition) == null && (IsKing || !positionPawn.IsKing))
                         {
                             moves.Add(new AvailableMoveStruct()
                             {

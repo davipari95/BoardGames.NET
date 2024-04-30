@@ -6,7 +6,15 @@
     <Nullable>enable</Nullable>
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
+    <Version>0.1</Version>
+    <Authors>Parisi Davide</Authors>
+    <PackageIcon>Icon.png</PackageIcon>
+    <ApplicationIcon>Assets\Icons\AppIcon256.ico</ApplicationIcon>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="Assets\Icons\AppIcon256.ico" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="System.Data.SQLite" Version="1.0.118" />
@@ -57,6 +65,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="Assets\Icon.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
     <None Update="Resources\ExitErrorCodes.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>ExitErrorCodes.Designer.cs</LastGenOutput>

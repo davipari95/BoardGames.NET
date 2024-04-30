@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HotseatGameForm));
             panel1 = new Panel();
             panel6 = new Panel();
             label25 = new Label();
@@ -70,7 +71,7 @@
             MainMenuStrip = new MenuStrip();
             GameTranslatableToolStripMenuItem = new CustomComponents.TranslatableToolStripMenuItem();
             DeclareDrawTranslatableToolStripMenuItem = new CustomComponents.TranslatableToolStripMenuItem();
-            SurrentTranslatableToolStripMenuItem = new CustomComponents.TranslatableToolStripMenuItem();
+            SurrendTranslatableToolStripMenuItem = new CustomComponents.TranslatableToolStripMenuItem();
             panel1.SuspendLayout();
             panel6.SuspendLayout();
             panel5.SuspendLayout();
@@ -531,7 +532,7 @@
             // 
             // GameTranslatableToolStripMenuItem
             // 
-            GameTranslatableToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { DeclareDrawTranslatableToolStripMenuItem, SurrentTranslatableToolStripMenuItem });
+            GameTranslatableToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { DeclareDrawTranslatableToolStripMenuItem, SurrendTranslatableToolStripMenuItem });
             GameTranslatableToolStripMenuItem.LanguageReference = 26L;
             GameTranslatableToolStripMenuItem.Name = "GameTranslatableToolStripMenuItem";
             GameTranslatableToolStripMenuItem.Size = new Size(50, 20);
@@ -541,16 +542,17 @@
             // 
             DeclareDrawTranslatableToolStripMenuItem.LanguageReference = 25L;
             DeclareDrawTranslatableToolStripMenuItem.Name = "DeclareDrawTranslatableToolStripMenuItem";
-            DeclareDrawTranslatableToolStripMenuItem.Size = new Size(180, 22);
+            DeclareDrawTranslatableToolStripMenuItem.Size = new Size(142, 22);
             DeclareDrawTranslatableToolStripMenuItem.Text = "Declare &draw";
+            DeclareDrawTranslatableToolStripMenuItem.Click += DeclareDrawTranslatableToolStripMenuItem_Click;
             // 
-            // SurrentTranslatableToolStripMenuItem
+            // SurrendTranslatableToolStripMenuItem
             // 
-            SurrentTranslatableToolStripMenuItem.LanguageReference = 24L;
-            SurrentTranslatableToolStripMenuItem.Name = "SurrentTranslatableToolStripMenuItem";
-            SurrentTranslatableToolStripMenuItem.Size = new Size(180, 22);
-            SurrentTranslatableToolStripMenuItem.Text = "&Surrend";
-            SurrentTranslatableToolStripMenuItem.Click += SurrentTranslatableToolStripMenuItem_Click;
+            SurrendTranslatableToolStripMenuItem.LanguageReference = 24L;
+            SurrendTranslatableToolStripMenuItem.Name = "SurrendTranslatableToolStripMenuItem";
+            SurrendTranslatableToolStripMenuItem.Size = new Size(142, 22);
+            SurrendTranslatableToolStripMenuItem.Text = "&Surrend";
+            SurrendTranslatableToolStripMenuItem.Click += SurrentTranslatableToolStripMenuItem_Click;
             // 
             // HotseatGameForm
             // 
@@ -561,6 +563,8 @@
             Controls.Add(InfoLabel);
             Controls.Add(MainMenuStrip);
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            Icon = (Icon)resources.GetObject("$this.Icon");
+            MaximizeBox = false;
             Name = "HotseatGameForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "[💻] [Checkers] Game";
@@ -619,6 +623,6 @@
         private MenuStrip MainMenuStrip;
         private CustomComponents.TranslatableToolStripMenuItem GameTranslatableToolStripMenuItem;
         private CustomComponents.TranslatableToolStripMenuItem DeclareDrawTranslatableToolStripMenuItem;
-        private CustomComponents.TranslatableToolStripMenuItem SurrentTranslatableToolStripMenuItem;
+        private CustomComponents.TranslatableToolStripMenuItem SurrendTranslatableToolStripMenuItem;
     }
 }
