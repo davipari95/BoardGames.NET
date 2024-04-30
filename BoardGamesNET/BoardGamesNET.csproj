@@ -17,6 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.2478.35" />
     <PackageReference Include="System.Data.SQLite" Version="1.0.118" />
   </ItemGroup>
 
@@ -47,6 +48,11 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>PlayerNumberIcons.resx</DependentUpon>
     </Compile>
+    <Compile Update="Resources\Rules.Designer.cs">
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Rules.settings</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
@@ -76,6 +82,10 @@
     <None Update="Resources\Games\Checkers\CheckersSettings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>CheckersSettings.Designer.cs</LastGenOutput>
+    </None>
+    <None Update="Resources\Rules.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Rules.Designer.cs</LastGenOutput>
     </None>
   </ItemGroup>
 

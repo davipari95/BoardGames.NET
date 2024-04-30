@@ -31,6 +31,9 @@
     <Compile Update="Classes\Forms\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Classes\Forms\RulesViewerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Classes\Forms\SettingsForm.cs">
       <SubType>Form</SubType>
     </Compile>

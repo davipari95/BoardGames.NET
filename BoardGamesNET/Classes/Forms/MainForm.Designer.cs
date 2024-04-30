@@ -89,7 +89,7 @@ namespace BoardGamesNET.Classes.Forms
             GamesCheckersTranslatableToolStripMenuItem.Image = Resources.Games.Checkers.CheckersResources.GameIcon;
             GamesCheckersTranslatableToolStripMenuItem.LanguageReference = 10L;
             GamesCheckersTranslatableToolStripMenuItem.Name = "GamesCheckersTranslatableToolStripMenuItem";
-            GamesCheckersTranslatableToolStripMenuItem.Size = new Size(122, 22);
+            GamesCheckersTranslatableToolStripMenuItem.Size = new Size(180, 22);
             GamesCheckersTranslatableToolStripMenuItem.Text = "&Checkers";
             // 
             // GamesCheckersTwoPlayersTranslatableToolStripMenuItem
@@ -98,7 +98,7 @@ namespace BoardGamesNET.Classes.Forms
             GamesCheckersTwoPlayersTranslatableToolStripMenuItem.Image = PlayerNumberIcons._02;
             GamesCheckersTwoPlayersTranslatableToolStripMenuItem.LanguageReference = 12L;
             GamesCheckersTwoPlayersTranslatableToolStripMenuItem.Name = "GamesCheckersTwoPlayersTranslatableToolStripMenuItem";
-            GamesCheckersTwoPlayersTranslatableToolStripMenuItem.Size = new Size(120, 22);
+            GamesCheckersTwoPlayersTranslatableToolStripMenuItem.Size = new Size(180, 22);
             GamesCheckersTwoPlayersTranslatableToolStripMenuItem.Text = "&2 players";
             // 
             // GamesCheckersTwoPlayersLocalTranslatableToolStripMeniItem
@@ -123,17 +123,17 @@ namespace BoardGamesNET.Classes.Forms
             // toolStripSeparator1
             // 
             toolStripSeparator1.Name = "toolStripSeparator1";
-            toolStripSeparator1.Size = new Size(117, 6);
+            toolStripSeparator1.Size = new Size(177, 6);
             // 
             // GamesCheckersRulesTranslatableToolStripMeniItem
             // 
-            GamesCheckersRulesTranslatableToolStripMeniItem.Enabled = false;
             GamesCheckersRulesTranslatableToolStripMeniItem.Image = App.Rules;
             GamesCheckersRulesTranslatableToolStripMeniItem.LanguageReference = 13L;
             GamesCheckersRulesTranslatableToolStripMeniItem.Name = "GamesCheckersRulesTranslatableToolStripMeniItem";
-            GamesCheckersRulesTranslatableToolStripMeniItem.Size = new Size(120, 22);
+            GamesCheckersRulesTranslatableToolStripMeniItem.Size = new Size(180, 22);
             GamesCheckersRulesTranslatableToolStripMeniItem.Text = "&Rules";
             GamesCheckersRulesTranslatableToolStripMeniItem.ToolTipText = "Coming soon...";
+            GamesCheckersRulesTranslatableToolStripMeniItem.Click += GamesCheckersRulesTranslatableToolStripMeniItem_Click;
             // 
             // translatableToolStripMenuItem2
             // 

@@ -135,3 +135,10 @@ C:\Users\User\Documents\Projects\Visual Studio 2022\BoardGamesNET\BoardGamesNET\
 C:\Users\User\Documents\Projects\Visual Studio 2022\BoardGamesNET\BoardGamesNET\obj\Debug\net6.0-windows\BoardGamesNET.genruntimeconfig.cache
 C:\Users\User\Documents\Projects\Visual Studio 2022\BoardGamesNET\BoardGamesNET\obj\Debug\net6.0-windows\ref\BoardGamesNET.dll
 C:\Users\User\Documents\Projects\Visual Studio 2022\BoardGamesNET\BoardGamesNET\obj\Debug\net6.0-windows\BoardGamesNET.Classes.Forms.Dialogs.AboutThisAppDialog.resources
+C:\Users\User\Documents\Projects\Visual Studio 2022\BoardGamesNET\BoardGamesNET\bin\Debug\net6.0-windows\runtimes\win-x86\native\WebView2Loader.dll
+C:\Users\User\Documents\Projects\Visual Studio 2022\BoardGamesNET\BoardGamesNET\bin\Debug\net6.0-windows\runtimes\win-x64\native\WebView2Loader.dll
+C:\Users\User\Documents\Projects\Visual Studio 2022\BoardGamesNET\BoardGamesNET\bin\Debug\net6.0-windows\runtimes\win-arm64\native\WebView2Loader.dll
+C:\Users\User\Documents\Projects\Visual Studio 2022\BoardGamesNET\BoardGamesNET\bin\Debug\net6.0-windows\Microsoft.Web.WebView2.Core.dll
+C:\Users\User\Documents\Projects\Visual Studio 2022\BoardGamesNET\BoardGamesNET\bin\Debug\net6.0-windows\Microsoft.Web.WebView2.WinForms.dll
+C:\Users\User\Documents\Projects\Visual Studio 2022\BoardGamesNET\BoardGamesNET\bin\Debug\net6.0-windows\Microsoft.Web.WebView2.Wpf.dll
+C:\Users\User\Documents\Projects\Visual Studio 2022\BoardGamesNET\BoardGamesNET\obj\Debug\net6.0-windows\BoardGamesNET.Classes.Forms.RulesViewerForm.resources

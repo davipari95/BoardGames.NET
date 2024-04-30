@@ -130,6 +130,33 @@ namespace BoardGamesNET.Classes.Forms
         {
             AboutThisAppDialog.Show();
         }
+
+        private void GamesCheckersRulesTranslatableToolStripMeniItem_Click(object sender, EventArgs e)
+        {
+            OpenRulesForm(Resources.Rules.Default.Checkers, 18);
+        }
+
+        /// <summary>
+        /// Open the form containing the rules of the selected game.<br/>
+        /// Rules will be open at the active language.
+        /// </summary>
+        /// <param name="relativeRulePath">
+        /// Relative path of the html rule file.<br/>
+        /// File path is similar to <tt>Data\Rules\Checkers\{0}.html</tt>.<br/>
+        /// Check <see cref="Resources.Rules.Default"/> to retrieve relative path.
+        /// </param>
+        /// <param name="gameNameLanguageReference">Language reference of the name of the game.</param>
+        private void OpenRulesForm(string relativeRulePath, long gameNameLanguageReference)
+        {
+            string ruleSource = string.Format(relativeRulePath, Program.cSettingsManager.ActiveLangauge);
+            string title = string.Format(Program.cRegionManager.GetTranslatedText(50), Program.cRegionManager.GetTranslatedText(gameNameLanguageReference));
+
+            RulesViewerForm f = new RulesViewerForm(title, ruleSource);
+            f.MdiParent = this;
+            f.Show();
+        }
         #endregion
+
+
     }
 }

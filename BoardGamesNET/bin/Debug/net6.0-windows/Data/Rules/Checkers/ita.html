@@ -1,0 +1,83 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="../Stylesheet.css"/>
+        <title>[ITA] Dama</title>
+    </head>
+    <body>
+        <h1>Dama</h1>
+
+        <h2>Indice</h2>
+        <ul>
+            <li><a href="#howtoplay">Come giocare</a></li>
+            <li><a href="#rules">Regolamento</a></li>
+            <ul>
+                <li><a href="#goal">Obiettivo</a></li>
+                <li><a href="#howitworks">Come funziona</a></li>
+                <ul>
+                    <li><a href="#preparation">Preparazione</a></li>
+                    <li><a href="#procedure">Procedura</a></li>
+                </ul>
+            </ul>
+        </ul>
+
+        <h2 id="howtoplay">Come giocare</h2>
+        <p>
+            Cliccare sulla pedina che si vuole muovere. La pedina selezionata avrà lo sfondo verde e le mosse
+            disponibili verranno visualizzate con uno sfondo giallo.<br/>
+            <img src="Images/SelectingPawn.png" class="centre"/>
+        </p>
+        <p>
+            Le pedine che saranno obbligate a mangiare un'altra pedina saranno evidenziate con uno sfondo di colore
+            azzurro.<br/>
+            <img src="Images/ForcedToEat.png" class="centre"/>
+        </p>
+        <p>
+            Quindi, le pedine che verranno mangiate saranno evidenziate invece da uno sfondo rosso.<br/>
+            <img src="Images/PawnThatEats.png" class="centre"/>
+        </p>
+        <p>
+            Se una pedina è selezionata, cliccando sulla stessa, su una cella dove una mossa non è legale o su una 
+            pedina avversaria, quest'ultima verrà deselezionata.
+        </p>
+        <p>
+            Per arrendersi, aprire il menù (cliccando su "Partita") e selezionare "Arrenditi".<br/>
+            <img src="Images/Surrend_ita.png" class="centre"/><br/>
+            Un prompt per confermare l'arresa comparirà.<br/>
+            Se si clicca su "Sì" allora si concluderà la resa, facendo vincere l'avversario.<br/>
+            <img src="Images/SurrendPrompt_ita.png" class="centre"/>
+        </p>
+        <p>
+            Per dichiarare una partita patta, aprire il menù (cliccando su "Partita") e selezionare "Dichiara patta".<br/>
+            <img src="Images/DeclareDraw_ita.png" class="centre"/>
+            Un prompt per confermare la situazione di parità comparirà.<br/>
+            Selezionando "Sì", successivamente si aprirà un'altro prompt di ulteriore conferma che dovrà essere 
+            confermato dall'avversario.<br/>
+            Se anche l'avversario selezionerà "Sì", la partita risulterà patta.<br/>
+        </p>
+
+        <h2 id="rules">Regolamento</h2>
+
+        <h3 id="goal">Obiettivo</h3>
+        L'obiettivo del gioco è quello di lasciare l'avversario con una sola pedina.
+
+        <h3 id="howitworks">Come funziona</h3>
+
+        <h4 id="preparation">Preparazione</h4>
+        Le pedine vengono disposte sulle celle scure, sulle prime tre righe a partire dal basso.
+
+        <h4 id="procedure">Procedura</h4>
+        <p>
+            Si gioca a turni alterni facendo cominciare la partita al bianco.<br/>
+            Il giocatore attuale sceglie una pedina la muove in avanti ed in diagonale, ovvero, la sposta in una delle 
+            celle diagonali libere e adiacenti.
+        </p>
+        <p>
+            Nel caso in cui la cella selezionata sia occupata da una propria pedina, la mossa sarà considerata invalida.<br/> 
+            Tuttavia, se la cella scelta è occupata da una pedina avversaria e la cella adiacente successiva è libera, 
+            il giocatore avrà il diritto di procedere con la mossa, eseguendo uno scenario di 'cattura'. Durante tale 
+            procedura, la propria pedina sarà spostata oltre la pedina avversaria adiacente, conseguendo così la 
+            rimozione di quest'ultima dal tabellone di gioco.
+        </p>
+
+    </body>
+</html>
