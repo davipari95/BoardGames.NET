@@ -1,0 +1,105 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="../Stylesheet.css"/>
+        <title>[ENG] Checkers</title>
+    </head>
+    <body>
+        <h1>Checkers</h1>
+
+        <h2>Table of Contents</h2>
+        <ul>
+            <li><a href="#howtoplay">How to Play</a></li>
+            <li><a href="#rules">Rules</a></li>
+            <ul>
+                <li><a href="#goal">Objective</a></li>
+                <li><a href="#howitworks">How It Works</a></li>
+                <ul>
+                    <li><a href="#preparation">Preparation</a></li>
+                    <li><a href="#procedure">Procedure</a></li>
+                    <ul>
+                        <li><a href="#procedure-1">Basic Movements</a></li>
+                        <li><a href="#procedure-2">Capture Obligation</a></li>
+                        <li><a href="#procedure-3">Continuation of Capture</a></li>
+                        <li><a href="#procedure-4">Promotion to King</a></li> 
+                    </ul>
+                </ul>
+            </ul>
+        </ul>
+
+        <h2 id="howtoplay">How to Play</h2>
+        <p>
+            Click on the piece you want to move. The selected piece will have a green background, and available moves will be displayed with a yellow background.<br/>
+            <img src="Images/SelectingPawn.png" class="centre"/>
+        </p>
+        <p>
+            Pieces that will be forced to capture another piece will be highlighted with a blue background.<br/>
+            <img src="Images/ForcedToEat.png" class="centre"/>
+        </p>
+        <p>
+            Then, pieces that will be captured will be highlighted with a red background.<br/>
+            <img src="Images/PawnThatEats.png" class="centre"/>
+        </p>
+        <p>
+            If a piece is selected, clicking on it again on a cell where a move is not legal or on an opponent's piece will deselect it.
+        </p>
+        <p>
+            To surrender, open the menu (by clicking on "Game") and select "Surrender".<br/>
+            <img src="Images/Surrend_eng.png" class="centre"/><br/>
+            A prompt to confirm surrender will appear.<br/>
+            Clicking "Yes" will conclude the surrender, making the opponent win.<br/>
+            <img src="Images/SurrendPrompt_eng.png" class="centre"/>
+        </p>
+        <p>
+            To declare a draw, open the menu (by clicking on "Game") and select "Declare Draw".<br/>
+            <img src="Images/DeclareDraw_eng.png" class="centre"/>
+            A prompt to confirm the draw will appear.<br/>
+            By selecting "Yes", another prompt for further confirmation will appear, which must be confirmed by the opponent.<br/>
+            If the opponent also selects "Yes", the game will result in a draw.<br/>
+        </p>
+
+        <h2 id="rules">Rules</h2>
+
+        <h3 id="goal">Objective</h3>
+        The objective of the game is to leave the opponent with only one piece.
+
+        <h3 id="howitworks">How It Works</h3>
+
+        <h4 id="preparation">Preparation</h4>
+        The pieces are placed on the dark cells, on the first three rows starting from the bottom.
+
+        <h4 id="procedure">Procedure</h4>
+        <h5 id="procedure-1">Basic Movements</h5>
+        <p>
+            Players take turns starting with white.<br/>
+            The current player chooses a piece and moves it forward and diagonally, i.e., moves it to one of the diagonally adjacent empty cells.
+        </p>
+        <p>
+            If the selected cell is occupied by the player's own piece, the move is considered invalid.<br/> 
+            However, if the chosen cell is occupied by an opponent's piece and the next adjacent cell is empty, the player has the right to proceed with the move, executing a 'capture' scenario.<br/>
+            During this procedure, the player's piece will be moved beyond the adjacent opponent's piece, thus resulting in the removal of the latter from the game board.
+        </p>
+
+        <h5 id="procedure-2">Capture Obligation</h5>
+        <p>
+            If during their turn a player has the possibility to capture an opponent's piece, they are obliged to make the capture.<br/>
+            In other words, if a piece is able to move to capture an opponent's piece, the player must execute the capture move.<br/>
+            This rule is binding and cannot be ignored.<br/>
+            However, if there are multiple capture options available, the player can choose which capture to make.
+        </p>
+
+        <h5 id="procedure-3">Continuation of Capture</h5>
+        <p>
+            If, after completing a capture move, the player's piece has an immediate possibility to capture another opponent's piece, then the player is obliged to continue the sequence of captures.<br/>
+            In other words, if a piece has the opportunity to execute a series of consecutive captures, the player must proceed with such moves until there is no longer the possibility to make further captures.<br/>
+            This rule is binding and must be adhered to during the turn of the player executing the captures.    
+        </p>
+
+        <h5 id="procedure-4">Promotion to King</h5>
+        <p>
+            When a piece reaches the last row of the opponent's field, it is promoted to a "king".<br/>
+            The king has the ability to move both forward and backward along the diagonals.<br/>
+            However, a king cannot continue a series of captures after being promoted.<br/>
+            Additionally, a king cannot be captured by an opponent's piece, unless the opponent's piece is also a king.
+        </p>
+    </body>
+</html>

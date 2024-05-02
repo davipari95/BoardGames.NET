@@ -568,6 +568,7 @@
             Name = "HotseatGameForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "[💻] [Checkers] Game";
+            FormClosing += HotseatGameForm_FormClosing;
             panel1.ResumeLayout(false);
             panel6.ResumeLayout(false);
             panel5.ResumeLayout(false);

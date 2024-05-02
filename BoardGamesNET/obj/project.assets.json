@@ -1353,7 +1353,7 @@
     "C:\\Users\\User\\.nuget\\packages\\": {}
   },
   "project": {
-    "version": "0.1.0",
+    "version": "0.1.1",
     "restore": {
       "projectUniqueName": "C:\\Users\\User\\Documents\\Projects\\Visual Studio 2022\\BoardGamesNET\\BoardGamesNET\\BoardGamesNET.csproj",
       "projectName": "BoardGamesNET",

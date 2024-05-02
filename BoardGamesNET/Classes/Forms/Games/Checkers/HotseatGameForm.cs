@@ -408,6 +408,24 @@ namespace BoardGamesNET.Classes.Forms.Games.Checkers
                 }
             }
         }
+
+        /// <summary>
+        /// Listener that manage the event <see cref="Form.FormClosing"/>.
+        /// </summary>
+        /// <param name="sender">Sender that invoke the event.<br/>This is a <see cref="HotseatGameForm"/> type.</param>
+        /// <param name="e">Event args of the closing event.</param>
+        private void HotseatGameForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (e.CloseReason != CloseReason.MdiFormClosing)
+            {
+                DialogResult closeResult = GamesNetMessageBoxTimerized.Show(51, 27, MessageBoxButtons.YesNo, MessageBoxIcon.Question, DialogResult.Yes, 5);
+
+                if (closeResult == DialogResult.No)
+                {
+                    e.Cancel = true;
+                }
+            }
+        }
         #endregion
     }
 }

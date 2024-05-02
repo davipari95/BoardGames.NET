@@ -6,7 +6,7 @@
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v6.0": {
-      "BoardGamesNET/0.1": {
+      "BoardGamesNET/0.1.1.0": {
         "dependencies": {
           "Microsoft.Web.WebView2": "1.0.2478.35",
           "System.Data.SQLite": "1.0.118"
@@ -229,7 +229,7 @@
     }
   },
   "libraries": {
-    "BoardGamesNET/0.1": {
+    "BoardGamesNET/0.1.1.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

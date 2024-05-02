@@ -6,7 +6,7 @@
     <Nullable>enable</Nullable>
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
-    <Version>0.1</Version>
+    <Version>0.1.1.0</Version>
     <Authors>Parisi Davide</Authors>
     <PackageIcon>Icon.png</PackageIcon>
     <ApplicationIcon>Assets\Icons\AppIcon256.ico</ApplicationIcon>

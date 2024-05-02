@@ -53,6 +53,7 @@
             Controls.Add(RuleWebView2);
             FormBorderStyle = FormBorderStyle.SizableToolWindow;
             Name = "RulesViewerForm";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "RulesViewerForm";
             ((System.ComponentModel.ISupportInitialize)RuleWebView2).EndInit();
             ResumeLayout(false);
