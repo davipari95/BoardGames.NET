@@ -158,5 +158,11 @@ namespace BoardGamesNET.Classes.Forms
         #endregion
 
 
+        private void GameCheckers2PLanCreateGameTranslatableToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            LanCreateGameSettingsForm form = new LanCreateGameSettingsForm();
+            form.MdiParent = this;
+            form.Show();
+        }
     }
 }

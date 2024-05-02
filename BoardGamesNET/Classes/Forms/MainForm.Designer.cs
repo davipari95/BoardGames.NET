@@ -39,6 +39,8 @@ namespace BoardGamesNET.Classes.Forms
             GamesCheckersTwoPlayersTranslatableToolStripMenuItem = new CustomComponents.TranslatableToolStripMenuItem();
             GamesCheckersTwoPlayersLocalTranslatableToolStripMeniItem = new CustomComponents.TranslatableToolStripMenuItem();
             GamesCheckersTwoPlayersLanTranslatableToolStripMeniItem = new CustomComponents.TranslatableToolStripMenuItem();
+            GameCheckers2PLanCreateGameTranslatableToolStripMenuItem = new CustomComponents.TranslatableToolStripMenuItem();
+            GameCheckers2PLanJoinGameTranslatableToolStripMenuItem = new CustomComponents.TranslatableToolStripMenuItem();
             toolStripSeparator1 = new ToolStripSeparator();
             GamesCheckersRulesTranslatableToolStripMeniItem = new CustomComponents.TranslatableToolStripMenuItem();
             translatableToolStripMenuItem2 = new CustomComponents.TranslatableToolStripMenuItem();
@@ -106,19 +108,34 @@ namespace BoardGamesNET.Classes.Forms
             GamesCheckersTwoPlayersLocalTranslatableToolStripMeniItem.Image = App.HotSeat;
             GamesCheckersTwoPlayersLocalTranslatableToolStripMeniItem.LanguageReference = 14L;
             GamesCheckersTwoPlayersLocalTranslatableToolStripMeniItem.Name = "GamesCheckersTwoPlayersLocalTranslatableToolStripMeniItem";
-            GamesCheckersTwoPlayersLocalTranslatableToolStripMeniItem.Size = new Size(102, 22);
+            GamesCheckersTwoPlayersLocalTranslatableToolStripMeniItem.Size = new Size(180, 22);
             GamesCheckersTwoPlayersLocalTranslatableToolStripMeniItem.Text = "&Local";
             GamesCheckersTwoPlayersLocalTranslatableToolStripMeniItem.Click += GamesCheckersTwoPlayersLocalTranslatableToolStripMeniItem_Click;
             // 
             // GamesCheckersTwoPlayersLanTranslatableToolStripMeniItem
             // 
-            GamesCheckersTwoPlayersLanTranslatableToolStripMeniItem.Enabled = false;
+            GamesCheckersTwoPlayersLanTranslatableToolStripMeniItem.DropDownItems.AddRange(new ToolStripItem[] { GameCheckers2PLanCreateGameTranslatableToolStripMenuItem, GameCheckers2PLanJoinGameTranslatableToolStripMenuItem });
             GamesCheckersTwoPlayersLanTranslatableToolStripMeniItem.Image = App.LAN;
             GamesCheckersTwoPlayersLanTranslatableToolStripMeniItem.LanguageReference = 15L;
             GamesCheckersTwoPlayersLanTranslatableToolStripMeniItem.Name = "GamesCheckersTwoPlayersLanTranslatableToolStripMeniItem";
-            GamesCheckersTwoPlayersLanTranslatableToolStripMeniItem.Size = new Size(102, 22);
+            GamesCheckersTwoPlayersLanTranslatableToolStripMeniItem.Size = new Size(180, 22);
             GamesCheckersTwoPlayersLanTranslatableToolStripMeniItem.Text = "L&AN";
             GamesCheckersTwoPlayersLanTranslatableToolStripMeniItem.ToolTipText = "Coming soon...";
+            // 
+            // GameCheckers2PLanCreateGameTranslatableToolStripMenuItem
+            // 
+            GameCheckers2PLanCreateGameTranslatableToolStripMenuItem.LanguageReference = 52L;
+            GameCheckers2PLanCreateGameTranslatableToolStripMenuItem.Name = "GameCheckers2PLanCreateGameTranslatableToolStripMenuItem";
+            GameCheckers2PLanCreateGameTranslatableToolStripMenuItem.Size = new Size(180, 22);
+            GameCheckers2PLanCreateGameTranslatableToolStripMenuItem.Text = "&Create game";
+            GameCheckers2PLanCreateGameTranslatableToolStripMenuItem.Click += GameCheckers2PLanCreateGameTranslatableToolStripMenuItem_Click;
+            // 
+            // GameCheckers2PLanJoinGameTranslatableToolStripMenuItem
+            // 
+            GameCheckers2PLanJoinGameTranslatableToolStripMenuItem.LanguageReference = 53L;
+            GameCheckers2PLanJoinGameTranslatableToolStripMenuItem.Name = "GameCheckers2PLanJoinGameTranslatableToolStripMenuItem";
+            GameCheckers2PLanJoinGameTranslatableToolStripMenuItem.Size = new Size(180, 22);
+            GameCheckers2PLanJoinGameTranslatableToolStripMenuItem.Text = "&Join game";
             // 
             // toolStripSeparator1
             // 
@@ -213,5 +230,7 @@ namespace BoardGamesNET.Classes.Forms
         private ToolStripMenuItem TestToolStripMenuItem;
         private ToolStripMenuItem toolStripMenuItem1;
         private CustomComponents.TranslatableToolStripMenuItem AboutTranslatableToolStripMenuItem;
+        private CustomComponents.TranslatableToolStripMenuItem GameCheckers2PLanCreateGameTranslatableToolStripMenuItem;
+        private CustomComponents.TranslatableToolStripMenuItem GameCheckers2PLanJoinGameTranslatableToolStripMenuItem;
     }
 }

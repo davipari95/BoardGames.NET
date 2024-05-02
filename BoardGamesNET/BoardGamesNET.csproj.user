@@ -7,7 +7,13 @@
     <Compile Update="Classes\CustomComponents\TranslatableButton.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Update="Classes\CustomComponents\TranslatableGroupBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Update="Classes\CustomComponents\TranslatableLabel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="Classes\CustomComponents\TranslatableRadioButton.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Update="Classes\CustomComponents\TranslatableToolStripMenuItem.cs">
@@ -26,6 +32,9 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Classes\Forms\Games\Checkers\HotseatSettingsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Classes\Forms\Games\Checkers\LanCreateGameSettingsForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Classes\Forms\MainForm.cs">
