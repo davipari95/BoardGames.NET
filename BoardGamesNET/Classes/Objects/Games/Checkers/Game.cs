@@ -372,6 +372,8 @@ namespace BoardGamesNET.Classes.Objects.Games.Checkers
         {
             bool pass = true;
 
+            SelectionForced = false;
+
             if (CheckersBoard.CountColoredPawns(OppositeTurnColor) <= 1)
             {
                 GameOver();

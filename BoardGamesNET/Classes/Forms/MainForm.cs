@@ -106,7 +106,7 @@ namespace BoardGamesNET.Classes.Forms
         /// <param name="e">This is empty.</param>
         private void TestToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            HotseatGameForm form = new HotseatGameForm("Angelo Bianchi", "Beatrice Neri");
+            LanCreateGameSettingsForm form = new LanCreateGameSettingsForm();
             form.MdiParent = this;
             form.Show();
         }

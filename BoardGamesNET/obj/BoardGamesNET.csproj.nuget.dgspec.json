@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\User\\Documents\\Projects\\Visual Studio 2022\\BoardGamesNET\\BoardGamesNET\\BoardGamesNET.csproj": {}
+    "D:\\Documenti\\Projects\\Visual Studio\\BoardGames.NET\\BoardGamesNET\\BoardGamesNET.csproj": {}
   },
   "projects": {
-    "C:\\Users\\User\\Documents\\Projects\\Visual Studio 2022\\BoardGamesNET\\BoardGamesNET\\BoardGamesNET.csproj": {
+    "D:\\Documenti\\Projects\\Visual Studio\\BoardGames.NET\\BoardGamesNET\\BoardGamesNET.csproj": {
       "version": "0.1.1",
       "restore": {
-        "projectUniqueName": "C:\\Users\\User\\Documents\\Projects\\Visual Studio 2022\\BoardGamesNET\\BoardGamesNET\\BoardGamesNET.csproj",
+        "projectUniqueName": "D:\\Documenti\\Projects\\Visual Studio\\BoardGames.NET\\BoardGamesNET\\BoardGamesNET.csproj",
         "projectName": "BoardGamesNET",
-        "projectPath": "C:\\Users\\User\\Documents\\Projects\\Visual Studio 2022\\BoardGamesNET\\BoardGamesNET\\BoardGamesNET.csproj",
-        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\User\\Documents\\Projects\\Visual Studio 2022\\BoardGamesNET\\BoardGamesNET\\obj\\",
+        "projectPath": "D:\\Documenti\\Projects\\Visual Studio\\BoardGames.NET\\BoardGamesNET\\BoardGamesNET.csproj",
+        "packagesPath": "C:\\Users\\paris\\.nuget\\packages\\",
+        "outputPath": "D:\\Documenti\\Projects\\Visual Studio\\BoardGames.NET\\BoardGamesNET\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\paris\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -73,7 +73,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.200\\RuntimeIdentifierGraph.json"
         }
       }
     }

@@ -25,5 +25,10 @@ namespace BoardGamesNET.Classes.Forms.Games.Checkers
 
             Program.cRegionManager.TranslateAllElementsInControl(this);
         }
+
+        private void CancelTranslatableButton_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
     }
 }
