@@ -371,7 +371,6 @@ namespace BoardGamesNET.Classes.Objects.Games.Checkers
         private void OnCheckersBoardPawnMovedEvent(object? sender, CheckersBoard.PawnMovedEventArgs e)
         {
             bool pass = true;
-
             SelectionForced = false;
 
             if (CheckersBoard.CountColoredPawns(OppositeTurnColor) <= 1)
