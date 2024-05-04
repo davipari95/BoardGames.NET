@@ -13,8 +13,8 @@ using System.Reflection;
 
 [assembly: System.Reflection.AssemblyCompanyAttribute("Parisi Davide")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
-[assembly: System.Reflection.AssemblyFileVersionAttribute("0.1.1.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("0.1.1.0+c8973f46fce654a53f439773a97a106978d60054")]
+[assembly: System.Reflection.AssemblyFileVersionAttribute("0.1.1.1")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("0.1.1.0+a5437180e1ffad35dfd5e0a7ee4643a6da468708")]
 [assembly: System.Reflection.AssemblyProductAttribute("BoardGamesNET")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BoardGamesNET")]
 [assembly: System.Reflection.AssemblyVersionAttribute("0.1.1.0")]

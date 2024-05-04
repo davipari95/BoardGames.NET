@@ -10,6 +10,7 @@
     <Authors>Parisi Davide</Authors>
     <PackageIcon>Icon.png</PackageIcon>
     <ApplicationIcon>Assets\Icons\AppIcon256.ico</ApplicationIcon>
+    <FileVersion>0.1.1.1</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>
