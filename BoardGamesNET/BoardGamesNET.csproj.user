@@ -37,6 +37,9 @@
     <Compile Update="Classes\Forms\Games\Checkers\LanCreateGameSettingsForm.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Classes\Forms\Games\Checkers\ServerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Classes\Forms\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>

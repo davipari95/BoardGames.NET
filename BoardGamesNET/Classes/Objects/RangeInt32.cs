@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace BoardGamesNET.Classes.Objects
 {
+    /// <summary>
+    /// Class that represents a range with <see cref="int"/> values.
+    /// </summary>
     public class RangeInt32
     {
         #region ===== FIELDS =====
@@ -14,6 +17,10 @@ namespace BoardGamesNET.Classes.Objects
         #endregion
 
         #region ===== VARIABLES =====
+        /// <summary>
+        /// Smaller value of the range (minimum).<br/>
+        /// If setting the value, the value is greater than <see cref="Max"/>, the values will be swapped.
+        /// </summary>
         public int Min
         {
             get
@@ -38,6 +45,10 @@ namespace BoardGamesNET.Classes.Objects
             }
         }
 
+        /// <summary>
+        /// Greater value of the range (maximum).<br/>
+        /// If setting the value, the value is lower than <see cref="Min"/>, the values will be swapped.
+        /// </summary>
         public int Max
         {
             get
@@ -59,6 +70,9 @@ namespace BoardGamesNET.Classes.Objects
             }
         }
 
+        /// <summary>
+        /// Mid value of the range.
+        /// </summary>
         public float Mid
         {
             get
@@ -69,6 +83,12 @@ namespace BoardGamesNET.Classes.Objects
         #endregion
 
         #region ===== CONSTRUCTORS =====
+        /// <summary>
+        /// Create the class.<br/>
+        /// The greater value will be set on <see cref="Max"/> while the lower value will be set on <see cref="Min"/>.
+        /// </summary>
+        /// <param name="value1">First value of the range.</param>
+        /// <param name="value2">Second value of the range.</param>
         public RangeInt32(int value1, int value2)
         {
             if (value1 < value2)

@@ -39,7 +39,7 @@ namespace BoardGamesNET.Classes.Forms.Games.Checkers
             LanPortNumericUpDown = new NumericUpDown();
             tableLayoutPanel1 = new TableLayoutPanel();
             CancelTranslatableButton = new CustomComponents.TranslatableButton();
-            translatableButton1 = new CustomComponents.TranslatableButton();
+            StartServerTranslatableButton = new CustomComponents.TranslatableButton();
             translatableGroupBox1.SuspendLayout();
             translatableGroupBox2.SuspendLayout();
             translatableGroupBox3.SuspendLayout();
@@ -135,7 +135,7 @@ namespace BoardGamesNET.Classes.Forms.Games.Checkers
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             tableLayoutPanel1.Controls.Add(CancelTranslatableButton, 0, 0);
-            tableLayoutPanel1.Controls.Add(translatableButton1, 1, 0);
+            tableLayoutPanel1.Controls.Add(StartServerTranslatableButton, 1, 0);
             tableLayoutPanel1.Dock = DockStyle.Bottom;
             tableLayoutPanel1.Location = new Point(0, 158);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -156,16 +156,17 @@ namespace BoardGamesNET.Classes.Forms.Games.Checkers
             CancelTranslatableButton.UseVisualStyleBackColor = true;
             CancelTranslatableButton.Click += CancelTranslatableButton_Click;
             // 
-            // translatableButton1
+            // StartServerTranslatableButton
             // 
-            translatableButton1.Dock = DockStyle.Fill;
-            translatableButton1.LanguageReference = 60L;
-            translatableButton1.Location = new Point(144, 3);
-            translatableButton1.Name = "translatableButton1";
-            translatableButton1.Size = new Size(136, 37);
-            translatableButton1.TabIndex = 0;
-            translatableButton1.Text = "&Start server";
-            translatableButton1.UseVisualStyleBackColor = true;
+            StartServerTranslatableButton.Dock = DockStyle.Fill;
+            StartServerTranslatableButton.LanguageReference = 60L;
+            StartServerTranslatableButton.Location = new Point(144, 3);
+            StartServerTranslatableButton.Name = "StartServerTranslatableButton";
+            StartServerTranslatableButton.Size = new Size(136, 37);
+            StartServerTranslatableButton.TabIndex = 0;
+            StartServerTranslatableButton.Text = "&Start server";
+            StartServerTranslatableButton.UseVisualStyleBackColor = true;
+            StartServerTranslatableButton.Click += StartServerTranslatableButton_Click;
             // 
             // LanCreateGameSettingsForm
             // 
@@ -200,6 +201,6 @@ namespace BoardGamesNET.Classes.Forms.Games.Checkers
         private NumericUpDown LanPortNumericUpDown;
         private TableLayoutPanel tableLayoutPanel1;
         private CustomComponents.TranslatableButton CancelTranslatableButton;
-        private CustomComponents.TranslatableButton translatableButton1;
+        private CustomComponents.TranslatableButton StartServerTranslatableButton;
     }
 }
