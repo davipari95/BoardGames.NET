@@ -106,7 +106,7 @@ namespace BoardGamesNET.Classes.Forms
         /// <param name="e">This is empty.</param>
         private void TestToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            LanCreateGameSettingsForm form = new LanCreateGameSettingsForm();
+            ServerForm form = new ServerForm(49152);
             form.MdiParent = this;
             form.Show();
         }

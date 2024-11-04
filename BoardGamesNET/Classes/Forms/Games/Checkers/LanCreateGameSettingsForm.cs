@@ -32,7 +32,7 @@ namespace BoardGamesNET.Classes.Forms.Games.Checkers
             Close();
         }
 
-        private void StartServerTranslatableButton_Click(object sender, EventArgs e)
+        private async void StartServerTranslatableButton_Click(object sender, EventArgs e)
         {
             string username = UsernameTextBox.Text;
 
@@ -49,7 +49,17 @@ namespace BoardGamesNET.Classes.Forms.Games.Checkers
                 form.MdiParent = Program.MainForm;
                 form.Show();
 
+                #region Wait until server is ready for accepting client
+                while (!form.IsServerReadyForAcceptingClient)
+                {
+                    await Task.Delay(1);
+                }
+                #endregion
+
                 //Open client
+
+
+                Close();
             }
         }
     }
